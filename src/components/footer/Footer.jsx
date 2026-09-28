@@ -19,10 +19,7 @@ function Footer() {
               grow, evolve, and create meaningful digital experiences.
             </p>
 
-            <Link
-              to="/contact"
-              className={styles.cta}
-            >
+            <Link to="/contact" className={styles.cta}>
               Start a Conversation
               <span aria-hidden="true">↗</span>
             </Link>
@@ -112,7 +109,7 @@ function Footer() {
                 </li>
 
                 <li>
-                  <Link to="/project-planning-guide">
+                  <Link to="/software-project-planning-guide">
                     Project Planning Guide
                   </Link>
                 </li>
