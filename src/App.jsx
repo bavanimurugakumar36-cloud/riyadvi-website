@@ -56,7 +56,7 @@ function App() {
               element={<SolutionArchitect />}
             />
             <Route
-              path="/project-planning-guide"
+              path="/software-project-planning-guide"
               element={<ProjectPlanningGuide />}
             />
           </Route>

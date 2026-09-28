@@ -8,7 +8,7 @@
   min-height: 100svh;
 
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 
   overflow: hidden;
 
@@ -28,14 +28,15 @@
 
   margin: 0 auto;
 
-  padding: 7.5rem 0 5rem;
+  /* Reduced top spacing so hero sits closer to navbar */
+   padding: 2.5rem 0 4rem;
 
   display: grid;
   grid-template-columns:
     minmax(0, 1.08fr)
     minmax(420px, 0.92fr);
 
-  align-items: center;
+    align-items: start;
 
   gap: clamp(3rem, 7vw, 8rem);
 }
@@ -61,7 +62,7 @@
 
   gap: 0.8rem;
 
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.5rem;
 }
 
 .introLine {
@@ -78,11 +79,12 @@
 
   color: #d4af37;
 
-  font-size: 0.68rem;
-  font-weight: 600;
+  font-size: clamp(0.78rem, 1vw, 0.95rem);
+  font-weight: 700;
 
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   line-height: 1.4;
+  text-transform: uppercase;
 }
 
 /* =========================================================
@@ -116,7 +118,7 @@
 .lowerContent {
   max-width: 720px;
 
-  margin-top: clamp(2.25rem, 4vw, 3.5rem);
+  margin-top: clamp(2rem, 3.5vw, 3rem);
 
   display: grid;
 
@@ -261,7 +263,7 @@
 .heroMeta {
   max-width: 700px;
 
-  margin-top: clamp(3rem, 6vw, 5rem);
+  margin-top: clamp(2.5rem, 5vw, 4rem);
 
   padding-top: 1.4rem;
 
@@ -487,7 +489,7 @@
 
     gap: 3.5rem;
 
-    padding-top: 7.5rem;
+    padding-top: 5rem;
   }
 
   .content {
@@ -525,7 +527,7 @@
   .container {
     width: min(100% - 2rem, 680px);
 
-    padding-top: 6.5rem;
+    padding-top: 4.5rem;
     padding-bottom: 4rem;
 
     gap: 3rem;
@@ -581,7 +583,7 @@
   .container {
     width: min(100% - 1.5rem, 460px);
 
-    padding-top: 6rem;
+    padding-top: 4rem;
     padding-bottom: 3rem;
   }
 
@@ -674,7 +676,7 @@
   .container {
     width: calc(100% - 1.25rem);
 
-    padding-top: 5.75rem;
+    padding-top: 3.75rem;
   }
 
   .title {

@@ -140,6 +140,58 @@ function Contact() {
               what you have in mind.
             </p>
 
+            {/* =================================================
+                CONTACT DETAILS
+            ================================================= */}
+
+            <div className={styles.contactDetails}>
+              <div className={styles.contactDetail}>
+                <p className={styles.contactDetailLabel}>
+                  ADDRESS
+                </p>
+
+                <address className={styles.contactDetailText}>
+                  17, Aarti Arcade, Dr. Radha Krishnan Salai,
+                  <br />
+                  opposite AVM Rajeshwari Kalyana Mandapam,
+                  <br />
+                  Krishnapuram, Mylapore,
+                  <br />
+                  Chennai, Tamil Nadu 600004
+                </address>
+              </div>
+
+              <div className={styles.contactDetail}>
+                <p className={styles.contactDetailLabel}>
+                  MOBILE
+                </p>
+
+                <a
+                  className={styles.contactDetailLink}
+                  href="tel:+918072487427"
+                >
+                  +91 8072487427
+                </a>
+              </div>
+
+              <div className={styles.contactDetail}>
+                <p className={styles.contactDetailLabel}>
+                  EMAIL
+                </p>
+
+                <a
+                  className={styles.contactDetailLink}
+                  href="mailto:info@riyadvisoftwaretechnologies.com"
+                >
+                  info@riyadvisoftwaretechnologies.com
+                </a>
+              </div>
+            </div>
+
+            {/* =================================================
+                PROCESS / INFO ITEMS
+            ================================================= */}
+
             <div className={styles.infoItems}>
               <div className={styles.infoItem}>
                 <span
