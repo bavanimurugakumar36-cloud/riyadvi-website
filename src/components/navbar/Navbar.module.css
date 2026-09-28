@@ -1,0 +1,521 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-header);
+
+  width: 100%;
+
+  background: transparent;
+  border-bottom: 1px solid transparent;
+
+  transition:
+    background-color var(--transition-normal),
+    border-color var(--transition-normal),
+    backdrop-filter var(--transition-normal);
+}
+
+.navbarScrolled {
+  background: rgba(0, 0, 0, 0.88);
+  border-bottom-color: var(--border-subtle);
+  backdrop-filter: blur(18px);
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-wide);
+  min-height: 78px;
+
+  margin: 0 auto;
+  padding: 0 var(--page-padding);
+
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.logo {
+  flex-shrink: 0;
+
+  color: var(--color-gold);
+
+  font-size: 1.05rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.12em;
+
+  transition: color var(--transition-fast);
+}
+
+.logo:hover {
+  color: var(--color-gold-light);
+}
+
+/* ========================================
+   DESKTOP NAVIGATION
+======================================== */
+
+.desktopNav {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2vw, 2rem);
+
+  margin-left: auto;
+}
+
+.navLink,
+.servicesButton {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+
+  padding: 0.5rem 0;
+
+  background: transparent;
+  color: var(--text-secondary);
+
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+
+  white-space: nowrap;
+
+  transition:
+    color var(--transition-fast),
+    opacity var(--transition-fast);
+}
+
+.navLink::after {
+  content: '';
+
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  width: 0;
+  height: 1px;
+
+  background: var(--color-gold);
+
+  transition: width var(--transition-normal);
+}
+.servicesButton::after {
+  content: '';
+
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  width: 0;
+  height: 1px;
+
+  background: var(--color-gold);
+
+  transition: width var(--transition-normal);
+}
+
+.servicesButton:hover::after,
+.servicesButton.active::after {
+  width: 100%;
+}
+
+.navLink:hover,
+.servicesButton:hover,
+.active {
+  color: var(--color-white);
+}
+
+.navLink:hover::after,
+.active::after {
+  width: 100%;
+}
+
+.servicesWrapper {
+  position: relative;
+}
+
+.servicesButton {
+  cursor: pointer;
+}
+
+.chevron {
+  font-size: 0.7rem;
+
+  transition: transform var(--transition-fast);
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+/* ========================================
+   SERVICES DROPDOWN
+======================================== */
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 1rem);
+  left: 50%;
+
+  width: 280px;
+
+  padding: 0.5rem;
+
+  transform: translateX(-50%);
+
+  background: rgba(17, 17, 17, 0.98);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+
+  box-shadow: var(--shadow-medium);
+
+  backdrop-filter: blur(20px);
+
+  animation: dropdownEnter 180ms ease-out;
+}
+
+@keyframes dropdownEnter {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.dropdownLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0.85rem 1rem;
+
+  color: var(--text-secondary);
+
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+
+  border-radius: var(--radius-sm);
+
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.dropdownLink:hover {
+  background: rgba(212, 175, 55, 0.08);
+  color: var(--color-gold-light);
+}
+
+.arrow {
+  color: var(--color-gold);
+
+  opacity: 0;
+
+  transform: translateX(-5px);
+
+  transition:
+    opacity var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.dropdownLink:hover .arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ========================================
+   CONSULTATION BUTTON
+======================================== */
+
+.desktopActions {
+  margin-left: var(--space-4);
+}
+
+.consultationButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 42px;
+
+  padding: 0.7rem 1.15rem;
+
+  background: var(--color-gold);
+  color: var(--color-black);
+
+  border: 1px solid var(--color-gold);
+  border-radius: var(--radius-full);
+
+  font-size: 0.78rem;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.01em;
+
+  white-space: nowrap;
+
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.consultationButton:hover {
+  background: var(--color-gold-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+}
+
+/* ========================================
+   MOBILE MENU BUTTON
+======================================== */
+
+.menuButton {
+  display: none;
+
+  width: 44px;
+  height: 44px;
+
+  margin-left: auto;
+
+  padding: 0;
+
+  background: transparent;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.menuButton span {
+  display: block;
+
+  width: 23px;
+  height: 1.5px;
+
+  background: var(--color-white);
+
+  transition:
+    transform var(--transition-normal),
+    opacity var(--transition-fast);
+}
+
+.menuButtonOpen span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+
+.menuButtonOpen span:nth-child(2) {
+  opacity: 0;
+}
+
+.menuButtonOpen span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* ========================================
+   MOBILE MENU
+======================================== */
+
+.mobileMenu {
+  display: none;
+}
+
+/* ========================================
+   TABLET / MOBILE
+======================================== */
+
+@media (max-width: 1023px) {
+  .desktopNav,
+  .desktopActions {
+    display: none;
+  }
+
+  .menuButton {
+    display: flex;
+  }
+
+  .mobileMenu {
+    display: block;
+
+    position: fixed;
+    top: 78px;
+    left: 0;
+
+    width: 100%;
+    height: calc(100vh - 78px);
+
+    padding: 2rem var(--page-padding);
+
+    background: rgba(0, 0, 0, 0.98);
+
+    border-top: 1px solid var(--border-subtle);
+
+    overflow-y: auto;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+
+    transition:
+      opacity var(--transition-normal),
+      visibility var(--transition-normal),
+      transform var(--transition-normal);
+  }
+
+  .mobileMenuOpen {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .mobileNav {
+    display: flex;
+    flex-direction: column;
+
+    max-width: 600px;
+
+    margin: 0 auto;
+  }
+
+  .mobileNavLink,
+  .mobileServicesButton {
+    width: 100%;
+
+    padding: 1rem 0;
+
+    background: transparent;
+    color: var(--text-secondary);
+
+    border-bottom: 1px solid var(--border-subtle);
+
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-medium);
+
+    text-align: left;
+
+    transition: color var(--transition-fast);
+  }
+
+  .mobileNavLink:hover,
+  .mobileActive,
+  .mobileServicesButton:hover {
+    color: var(--color-gold);
+  }
+
+  .mobileServicesButton {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    cursor: pointer;
+  }
+
+  .mobileChevron {
+    color: var(--color-gold);
+
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-regular);
+
+    transition: transform var(--transition-fast);
+  }
+
+  .mobileChevronOpen {
+    transform: rotate(45deg);
+  }
+
+  .mobileServiceLinks {
+    display: flex;
+    flex-direction: column;
+
+    padding: 0.5rem 0 0.75rem 1rem;
+  }
+
+  .mobileServiceLink {
+    padding: 0.7rem 0;
+
+    color: var(--text-muted);
+
+    font-size: 0.95rem;
+
+    transition: color var(--transition-fast);
+  }
+
+  .mobileServiceLink:hover {
+    color: var(--color-gold-light);
+  }
+
+  .mobileConsultationButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 2rem;
+    min-height: 52px;
+
+    padding: 0.9rem 1.5rem;
+
+    background: var(--color-gold);
+    color: var(--color-black);
+
+    border-radius: var(--radius-full);
+
+    font-size: 0.9rem;
+    font-weight: var(--font-weight-semibold);
+
+    transition:
+      background-color var(--transition-fast),
+      transform var(--transition-fast);
+  }
+
+  .mobileConsultationButton:hover {
+    background: var(--color-gold-light);
+    transform: translateY(-2px);
+  }
+}
+
+/* ========================================
+   SMALL MOBILE
+======================================== */
+
+@media (max-width: 480px) {
+  .container {
+    min-height: 68px;
+  }
+
+  .mobileMenu {
+    top: 68px;
+    height: calc(100vh - 68px);
+  }
+
+  .logo {
+    font-size: 0.95rem;
+  }
+}
+
+/* ========================================
+   REDUCED MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar,
+  .navLink,
+  .servicesButton,
+  .dropdownLink,
+  .consultationButton,
+  .menuButton span,
+  .mobileMenu,
+  .mobileNavLink,
+  .mobileServicesButton,
+  .mobileChevron,
+  .mobileConsultationButton {
+    transition: none;
+  }
+
+  .dropdown {
+    animation: none;
+  }
+}

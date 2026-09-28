@@ -1,0 +1,1682 @@
+/* =========================================================
+   CAREERS PAGE
+   Riyadvi Software Technologies
+   Premium / Futuristic / Responsive
+========================================================= */
+
+.page {
+  min-height: 100vh;
+  background: #000;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* =========================================================
+   SHARED CONTAINER
+========================================================= */
+
+.container {
+  width: min(1400px, calc(100% - 6rem));
+  margin: 0 auto;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+  position: relative;
+  min-height: calc(100vh - 82px);
+  padding: 6rem 0 4rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.heroGrid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.22;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px
+    );
+
+  background-size: 70px 70px;
+
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.8),
+    transparent 90%
+  );
+}
+
+.heroContainer {
+  position: relative;
+  z-index: 2;
+
+  width: min(1400px, calc(100% - 6rem));
+  min-height: 560px;
+
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(420px, 0.9fr);
+
+  align-items: center;
+
+  gap: clamp(3rem, 7vw, 7rem);
+}
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.heroContent {
+  min-width: 0;
+  max-width: 720px;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+
+  margin: 0 0 1.5rem;
+
+  color: #d4af37;
+
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.18em;
+
+  text-transform: uppercase;
+}
+
+.eyebrowLine {
+  width: 32px;
+  height: 1px;
+
+  flex: 0 0 auto;
+
+  background: #d4af37;
+}
+
+.heroTitle {
+  margin: 0;
+
+  max-width: 720px;
+
+  font-size: clamp(3.8rem, 7vw, 7.8rem);
+  font-weight: 500;
+  line-height: 0.92;
+  letter-spacing: -0.06em;
+
+  color: #fff;
+}
+
+.heroTitle span {
+  color: #d4af37;
+}
+
+.heroDescription {
+  max-width: 620px;
+
+  margin: 2rem 0 0;
+
+  color: rgba(255, 255, 255, 0.58);
+
+  font-size: clamp(1rem, 1.35vw, 1.15rem);
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+/* =========================================================
+   HERO ACTIONS
+========================================================= */
+
+.heroActions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 0.9rem;
+
+  margin-top: 2.2rem;
+}
+
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.8rem;
+
+  min-height: 48px;
+
+  padding: 0.8rem 1.15rem;
+
+  font-family: inherit;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+
+  text-decoration: none;
+
+  transition:
+    transform 220ms ease,
+    background-color 220ms ease,
+    border-color 220ms ease,
+    color 220ms ease;
+}
+
+.primaryButton {
+  border: 1px solid #d4af37;
+
+  background: #d4af37;
+
+  color: #000;
+}
+
+.primaryButton:hover {
+  transform: translateY(-2px);
+
+  background: #e3c35a;
+}
+
+.secondaryButton {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  background: transparent;
+
+  color: #fff;
+}
+
+.secondaryButton:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(212, 175, 55, 0.65);
+
+  color: #d4af37;
+}
+
+.primaryButton:focus-visible,
+.secondaryButton:focus-visible {
+  outline: 2px solid #d4af37;
+  outline-offset: 4px;
+}
+
+/* =========================================================
+   HERO VISUAL
+========================================================= */
+
+.heroVisual {
+  position: relative;
+
+  width: 100%;
+  min-height: 500px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(212, 175, 55, 0.13),
+      transparent 48%
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(255, 255, 255, 0.025),
+      transparent 70%
+    ),
+    #080808;
+}
+
+.visualGrid {
+  position: absolute;
+  inset: 0;
+
+  opacity: 0.38;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.055) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.055) 1px,
+      transparent 1px
+    );
+
+  background-size: 42px 42px;
+
+  mask-image: radial-gradient(
+    circle at center,
+    black,
+    transparent 75%
+  );
+}
+
+.visualRing {
+  position: absolute;
+
+  width: min(320px, 65%);
+  aspect-ratio: 1;
+
+  border: 1px solid rgba(212, 175, 55, 0.28);
+
+  border-radius: 50%;
+
+  animation: rotate 18s linear infinite;
+}
+
+.visualRing::before,
+.visualRing::after {
+  content: '';
+
+  position: absolute;
+
+  border: 1px solid rgba(212, 175, 55, 0.18);
+
+  border-radius: 50%;
+}
+
+.visualRing::before {
+  inset: 12%;
+}
+
+.visualRing::after {
+  inset: 25%;
+
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.visualRingLarge {
+  width: min(350px, 72%);
+}
+
+.visualRingMedium {
+  width: min(285px, 58%);
+
+  animation-duration: 14s;
+  animation-direction: reverse;
+
+  border-color: rgba(212, 175, 55, 0.2);
+}
+
+.visualRingSmall {
+  width: min(220px, 45%);
+
+  animation-duration: 10s;
+
+  border-color: rgba(212, 175, 55, 0.38);
+}
+
+.visualRing span {
+  position: absolute;
+
+  top: 8%;
+  left: 50%;
+
+  width: 5px;
+  height: 5px;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+
+  background: #d4af37;
+
+  box-shadow: 0 0 18px rgba(212, 175, 55, 0.8);
+}
+
+.visualCore {
+  position: relative;
+  z-index: 3;
+
+  width: 145px;
+  aspect-ratio: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(212, 175, 55, 0.75);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(212, 175, 55, 0.12),
+      rgba(0, 0, 0, 0.2) 65%
+    );
+
+  box-shadow:
+    0 0 70px rgba(212, 175, 55, 0.1),
+    inset 0 0 40px rgba(212, 175, 55, 0.06);
+}
+
+.visualCore::before {
+  content: '';
+
+  position: absolute;
+  inset: 13px;
+
+  border: 1px solid rgba(212, 175, 55, 0.17);
+
+  border-radius: 50%;
+}
+
+.visualCore span {
+  position: relative;
+  z-index: 2;
+
+  color: #d4af37;
+
+  font-size: 3.5rem;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+}
+
+/* =========================================================
+   HERO VISUAL CORNERS
+========================================================= */
+
+.visualCorner {
+  position: absolute;
+  z-index: 4;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.2rem;
+
+  color: rgba(255, 255, 255, 0.35);
+
+  font-size: 0.5rem;
+  font-weight: 600;
+
+  line-height: 1.4;
+  letter-spacing: 0.15em;
+}
+
+.visualCorner span:first-child {
+  color: #d4af37;
+
+  font-size: 0.65rem;
+}
+
+.visualCornerTop {
+  top: 1.5rem;
+  right: 1.5rem;
+
+  text-align: right;
+}
+
+.visualCornerBottom {
+  bottom: 1.5rem;
+  left: 1.5rem;
+
+  text-align: left;
+}
+
+/* =========================================================
+   HERO STATS
+========================================================= */
+
+.heroStats {
+  position: relative;
+  z-index: 3;
+
+  width: min(1400px, calc(100% - 6rem));
+
+  margin: 4rem auto 0;
+
+  padding-top: 2rem;
+
+  display: flex;
+  align-items: flex-start;
+
+  gap: clamp(3rem, 7vw, 7rem);
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.heroStat {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.45rem;
+
+  min-width: 90px;
+}
+
+.heroStatNumber {
+  color: #d4af37;
+
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.heroStatLabel {
+  color: rgba(255, 255, 255, 0.32);
+
+  font-size: 0.56rem;
+  font-weight: 600;
+  line-height: 1.4;
+
+  letter-spacing: 0.14em;
+}
+
+/* =========================================================
+   POSITIONS
+========================================================= */
+
+.positions {
+  padding: 7rem 0 9rem;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sectionHeader {
+  padding-bottom: 3rem;
+}
+
+.sectionLabel,
+.cultureLabel,
+.ctaLabel {
+  display: flex;
+  align-items: center;
+
+  gap: 0.8rem;
+
+  margin-bottom: 2rem;
+
+  color: #d4af37;
+
+  font-size: 0.68rem;
+  font-weight: 600;
+
+  letter-spacing: 0.17em;
+
+  text-transform: uppercase;
+}
+
+.sectionLabelLine {
+  width: 28px;
+  height: 1px;
+
+  flex: 0 0 auto;
+
+  background: #d4af37;
+}
+
+.sectionHeaderGrid {
+  display: grid;
+
+  grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+
+  align-items: end;
+
+  gap: 5rem;
+}
+
+.sectionTitle {
+  margin: 0;
+
+  font-size: clamp(3.2rem, 6vw, 6.8rem);
+  font-weight: 500;
+  line-height: 0.94;
+
+  letter-spacing: -0.055em;
+}
+
+.sectionTitle span {
+  color: #d4af37;
+}
+
+.sectionHeaderCopy {
+  max-width: 560px;
+
+  padding-bottom: 0.3rem;
+}
+
+.sectionHeaderCopy p {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.52);
+
+  font-size: 0.98rem;
+  line-height: 1.8;
+}
+
+/* =========================================================
+   FILTERS
+========================================================= */
+
+.filters {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1.35rem;
+
+  padding: 1.75rem 0;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.filterHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-bottom: 0.4rem;
+}
+
+.filterTitle {
+  color: rgba(255, 255, 255, 0.35);
+
+  font-size: 0.58rem;
+  font-weight: 600;
+
+  letter-spacing: 0.15em;
+}
+
+.resultCount {
+  color: #d4af37;
+
+  font-size: 0.58rem;
+  font-weight: 600;
+
+  letter-spacing: 0.12em;
+}
+
+.filterGroup {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 1.5rem;
+}
+
+.filterLabel {
+  flex: 0 0 110px;
+
+  padding-top: 0.55rem;
+
+  color: rgba(255, 255, 255, 0.3);
+
+  font-size: 0.57rem;
+  font-weight: 600;
+
+  letter-spacing: 0.14em;
+}
+
+.filterOptions {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 0.5rem;
+
+  min-width: 0;
+}
+
+.filterButton {
+  min-height: 34px;
+
+  padding: 0.5rem 0.8rem;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  background: transparent;
+
+  color: rgba(255, 255, 255, 0.45);
+
+  font-family: inherit;
+  font-size: 0.61rem;
+  font-weight: 500;
+
+  letter-spacing: 0.04em;
+
+  cursor: pointer;
+
+  transition:
+    color 220ms ease,
+    border-color 220ms ease,
+    background-color 220ms ease;
+}
+
+.filterButton:hover {
+  border-color: rgba(212, 175, 55, 0.45);
+
+  color: #fff;
+}
+
+.filterButtonActive {
+  border-color: #d4af37;
+
+  background: rgba(212, 175, 55, 0.08);
+
+  color: #d4af37;
+}
+
+.filterButton:focus-visible,
+.resetButton:focus-visible,
+.emptyReset:focus-visible {
+  outline: 2px solid #d4af37;
+  outline-offset: 3px;
+}
+
+.resetRow {
+  padding-top: 0.2rem;
+}
+
+.resetButton {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 0.45rem;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: rgba(255, 255, 255, 0.4);
+
+  font-family: inherit;
+  font-size: 0.62rem;
+  font-weight: 500;
+
+  letter-spacing: 0.08em;
+
+  cursor: pointer;
+
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.resetButton:hover {
+  color: #d4af37;
+}
+
+/* =========================================================
+   JOB LIST
+========================================================= */
+
+.jobList {
+  width: 100%;
+}
+
+.jobCard {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns: 60px minmax(0, 1fr) auto;
+
+  align-items: center;
+
+  gap: 2rem;
+
+  padding: 2.6rem 0;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.11);
+
+  transition:
+    padding-left 250ms ease,
+    padding-right 250ms ease,
+    background-color 250ms ease,
+    border-color 250ms ease;
+}
+
+.jobCard:hover {
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  background: rgba(255, 255, 255, 0.018);
+
+  border-color: rgba(212, 175, 55, 0.25);
+}
+
+.jobIndex {
+  align-self: start;
+
+  padding-top: 0.2rem;
+
+  color: #d4af37;
+
+  font-size: 0.68rem;
+  font-weight: 600;
+
+  letter-spacing: 0.08em;
+}
+
+.jobMain {
+  min-width: 0;
+}
+
+.jobTop {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 0.8rem 1.2rem;
+
+  margin-bottom: 0.7rem;
+}
+
+.jobDepartment,
+.jobLocation {
+  color: rgba(255, 255, 255, 0.38);
+
+  font-size: 0.6rem;
+  font-weight: 500;
+
+  letter-spacing: 0.1em;
+
+  text-transform: uppercase;
+}
+
+.jobLocation::before {
+  content: '·';
+
+  margin-right: 1.2rem;
+
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.jobTitle {
+  margin: 0;
+
+  font-size: clamp(1.7rem, 3vw, 3rem);
+  font-weight: 500;
+
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+
+  transition: color 220ms ease;
+}
+
+.jobCard:hover .jobTitle {
+  color: #d4af37;
+}
+
+.jobDescription {
+  max-width: 760px;
+
+  margin: 1rem 0 1.15rem;
+
+  color: rgba(255, 255, 255, 0.5);
+
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.jobMeta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 0.75rem;
+}
+
+.jobMeta span {
+  color: rgba(255, 255, 255, 0.32);
+
+  font-size: 0.62rem;
+
+  letter-spacing: 0.08em;
+}
+
+.jobMeta span:not(:last-child)::after {
+  content: '·';
+
+  margin-left: 0.75rem;
+
+  color: rgba(255, 255, 255, 0.18);
+}
+
+.jobAction {
+  align-self: center;
+}
+
+.viewRole {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 0.65rem;
+
+  color: rgba(255, 255, 255, 0.55);
+
+  font-size: 0.65rem;
+  font-weight: 600;
+
+  letter-spacing: 0.08em;
+
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition:
+    color 220ms ease,
+    transform 220ms ease;
+}
+
+.viewRoleArrow {
+  font-size: 1rem;
+
+  transition: transform 220ms ease;
+}
+
+.viewRole:hover {
+  color: #d4af37;
+}
+
+.viewRole:hover .viewRoleArrow {
+  transform: translate(3px, -3px);
+}
+
+.viewRole:focus-visible {
+  outline: 2px solid #d4af37;
+  outline-offset: 5px;
+}
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.emptyState {
+  display: grid;
+  grid-template-columns: auto 1fr;
+
+  gap: 2rem;
+
+  padding: 5rem 0;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.emptyNumber {
+  color: #d4af37;
+
+  font-size: 0.7rem;
+  font-weight: 600;
+
+  letter-spacing: 0.12em;
+}
+
+.emptyState h3 {
+  margin: 0 0 0.7rem;
+
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 500;
+
+  letter-spacing: -0.035em;
+}
+
+.emptyState p {
+  max-width: 500px;
+
+  margin: 0 0 1.5rem;
+
+  color: rgba(255, 255, 255, 0.45);
+
+  line-height: 1.7;
+}
+
+.emptyReset {
+  padding: 0.7rem 1rem;
+
+  border: 1px solid rgba(212, 175, 55, 0.45);
+
+  background: transparent;
+
+  color: #d4af37;
+
+  font-family: inherit;
+  font-size: 0.68rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 220ms ease,
+    color 220ms ease;
+}
+
+.emptyReset:hover {
+  background: #d4af37;
+
+  color: #000;
+}
+
+/* =========================================================
+   CULTURE
+========================================================= */
+
+.culture {
+  margin-top: 8rem;
+  padding-top: 7rem;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cultureGrid {
+  display: grid;
+
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+
+  gap: 6rem;
+}
+
+.cultureIntro h2 {
+  margin: 0;
+
+  font-size: clamp(3rem, 5vw, 5.8rem);
+  font-weight: 500;
+
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+}
+
+.cultureIntro h2 span {
+  color: #d4af37;
+}
+
+.cultureContent {
+  max-width: 780px;
+}
+
+.cultureContent > p {
+  margin: 0 0 3rem;
+
+  color: rgba(255, 255, 255, 0.55);
+
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.culturePoints {
+  display: flex;
+  flex-direction: column;
+}
+
+.culturePoint {
+  display: grid;
+
+  grid-template-columns: 45px minmax(0, 1fr);
+
+  gap: 1rem;
+
+  padding: 1.5rem 0;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.culturePoint:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.culturePoint > span {
+  color: #d4af37;
+
+  font-size: 0.62rem;
+  font-weight: 600;
+
+  letter-spacing: 0.08em;
+}
+
+.culturePoint h3 {
+  margin: 0 0 0.45rem;
+
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.culturePoint p {
+  max-width: 560px;
+
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.42);
+
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.cta {
+  position: relative;
+
+  min-height: 560px;
+
+  margin-top: 8rem;
+
+  padding: 7rem;
+
+  display: grid;
+
+  grid-template-columns: minmax(300px, 0.7fr) minmax(0, 1fr);
+
+  align-items: center;
+
+  gap: 6rem;
+
+  overflow: hidden;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  background:
+    radial-gradient(
+      circle at 25% 50%,
+      rgba(212, 175, 55, 0.1),
+      transparent 35%
+    ),
+    #050505;
+}
+
+.ctaVisual {
+  position: relative;
+
+  width: min(360px, 100%);
+  aspect-ratio: 1;
+
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ctaCircleLarge,
+.ctaCircleSmall {
+  position: absolute;
+
+  border: 1px solid rgba(212, 175, 55, 0.25);
+
+  border-radius: 50%;
+}
+
+.ctaCircleLarge {
+  width: 100%;
+  height: 100%;
+
+  animation: rotate 20s linear infinite;
+}
+
+.ctaCircleSmall {
+  width: 62%;
+  height: 62%;
+
+  border-color: rgba(212, 175, 55, 0.45);
+
+  animation: rotate 13s linear infinite reverse;
+}
+
+.ctaCore {
+  position: relative;
+  z-index: 2;
+
+  width: 34%;
+  aspect-ratio: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(212, 175, 55, 0.7);
+
+  border-radius: 50%;
+
+  color: #d4af37;
+
+  font-size: 2.5rem;
+  font-weight: 500;
+
+  box-shadow:
+    0 0 60px rgba(212, 175, 55, 0.1),
+    inset 0 0 30px rgba(212, 175, 55, 0.06);
+}
+
+.ctaContent {
+  max-width: 720px;
+}
+
+.ctaLabel {
+  margin-bottom: 1.7rem;
+}
+
+.ctaContent h2 {
+  margin: 0;
+
+  font-size: clamp(3rem, 5.5vw, 6.2rem);
+  font-weight: 500;
+
+  line-height: 0.94;
+  letter-spacing: -0.055em;
+}
+
+.ctaContent h2 span {
+  color: #d4af37;
+}
+
+.ctaContent > p {
+  max-width: 600px;
+
+  margin: 2rem 0;
+
+  color: rgba(255, 255, 255, 0.5);
+
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.75rem;
+
+  min-height: 48px;
+
+  padding: 0.9rem 1.25rem;
+
+  background: #d4af37;
+
+  color: #000;
+
+  font-size: 0.72rem;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition:
+    transform 220ms ease,
+    background-color 220ms ease;
+}
+
+.ctaButton:hover {
+  transform: translateY(-3px);
+
+  background: #e3c35a;
+}
+
+.ctaButton:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+  .container,
+  .heroContainer,
+  .heroStats {
+    width: min(100% - 4rem, 1100px);
+  }
+
+  .heroContainer {
+    grid-template-columns: minmax(0, 1fr) minmax(340px, 0.8fr);
+
+    gap: 3rem;
+  }
+
+  .heroVisual {
+    min-height: 420px;
+  }
+
+  .sectionHeaderGrid {
+    gap: 3rem;
+  }
+
+  .cultureGrid {
+    gap: 4rem;
+  }
+
+  .cta {
+    padding: 6rem 4rem;
+
+    gap: 4rem;
+  }
+}
+
+/* =========================================================
+   TABLET / SMALL LAPTOP
+========================================================= */
+
+@media (max-width: 900px) {
+  .hero {
+    padding: 5rem 0 4rem;
+  }
+
+  .heroContainer {
+    grid-template-columns: 1fr;
+
+    min-height: auto;
+
+    gap: 4rem;
+  }
+
+  .heroContent {
+    max-width: 800px;
+  }
+
+  .heroVisual {
+    width: min(100%, 650px);
+
+    min-height: 400px;
+
+    justify-self: center;
+  }
+
+  .heroStats {
+    margin-top: 3.5rem;
+
+    gap: 3rem;
+  }
+
+  .sectionHeaderGrid {
+    grid-template-columns: 1fr;
+
+    gap: 1.5rem;
+  }
+
+  .sectionHeaderCopy {
+    max-width: 650px;
+  }
+
+  .cultureGrid {
+    grid-template-columns: 1fr;
+
+    gap: 3rem;
+  }
+
+  .cta {
+    grid-template-columns: 1fr;
+
+    min-height: auto;
+
+    padding: 6rem 4rem;
+
+    text-align: center;
+  }
+
+  .ctaVisual {
+    width: min(300px, 70vw);
+  }
+
+  .ctaContent {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .ctaContent > p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ctaLabel {
+    justify-content: center;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+  .container,
+  .heroContainer,
+  .heroStats {
+    width: calc(100% - 2.5rem);
+  }
+
+  .hero {
+    min-height: auto;
+
+    padding: 4rem 0 3rem;
+  }
+
+  .heroContainer {
+    gap: 3rem;
+  }
+
+  .heroTitle {
+    font-size: clamp(3rem, 14vw, 4.8rem);
+
+    line-height: 0.94;
+  }
+
+  .heroDescription {
+    margin-top: 1.5rem;
+
+    font-size: 0.92rem;
+  }
+
+  .heroActions {
+    align-items: stretch;
+    flex-direction: column;
+
+    width: 100%;
+
+    margin-top: 1.7rem;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+  }
+
+  .heroVisual {
+    min-height: 330px;
+  }
+
+  .visualRingLarge {
+    width: 270px;
+  }
+
+  .visualRingMedium {
+    width: 225px;
+  }
+
+  .visualRingSmall {
+    width: 175px;
+  }
+
+  .visualCore {
+    width: 110px;
+  }
+
+  .visualCore span {
+    font-size: 2.6rem;
+  }
+
+  .visualCorner {
+    font-size: 0.42rem;
+  }
+
+  .heroStats {
+    margin-top: 3rem;
+
+    padding-top: 1.5rem;
+
+    gap: 1.7rem;
+  }
+
+  .heroStat {
+    min-width: 0;
+  }
+
+  .heroStatNumber {
+    font-size: 1.55rem;
+  }
+
+  .heroStatLabel {
+    font-size: 0.48rem;
+  }
+
+  .positions {
+    padding: 5rem 0 6rem;
+  }
+
+  .sectionLabel {
+    margin-bottom: 1.5rem;
+  }
+
+  .sectionTitle {
+    font-size: clamp(2.8rem, 13vw, 4.4rem);
+  }
+
+  .sectionHeaderCopy p {
+    font-size: 0.88rem;
+  }
+
+  .filters {
+    gap: 1.2rem;
+
+    margin-top: 1rem;
+  }
+
+  .filterHeader {
+    align-items: flex-start;
+  }
+
+  .filterGroup {
+    flex-direction: column;
+
+    gap: 0.65rem;
+  }
+
+  .filterLabel {
+    flex: none;
+
+    padding-top: 0;
+  }
+
+  .filterOptions {
+    width: 100%;
+  }
+
+  .filterButton {
+    min-height: 32px;
+
+    padding: 0.45rem 0.65rem;
+
+    font-size: 0.55rem;
+  }
+
+  .jobCard {
+    grid-template-columns: 35px minmax(0, 1fr);
+
+    gap: 1rem;
+
+    padding: 2rem 0;
+  }
+
+  .jobAction {
+    grid-column: 2;
+  }
+
+  .jobTitle {
+    font-size: 1.7rem;
+  }
+
+  .jobDescription {
+    font-size: 0.82rem;
+  }
+
+  .jobMeta {
+    gap: 0.5rem 0.7rem;
+  }
+
+  .jobMeta span {
+    font-size: 0.55rem;
+  }
+
+  .jobMeta span:not(:last-child)::after {
+    margin-left: 0.7rem;
+  }
+
+  .viewRole {
+    font-size: 0.6rem;
+  }
+
+  .emptyState {
+    grid-template-columns: 1fr;
+
+    gap: 1rem;
+
+    padding: 4rem 0;
+  }
+
+  .culture {
+    margin-top: 5rem;
+
+    padding-top: 5rem;
+  }
+
+  .cultureIntro h2 {
+    font-size: clamp(2.8rem, 12vw, 4.2rem);
+  }
+
+  .cultureContent > p {
+    font-size: 0.88rem;
+  }
+
+  .culturePoint {
+    grid-template-columns: 35px minmax(0, 1fr);
+
+    gap: 0.75rem;
+  }
+
+  .culturePoint h3 {
+    font-size: 0.9rem;
+  }
+
+  .culturePoint p {
+    font-size: 0.76rem;
+  }
+
+  .cta {
+    margin-top: 5rem;
+
+    padding: 5rem 1.25rem;
+  }
+
+  .ctaVisual {
+    width: min(260px, 70vw);
+  }
+
+  .ctaContent h2 {
+    font-size: clamp(2.7rem, 12vw, 4rem);
+  }
+
+  .ctaContent > p {
+    font-size: 0.86rem;
+  }
+
+  .ctaButton {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+  .container,
+  .heroContainer,
+  .heroStats {
+    width: calc(100% - 2rem);
+  }
+
+  .heroTitle {
+    font-size: 2.8rem;
+  }
+
+  .heroVisual {
+    min-height: 290px;
+  }
+
+  .visualRingLarge {
+    width: 230px;
+  }
+
+  .visualRingMedium {
+    width: 190px;
+  }
+
+  .visualRingSmall {
+    width: 150px;
+  }
+
+  .visualCore {
+    width: 95px;
+  }
+
+  .visualCore span {
+    font-size: 2.2rem;
+  }
+
+  .heroStats {
+    gap: 1.2rem;
+  }
+
+  .heroStatNumber {
+    font-size: 1.35rem;
+  }
+
+  .heroStatLabel {
+    font-size: 0.43rem;
+    letter-spacing: 0.1em;
+  }
+
+  .filterButton {
+    padding: 0.4rem 0.55rem;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .visualRing,
+  .ctaCircleLarge,
+  .ctaCircleSmall {
+    animation: none;
+  }
+
+  .primaryButton,
+  .secondaryButton,
+  .filterButton,
+  .jobCard,
+  .jobTitle,
+  .viewRole,
+  .viewRoleArrow,
+  .ctaButton {
+    transition: none;
+  }
+}
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

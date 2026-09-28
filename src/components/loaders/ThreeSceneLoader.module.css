@@ -1,0 +1,39 @@
+.loader {
+  width: 100%;
+  height: 100%;
+  min-height: 240px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 0.8rem;
+  padding: 2rem;
+  color: var(--color-muted, #777777);
+  background: transparent;
+  text-align: center;
+}
+
+.ring {
+  width: 28px;
+  height: 28px;
+  border: 2px solid rgba(212, 175, 55, 0.2);
+  border-top-color: var(--color-gold, #d4af37);
+  border-radius: 50%;
+  animation: sceneLoaderSpin 0.8s linear infinite;
+}
+
+.label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@keyframes sceneLoaderSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ring { animation: none; }
+}

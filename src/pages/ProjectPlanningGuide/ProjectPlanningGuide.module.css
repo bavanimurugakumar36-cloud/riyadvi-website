@@ -1,0 +1,1260 @@
+/* =========================================================
+   PROJECT PLANNING GUIDE
+   Riyadvi Software Technologies
+   ========================================================= */
+
+.page {
+  min-height: 100vh;
+  background: #000;
+  color: #fff;
+}
+
+/* =========================================================
+   SHARED
+   ========================================================= */
+
+.eyebrow {
+  margin: 0 0 1.5rem;
+
+  color: #d4af37;
+
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+  padding: 5.5rem var(--page-padding) 6rem;
+
+  border-bottom: 1px solid
+    rgba(212, 175, 55, 0.2);
+}
+
+.heroInner {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+}
+
+.title {
+  max-width: 950px;
+  margin: 0;
+
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.description {
+  max-width: 650px;
+  margin: 2rem 0 0;
+
+  color: rgba(255, 255, 255, 0.6);
+
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  line-height: 1.7;
+}
+
+.heroMeta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.875rem;
+
+  margin-top: 2.5rem;
+
+  color: rgba(255, 255, 255, 0.4);
+
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.heroMeta span:nth-child(2) {
+  color: #d4af37;
+}
+
+/* =========================================================
+   PLANNING
+   ========================================================= */
+
+.planningSection {
+  padding: 6rem var(--page-padding) 8.5rem;
+}
+
+.planningContainer {
+  width: min(900px, 100%);
+  margin: 0 auto;
+}
+
+/* =========================================================
+   PROGRESS
+   ========================================================= */
+
+.progressHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1.25rem;
+}
+
+.progressHeader > div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.questionNumber {
+  color: #d4af37;
+
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.category {
+  color: rgba(255, 255, 255, 0.5);
+
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.progressText {
+  color: rgba(255, 255, 255, 0.45);
+
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.progressTrack {
+  width: 100%;
+  height: 2px;
+
+  margin-top: 1.25rem;
+
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.progressBar {
+  height: 100%;
+
+  background: #d4af37;
+
+  transition: width 0.4s ease;
+}
+
+/* =========================================================
+   QUESTION
+   ========================================================= */
+
+.questionArea {
+  padding: 4.75rem 0 3.75rem;
+}
+
+.questionArea h2 {
+  max-width: 780px;
+  margin: 0;
+
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+}
+
+.questionDescription {
+  max-width: 700px;
+  margin: 1rem 0 0;
+
+  color: rgba(255, 255, 255, 0.48);
+
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* =========================================================
+   OPTIONS
+   ========================================================= */
+
+.options {
+  display: grid;
+  gap: 0.875rem;
+
+  margin-top: 3.125rem;
+}
+
+.option {
+  display: flex;
+  align-items: flex-start;
+
+  width: 100%;
+
+  gap: 1.25rem;
+
+  padding: 1.375rem 1.5rem;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.14);
+
+  background: rgba(255, 255, 255, 0.025);
+
+  color: rgba(255, 255, 255, 0.72);
+
+  font: inherit;
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    transform 0.25s ease,
+    color 0.25s ease;
+}
+
+.option:hover {
+  border-color: rgba(212, 175, 55, 0.5);
+
+  background: rgba(255, 255, 255, 0.04);
+
+  color: #fff;
+
+  transform: translateX(4px);
+}
+
+.option:focus-visible {
+  outline: 2px solid #d4af37;
+  outline-offset: 3px;
+}
+
+.optionSelected {
+  border-color: #d4af37;
+
+  background: rgba(212, 175, 55, 0.07);
+
+  color: #fff;
+}
+
+.optionIndicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 22px;
+
+  width: 22px;
+  height: 22px;
+
+  margin-top: 0.1rem;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.25);
+
+  color: #000;
+
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.optionSelected .optionIndicator {
+  border-color: #d4af37;
+  background: #d4af37;
+}
+
+.optionContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+
+  min-width: 0;
+}
+
+.optionContent strong {
+  color: inherit;
+
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.optionContent small {
+  color: rgba(255, 255, 255, 0.42);
+
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1.25rem;
+
+  padding-top: 1.875rem;
+
+  border-top: 1px solid
+    rgba(255, 255, 255, 0.1);
+}
+
+.backButton,
+.nextButton {
+  min-height: 50px;
+
+  padding: 0.9rem 1.375rem;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.2);
+
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.backButton {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.nextButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 1.875rem;
+
+  border-color: #d4af37;
+
+  background: #d4af37;
+
+  color: #000;
+}
+
+.backButton:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.5);
+
+  color: #fff;
+
+  transform: translateY(-2px);
+}
+
+.nextButton:hover:not(:disabled) {
+  border-color: #d4af37;
+
+  background: transparent;
+
+  color: #d4af37;
+
+  transform: translateY(-2px);
+}
+
+.backButton:focus-visible,
+.nextButton:focus-visible {
+  outline: 2px solid #d4af37;
+  outline-offset: 3px;
+}
+
+.backButton:disabled,
+.nextButton:disabled {
+  opacity: 0.35;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+/* =========================================================
+   RESULT
+   ========================================================= */
+
+.resultSection {
+  min-height: calc(100vh - 80px);
+
+  padding: 6.25rem var(--page-padding)
+    8.75rem;
+}
+
+.resultContainer {
+  width: min(1000px, 100%);
+  margin: 0 auto;
+}
+
+.resultHeader {
+  max-width: 850px;
+
+  margin: 0 auto;
+
+  text-align: center;
+}
+
+.resultTitle {
+  margin: 0;
+
+  font-size: clamp(2.6rem, 5vw, 5rem);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.resultDescription {
+  max-width: 650px;
+
+  margin: 1.5rem auto 0;
+
+  color: rgba(255, 255, 255, 0.55);
+
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* =========================================================
+   SNAPSHOT
+   ========================================================= */
+
+.snapshotGrid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  margin-top: 4rem;
+
+  border-top: 1px solid
+    rgba(255, 255, 255, 0.12);
+
+  border-bottom: 1px solid
+    rgba(255, 255, 255, 0.12);
+}
+
+.snapshotCard {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.65rem;
+
+  min-height: 170px;
+
+  padding: 2rem;
+}
+
+.snapshotCard + .snapshotCard {
+  border-left: 1px solid
+    rgba(255, 255, 255, 0.12);
+}
+
+.snapshotCard > span {
+  color: #d4af37;
+
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.snapshotCard strong {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.snapshotCard small {
+  color: rgba(255, 255, 255, 0.4);
+
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   SUMMARY SECTIONS
+   ========================================================= */
+
+.summarySection,
+.approachSection {
+  margin-top: 5rem;
+}
+
+.sectionHeading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+
+  gap: 1.5rem;
+
+  padding-bottom: 1rem;
+
+  border-bottom: 1px solid
+    rgba(255, 255, 255, 0.12);
+}
+
+.sectionHeading p {
+  margin: 0;
+
+  color: #d4af37;
+
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+.sectionHeading span {
+  color: rgba(255, 255, 255, 0.35);
+
+  font-size: 0.72rem;
+}
+
+/* =========================================================
+   REQUIREMENTS
+   ========================================================= */
+
+.requirementsList {
+  display: flex;
+  flex-direction: column;
+}
+
+.requirementItem {
+  display: grid;
+
+  grid-template-columns:
+    170px minmax(0, 1fr);
+
+  gap: 2rem;
+
+  padding: 1.5rem 0;
+
+  border-bottom: 1px solid
+    rgba(255, 255, 255, 0.08);
+}
+
+.requirementMeta {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 0.75rem;
+}
+
+.requirementMeta > span {
+  color: #d4af37;
+
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+.requirementMeta small {
+  color: rgba(255, 255, 255, 0.4);
+
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+}
+
+.requirementContent strong {
+  display: block;
+
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.requirementContent p {
+  max-width: 650px;
+
+  margin: 0.5rem 0 0;
+
+  color: rgba(255, 255, 255, 0.48);
+
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+/* =========================================================
+   APPROACH
+   ========================================================= */
+
+.approachList {
+  display: flex;
+  flex-direction: column;
+}
+
+.approachItem {
+  display: grid;
+
+  grid-template-columns:
+    50px minmax(0, 1fr);
+
+  gap: 1rem;
+
+  padding: 1.4rem 0;
+
+  border-bottom: 1px solid
+    rgba(255, 255, 255, 0.08);
+}
+
+.approachItem > span {
+  color: #d4af37;
+
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+.approachItem p {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.68);
+
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* =========================================================
+   LEAD CAPTURE
+   ========================================================= */
+
+.leadCapture {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 0.9fr)
+    minmax(0, 1.1fr);
+
+  gap: 3rem;
+
+  margin-top: 5rem;
+
+  padding: 3rem;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.12);
+
+  background: #080808;
+}
+
+.leadHeader {
+  align-self: start;
+}
+
+.leadEyebrow {
+  margin: 0 0 1rem;
+
+  color: #d4af37;
+
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+.leadHeader h2 {
+  margin: 0;
+
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.leadHeader > p:last-child {
+  max-width: 400px;
+
+  margin: 1.5rem 0 0;
+
+  color: rgba(255, 255, 255, 0.5);
+
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.leadForm {
+  display: grid;
+
+  gap: 1.25rem;
+}
+
+.formField {
+  display: grid;
+
+  gap: 0.5rem;
+}
+
+.formField label {
+  color: rgba(255, 255, 255, 0.55);
+
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+.formField input {
+  width: 100%;
+  min-height: 50px;
+
+  padding: 0.85rem 1rem;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.14);
+
+  outline: none;
+
+  background: #000;
+
+  color: #fff;
+
+  font: inherit;
+
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.formField input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.formField input:focus {
+  border-color: rgba(212, 175, 55, 0.65);
+
+  background: #050505;
+}
+
+.formField input:focus-visible {
+  outline: 2px solid
+    rgba(212, 175, 55, 0.4);
+
+  outline-offset: 2px;
+}
+
+.formField input[aria-invalid='true'] {
+  border-color: rgba(212, 175, 55, 0.7);
+}
+
+.fieldError {
+  margin: 0;
+
+  color: #e3c35a;
+
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
+.submitError {
+  padding: 0.8rem 1rem;
+
+  border: 1px solid
+    rgba(212, 175, 55, 0.3);
+
+  background: rgba(212, 175, 55, 0.05);
+
+  color: #e3c35a;
+
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.submitButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 1rem;
+
+  min-height: 52px;
+
+  padding: 0.9rem 1.25rem;
+
+  border: 1px solid #d4af37;
+
+  background: #d4af37;
+
+  color: #000;
+
+  font: inherit;
+
+  font-size: 0.8rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.submitButton:hover:not(:disabled) {
+  background: transparent;
+
+  color: #d4af37;
+
+  transform: translateY(-2px);
+}
+
+.submitButton:focus-visible {
+  outline: 2px solid #d4af37;
+  outline-offset: 3px;
+}
+
+.submitButton:disabled {
+  opacity: 0.5;
+
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   SUCCESS
+   ========================================================= */
+
+.successMessage {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 1rem;
+
+  margin-top: 5rem;
+
+  padding: 1.5rem;
+
+  border: 1px solid
+    rgba(212, 175, 55, 0.35);
+
+  background: rgba(212, 175, 55, 0.05);
+}
+
+.successIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 32px;
+
+  width: 32px;
+  height: 32px;
+
+  border-radius: 50%;
+
+  background: #d4af37;
+
+  color: #000;
+
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.successMessage strong {
+  display: block;
+
+  margin-bottom: 0.4rem;
+
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.successMessage p {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.55);
+
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   RESULT ACTIONS
+   ========================================================= */
+
+.resultActions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  gap: 1rem;
+
+  margin-top: 2.5rem;
+}
+
+.downloadButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.75rem;
+
+  min-height: 50px;
+
+  padding: 0.9rem 1.25rem;
+
+  border: 1px solid #d4af37;
+
+  background: #d4af37;
+
+  color: #000;
+
+  font: inherit;
+
+  font-size: 0.8rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.downloadButton:hover {
+  background: transparent;
+
+  color: #d4af37;
+
+  transform: translateY(-2px);
+}
+
+.downloadButton:focus-visible {
+  outline: 2px solid #d4af37;
+  outline-offset: 3px;
+}
+
+.downloadHint {
+  max-width: 600px;
+
+  margin: 1.25rem auto 0;
+
+  color: rgba(255, 255, 255, 0.35);
+
+  font-size: 0.72rem;
+  line-height: 1.6;
+
+  text-align: center;
+}
+
+.downloadHint strong {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .hero {
+    padding-top: 4.5rem;
+  }
+
+  .leadCapture {
+    grid-template-columns: 1fr;
+
+    gap: 2.5rem;
+  }
+
+  .requirementItem {
+    grid-template-columns:
+      130px minmax(0, 1fr);
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 4rem 1.25rem 5rem;
+  }
+
+  .title {
+    font-size: clamp(3rem, 14vw, 4.5rem);
+  }
+
+  .planningSection {
+    padding: 4.5rem 1.25rem 5.5rem;
+  }
+
+  .progressHeader {
+    align-items: flex-start;
+  }
+
+  .progressHeader > div {
+    gap: 0.65rem;
+  }
+
+  .category {
+    font-size: 0.68rem;
+  }
+
+  .questionArea {
+    padding: 3.5rem 0 2.75rem;
+  }
+
+  .questionArea h2 {
+    font-size: clamp(
+      1.9rem,
+      8vw,
+      2.6rem
+    );
+  }
+
+  .options {
+    margin-top: 2.5rem;
+  }
+
+  .option {
+    padding: 1.125rem;
+  }
+
+  .navigation {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .backButton,
+  .nextButton {
+    width: 100%;
+
+    justify-content: center;
+  }
+
+  .resultSection {
+    padding: 4.5rem 1.25rem 5.5rem;
+  }
+
+  .resultTitle {
+    font-size: clamp(
+      2.3rem,
+      10vw,
+      3.5rem
+    );
+  }
+
+  .snapshotGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .snapshotCard {
+    min-height: auto;
+
+    padding: 1.5rem;
+  }
+
+  .snapshotCard + .snapshotCard {
+    border-top: 1px solid
+      rgba(255, 255, 255, 0.12);
+
+    border-left: none;
+  }
+
+  .sectionHeading {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 0.5rem;
+  }
+
+  .requirementItem {
+    grid-template-columns: 1fr;
+
+    gap: 0.75rem;
+  }
+
+  .requirementMeta {
+    gap: 0.6rem;
+  }
+
+  .approachItem {
+    grid-template-columns:
+      35px minmax(0, 1fr);
+  }
+
+  .leadCapture {
+    margin-top: 3.5rem;
+
+    padding: 1.5rem;
+  }
+
+  .successMessage {
+    margin-top: 3.5rem;
+  }
+
+  .resultActions {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .downloadButton,
+  .resultActions .backButton {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 400px) {
+  .hero,
+  .planningSection,
+  .resultSection {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .option {
+    gap: 0.875rem;
+
+    padding: 1rem;
+  }
+
+  .leadCapture {
+    padding: 1.25rem;
+  }
+}
+
+/* =========================================================
+   PRINT / SAVE AS PDF
+   ========================================================= */
+
+@media print {
+  .page {
+    background: #fff;
+    color: #000;
+  }
+
+  .resultSection {
+    min-height: auto;
+
+    padding: 0;
+  }
+
+  .resultContainer {
+    width: 100%;
+  }
+
+  .resultHeader {
+    max-width: 100%;
+
+    text-align: left;
+  }
+
+  .resultTitle {
+    color: #000;
+  }
+
+  .resultDescription {
+    color: #333;
+  }
+
+  .snapshotGrid {
+    border-color: #ccc;
+  }
+
+  .snapshotCard {
+    color: #000;
+  }
+
+  .snapshotCard + .snapshotCard {
+    border-left-color: #ccc;
+  }
+
+  .snapshotCard > span {
+    color: #8b6f12;
+  }
+
+  .snapshotCard strong {
+    color: #000;
+  }
+
+  .snapshotCard small {
+    color: #555;
+  }
+
+  .summarySection,
+  .approachSection {
+    page-break-inside: avoid;
+  }
+
+  .sectionHeading {
+    border-bottom-color: #ccc;
+  }
+
+  .sectionHeading p {
+    color: #8b6f12;
+  }
+
+  .sectionHeading span {
+    color: #555;
+  }
+
+  .requirementItem,
+  .approachItem {
+    border-bottom-color: #ddd;
+  }
+
+  .requirementMeta > span,
+  .approachItem > span {
+    color: #8b6f12;
+  }
+
+  .requirementMeta small,
+  .requirementContent p,
+  .approachItem p {
+    color: #444;
+  }
+
+  .requirementContent strong {
+    color: #000;
+  }
+
+  .leadCapture,
+  .successMessage,
+  .resultActions,
+  .downloadHint {
+    display: none;
+  }
+
+  .eyebrow {
+    color: #8b6f12;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .progressBar,
+  .option,
+  .backButton,
+  .nextButton,
+  .submitButton,
+  .downloadButton,
+  .formField input {
+    transition: none;
+  }
+
+  .option:hover,
+  .backButton:hover:not(:disabled),
+  .nextButton:hover:not(:disabled),
+  .submitButton:hover:not(:disabled),
+  .downloadButton:hover {
+    transform: none;
+  }
+}

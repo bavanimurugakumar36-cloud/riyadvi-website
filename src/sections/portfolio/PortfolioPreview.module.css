@@ -1,0 +1,892 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(6rem, 10vw, 10rem) 0;
+  background: #050505;
+  color: #ffffff;
+}
+
+.container {
+  width: min(
+    calc(100% - 3rem),
+    var(--container-max)
+  );
+  margin: 0 auto;
+}
+
+/* ============================================================
+   HEADER
+============================================================ */
+
+.header {
+  margin-bottom: clamp(3.5rem, 7vw, 6rem);
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+
+  color: #d4af37;
+
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.labelLine {
+  width: 28px;
+  height: 1px;
+  background: #d4af37;
+}
+
+.headerGrid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.35fr)
+    minmax(260px, 0.65fr);
+
+  gap: clamp(3rem, 8vw, 9rem);
+
+  align-items: end;
+}
+
+.title {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: clamp(2.8rem, 6vw, 5.8rem);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+.headerRight {
+  max-width: 430px;
+}
+
+.headerRight p {
+  margin: 0;
+
+  color: #858585;
+
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  line-height: 1.75;
+}
+
+.viewAll {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+
+  margin-top: 1.8rem;
+
+  color: #ffffff;
+
+  font-size: 0.73rem;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition: color 0.25s ease;
+}
+
+.arrow {
+  display: grid;
+
+  width: 29px;
+  height: 29px;
+
+  place-items: center;
+
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  border-radius: 50%;
+
+  color: #d4af37;
+
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.viewAll:hover {
+  color: #d4af37;
+}
+
+.viewAll:hover .arrow {
+  background: #d4af37;
+  color: #050505;
+  transform: translate(2px, -2px);
+}
+
+/* ============================================================
+   PROJECT EXPERIENCE
+============================================================ */
+
+.projectExperience {
+  display: grid;
+
+  grid-template-columns:
+    minmax(210px, 0.65fr)
+    minmax(300px, 0.95fr)
+    minmax(300px, 1.1fr);
+
+  min-height: 570px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.13);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+/* ============================================================
+   PROJECT NAVIGATION
+============================================================ */
+
+.projectNavigation {
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.projectButton {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    34px
+    minmax(0, 1fr)
+    20px;
+
+  align-items: center;
+
+  gap: 0.65rem;
+
+  width: 100%;
+  min-height: 95px;
+
+  padding: 0 1.25rem;
+
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+
+  background: transparent;
+
+  color: #696969;
+
+  font-family: inherit;
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    padding 0.25s ease;
+}
+
+.projectButton::before {
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+  left: 0;
+
+  width: 2px;
+
+  content: '';
+
+  background: #d4af37;
+
+  opacity: 0;
+
+  transition: opacity 0.25s ease;
+}
+
+.projectButton:hover {
+  padding-left: 1.5rem;
+
+  background: rgba(255, 255, 255, 0.018);
+
+  color: #ffffff;
+}
+
+.projectButtonActive {
+  background: rgba(212, 175, 55, 0.035);
+
+  color: #ffffff;
+}
+
+.projectButtonActive::before {
+  opacity: 1;
+}
+
+.projectNumber {
+  color: #d4af37;
+
+  font-size: 0.63rem;
+  font-weight: 700;
+}
+
+.projectName {
+  overflow: hidden;
+
+  font-size: 0.74rem;
+  font-weight: 500;
+  line-height: 1.35;
+
+  text-overflow: ellipsis;
+}
+
+.projectArrow {
+  color: #444444;
+
+  text-align: right;
+
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.projectButton:hover .projectArrow,
+.projectButtonActive .projectArrow {
+  color: #d4af37;
+}
+
+.projectButton:hover .projectArrow {
+  transform: translateX(3px);
+}
+
+/* ============================================================
+   PROJECT VISUAL
+============================================================ */
+
+.projectVisual {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+
+  background: #030303;
+
+  transform-style: preserve-3d;
+
+  will-change: transform;
+
+  perspective: 900px;
+}
+
+/*
+ * Very subtle technical grid.
+ * No radial glow.
+ */
+
+.visualGrid {
+  position: absolute;
+
+  inset: 0;
+
+  opacity: 0.11;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.08) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.08) 1px,
+      transparent 1px
+    );
+
+  background-size: 44px 44px;
+
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 25%,
+    black 75%,
+    transparent
+  );
+
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 25%,
+    black 75%,
+    transparent
+  );
+}
+
+/*
+ * Keep the element because JSX references it,
+ * but remove the ambient glow.
+ */
+
+.visualGlow {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  background: transparent;
+
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+/*
+ * Static technical marker instead of
+ * an animated scanning neon beam.
+ */
+
+.visualScan {
+  position: absolute;
+
+  top: 50%;
+  left: 12%;
+
+  width: 76%;
+  height: 1px;
+
+  background: rgba(212, 175, 55, 0.2);
+
+  opacity: 0.55;
+
+  pointer-events: none;
+
+  z-index: 1;
+}
+
+/* ============================================================
+   PROJECT VISUAL CIRCLES
+============================================================ */
+
+/*
+ * These are now architectural guides rather
+ * than glowing animated rings.
+ */
+
+.visualCircleLarge,
+.visualCircleSmall {
+  position: absolute;
+
+  aspect-ratio: 1;
+
+  border: 1px solid rgba(212, 175, 55, 0.14);
+
+  border-radius: 50%;
+
+  animation: none;
+}
+
+.visualCircleLarge {
+  width: min(25vw, 310px);
+
+  transform: rotate(-8deg);
+}
+
+.visualCircleSmall {
+  width: min(15vw, 185px);
+
+  border-color: rgba(212, 175, 55, 0.24);
+
+  transform: rotate(18deg);
+}
+
+/* ============================================================
+   VISUAL CORE
+============================================================ */
+
+.visualCore {
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: min(8vw, 100px);
+  min-width: 78px;
+
+  aspect-ratio: 1;
+
+  border: 1px solid rgba(212, 175, 55, 0.7);
+
+  border-radius: 50%;
+
+  background: #050505;
+
+  box-shadow: none;
+
+  will-change: transform;
+}
+
+.visualCore::before {
+  position: absolute;
+
+  inset: 9px;
+
+  border: 1px solid rgba(212, 175, 55, 0.16);
+
+  border-radius: 50%;
+
+  content: '';
+
+  animation: none;
+}
+
+.visualCore span {
+  position: relative;
+
+  z-index: 2;
+
+  color: #d4af37;
+
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.visualMeta {
+  position: absolute;
+
+  right: 1.2rem;
+  bottom: 1.2rem;
+  left: 1.2rem;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  color: #555555;
+
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+}
+
+/* ============================================================
+   PROJECT CONTENT
+============================================================ */
+
+.projectContent {
+  display: flex;
+
+  min-width: 0;
+
+  flex-direction: column;
+
+  padding: clamp(2rem, 3.5vw, 3.5rem);
+}
+
+.contentTop {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  padding-bottom: 1.4rem;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contentTop span:first-child {
+  color: #d4af37;
+
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.contentTop span:last-child {
+  color: #555555;
+
+  font-size: 0.57rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+
+  text-align: right;
+}
+
+.contentMain {
+  flex: 1;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  padding: 3rem 0;
+}
+
+.contentMain h3 {
+  max-width: 550px;
+
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: clamp(2rem, 3.4vw, 3.7rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.contentMain p {
+  max-width: 500px;
+
+  margin: 1.5rem 0 0;
+
+  color: #777777;
+
+  font-size: 0.82rem;
+  line-height: 1.8;
+}
+
+.caseStudyLink {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 0.7rem;
+
+  align-self: flex-start;
+
+  margin-top: 2rem;
+
+  padding-bottom: 0.5rem;
+
+  border-bottom: 1px solid rgba(212, 175, 55, 0.5);
+
+  color: #ffffff;
+
+  font-size: 0.72rem;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.caseStudyArrow {
+  color: #d4af37;
+
+  transition: transform 0.25s ease;
+}
+
+.caseStudyLink:hover {
+  color: #d4af37;
+
+  border-color: #d4af37;
+}
+
+.caseStudyLink:hover .caseStudyArrow {
+  transform: translate(2px, -2px);
+}
+
+/* ============================================================
+   PROJECT FOOTER
+============================================================ */
+
+.projectFooter {
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.7rem;
+
+  color: #555555;
+
+  font-size: 0.57rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.footerLabel {
+  white-space: nowrap;
+}
+
+.progress {
+  position: relative;
+
+  flex: 1;
+
+  height: 1px;
+
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.progress span {
+  position: absolute;
+
+  inset: 0 auto 0 0;
+
+  background: #d4af37;
+
+  transition: width 300ms ease;
+}
+
+.footerCount {
+  color: #555555;
+}
+
+/* ============================================================
+   BOTTOM STATEMENT
+============================================================ */
+
+.bottomStatement {
+  display: grid;
+
+  grid-template-columns:
+    42px
+    minmax(0, 1fr);
+
+  gap: 1.5rem;
+
+  align-items: center;
+
+  padding-top: 2.5rem;
+}
+
+.bottomStatement > span {
+  color: #d4af37;
+
+  font-size: 0.64rem;
+  font-weight: 700;
+}
+
+.bottomStatement p {
+  max-width: 650px;
+
+  margin: 0;
+
+  color: #707070;
+
+  font-size: 0.76rem;
+  line-height: 1.65;
+}
+
+/* ============================================================
+   TABLET
+============================================================ */
+
+@media (max-width: 900px) {
+  .headerGrid {
+    grid-template-columns: 1fr;
+
+    gap: 2rem;
+  }
+
+  .headerRight {
+    max-width: 620px;
+  }
+
+  .projectExperience {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .projectNavigation {
+    grid-column: 1 / -1;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    border-right: 0;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .projectButton {
+    min-height: 72px;
+
+    border-right: 1px solid rgba(255, 255, 255, 0.09);
+  }
+
+  .projectButton:last-child {
+    border-right: 0;
+  }
+
+  .projectVisual {
+    min-height: 430px;
+
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .visualCircleLarge {
+    width: 280px;
+  }
+
+  .visualCircleSmall {
+    width: 180px;
+  }
+}
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 700px) {
+  .section {
+    padding: 5rem 0;
+  }
+
+  .container {
+    width: min(
+      calc(100% - 2rem),
+      var(--container-max)
+    );
+  }
+
+  .title {
+    font-size: clamp(2.3rem, 10vw, 3.5rem);
+  }
+
+  .projectExperience {
+    grid-template-columns: 1fr;
+  }
+
+  .projectNavigation {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .projectButton {
+    min-height: 68px;
+  }
+
+  .projectButton:nth-child(2) {
+    border-right: 0;
+  }
+
+  .projectButton:nth-child(3) {
+    border-top: 1px solid rgba(255, 255, 255, 0.09);
+  }
+
+  .projectVisual {
+    min-height: 340px;
+
+    border-right: 0;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .visualCircleLarge {
+    width: 240px;
+  }
+
+  .visualCircleSmall {
+    width: 155px;
+  }
+
+  .visualCore {
+    width: 88px;
+    min-width: 88px;
+  }
+
+  .projectContent {
+    padding: 1.5rem;
+  }
+
+  .contentMain {
+    padding: 2.5rem 0;
+  }
+
+  .contentMain h3 {
+    font-size: clamp(2rem, 9vw, 3rem);
+  }
+}
+
+/* ============================================================
+   SMALL MOBILE
+============================================================ */
+
+@media (max-width: 480px) {
+  .projectNavigation {
+    grid-template-columns: 1fr;
+  }
+
+  .projectButton,
+  .projectButton:nth-child(3) {
+    border-top: 0;
+
+    border-right: 0;
+  }
+
+  .projectButton:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  }
+
+  .projectVisual {
+    min-height: 300px;
+  }
+
+  .visualCircleLarge {
+    width: 210px;
+  }
+
+  .visualCircleSmall {
+    width: 140px;
+  }
+
+  .visualCore {
+    width: 78px;
+    min-width: 78px;
+  }
+
+  .visualCore span {
+    font-size: 1.5rem;
+  }
+
+  .contentTop {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 0.5rem;
+  }
+}
+
+/* ============================================================
+   REDUCED MOTION
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .visualCircleLarge,
+  .visualCircleSmall,
+  .contentMain h3,
+  .contentMain p,
+  .visualGlow,
+  .visualScan,
+  .visualCore::before {
+    animation: none;
+  }
+
+  .projectButton,
+  .projectArrow,
+  .arrow,
+  .caseStudyArrow,
+  .progress span {
+    transition: none;
+  }
+
+  .projectVisual,
+  .visualCore {
+    transform: none !important;
+  }
+}

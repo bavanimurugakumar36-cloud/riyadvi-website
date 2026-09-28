@@ -1,0 +1,719 @@
+.page {
+  min-height: 100vh;
+
+  background: #000;
+  color: #fff;
+}
+
+/* ========================================
+   HERO
+======================================== */
+
+.hero {
+  min-height: 88vh;
+
+  max-width: 1400px;
+  margin: 0 auto;
+
+  padding: 7rem 4rem 5rem;
+
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+
+  align-items: center;
+
+  gap: 5rem;
+}
+
+.heroContent {
+  max-width: 760px;
+}
+
+.eyebrow {
+  margin: 0 0 1.5rem;
+
+  color: #d4af37;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  letter-spacing: 0.18em;
+}
+
+.heroTitle {
+  margin: 0;
+
+  max-width: 760px;
+
+  font-size: clamp(3.5rem, 6vw, 7rem);
+  font-weight: 500;
+
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+}
+
+.heroDescription {
+  max-width: 650px;
+
+  margin: 2rem 0 0;
+
+  color: #999;
+
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+
+  line-height: 1.75;
+}
+
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.7rem;
+
+  margin-top: 2.5rem;
+
+  min-height: 52px;
+
+  padding: 0.9rem 1.5rem;
+
+  background: #d4af37;
+  color: #000;
+
+  border: 1px solid #d4af37;
+  border-radius: 999px;
+
+  font-size: 0.875rem;
+  font-weight: 700;
+
+  text-decoration: none;
+
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.primaryButton:hover {
+  background: #e2c45c;
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 12px 35px rgba(212, 175, 55, 0.18);
+}
+
+/* ========================================
+   HERO VISUAL
+======================================== */
+
+.heroVisual {
+  position: relative;
+
+  min-height: 500px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(212, 175, 55, 0.12);
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(212, 175, 55, 0.08),
+      transparent 58%
+    );
+}
+
+.visualGlow {
+  position: absolute;
+
+  width: 420px;
+  height: 420px;
+
+  background: rgba(212, 175, 55, 0.1);
+
+  border-radius: 50%;
+
+  filter: blur(90px);
+}
+
+.visualOrb {
+  position: relative;
+  z-index: 1;
+
+  width: 230px;
+  height: 230px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(212, 175, 55, 0.65);
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      rgba(255, 255, 255, 0.12),
+      transparent 35%
+    ),
+    rgba(212, 175, 55, 0.025);
+
+  box-shadow:
+    0 0 80px rgba(212, 175, 55, 0.08),
+    inset 0 0 50px rgba(212, 175, 55, 0.05);
+
+  transition:
+    transform 500ms ease,
+    border-color 500ms ease,
+    box-shadow 500ms ease;
+}
+
+.heroVisual:hover .visualOrb {
+  transform: scale(1.04) rotate(2deg);
+
+  border-color: rgba(212, 175, 55, 0.9);
+
+  box-shadow:
+    0 0 100px rgba(212, 175, 55, 0.14),
+    inset 0 0 60px rgba(212, 175, 55, 0.08);
+}
+
+.visualOrb::before,
+.visualOrb::after {
+  content: '';
+
+  position: absolute;
+
+  border: 1px solid rgba(212, 175, 55, 0.4);
+
+  border-radius: 50%;
+}
+
+.visualOrb::before {
+  width: 290px;
+  height: 100px;
+
+  transform: rotate(25deg);
+}
+
+.visualOrb::after {
+  width: 100px;
+  height: 290px;
+
+  transform: rotate(-25deg);
+}
+
+.visualOrb span {
+  color: #d4af37;
+
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+.visualLabel {
+  position: absolute;
+
+  left: 2rem;
+  bottom: 2rem;
+
+  color: #777;
+
+  font-size: 0.75rem;
+
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ========================================
+   SPLIT SECTIONS
+======================================== */
+
+.splitSection {
+  max-width: 1400px;
+
+  margin: 0 auto;
+
+  padding: 7rem 4rem;
+
+  display: grid;
+
+  grid-template-columns: 0.3fr 1fr;
+
+  gap: 5rem;
+
+  border-top: 1px solid #202020;
+}
+
+.sectionLabel span {
+  color: #d4af37;
+
+  font-size: 0.75rem;
+}
+
+.sectionLabel p {
+  margin: 0.8rem 0 0;
+
+  color: #777;
+
+  font-size: 0.7rem;
+  font-weight: 600;
+
+  letter-spacing: 0.15em;
+}
+
+.sectionContent {
+  max-width: 850px;
+}
+
+.sectionContent h2,
+.sectionIntro h2,
+.industryContent h2,
+.cta h2 {
+  margin: 0;
+
+  font-size: clamp(2.5rem, 4vw, 5rem);
+
+  font-weight: 500;
+
+  line-height: 1;
+
+  letter-spacing: -0.045em;
+}
+
+.sectionContent p {
+  max-width: 720px;
+
+  margin: 2rem 0 0;
+
+  color: #888;
+
+  font-size: 1.1rem;
+
+  line-height: 1.8;
+}
+
+/* ========================================
+   CAPABILITIES
+======================================== */
+
+.capabilitiesSection,
+.technologySection,
+.processSection {
+  max-width: 1400px;
+
+  margin: 0 auto;
+
+  padding: 8rem 4rem;
+}
+
+.sectionIntro {
+  max-width: 850px;
+
+  margin-bottom: 4rem;
+}
+
+.capabilityGrid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  border-top: 1px solid #262626;
+  border-left: 1px solid #262626;
+}
+
+.capabilityCard {
+  min-height: 240px;
+
+  padding: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  border-right: 1px solid #262626;
+  border-bottom: 1px solid #262626;
+
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.capabilityCard:hover {
+  background: #0a0a0a;
+  transform: translateY(-3px);
+}
+
+.capabilityCard > span {
+  color: #d4af37;
+
+  font-size: 0.75rem;
+}
+
+.capabilityCard h3 {
+  margin: 3rem 0 0;
+
+  font-size: 1.5rem;
+
+  font-weight: 500;
+
+  letter-spacing: -0.025em;
+}
+
+.capabilityCard > div {
+  align-self: flex-end;
+
+  color: #d4af37;
+
+  font-size: 1.3rem;
+
+  transition: transform 0.3s ease;
+}
+
+.capabilityCard:hover > div {
+  transform: translate(3px, -3px);
+}
+/* ========================================
+   INDUSTRIES
+======================================== */
+
+.industriesSection {
+  max-width: 1400px;
+
+  margin: 0 auto;
+
+  padding: 8rem 4rem;
+
+  display: grid;
+
+  grid-template-columns: 0.3fr 1fr;
+
+  gap: 5rem;
+
+  border-top: 1px solid #202020;
+}
+
+.industryContent {
+  max-width: 900px;
+}
+
+.industryList {
+  margin-top: 4rem;
+
+  border-top: 1px solid #262626;
+}
+
+.industryItem {
+  display: flex;
+  align-items: center;
+
+  gap: 2rem;
+
+  padding: 1.4rem 0;
+
+  border-bottom: 1px solid #262626;
+
+  transition:
+    padding-left 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.industryItem:hover {
+  padding-left: 0.75rem;
+
+  border-color: rgba(212, 175, 55, 0.35);
+}
+
+.industryItem:hover span {
+  color: #e2c45c;
+}
+
+/* ========================================
+   TECHNOLOGY
+======================================== */
+
+.technologyGrid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  border-top: 1px solid #262626;
+  border-left: 1px solid #262626;
+}
+
+.technologyItem {
+  min-height: 150px;
+
+  padding: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  border-right: 1px solid #262626;
+  border-bottom: 1px solid #262626;
+}
+
+.technologyItem span {
+  color: #d4af37;
+
+  font-size: 0.75rem;
+}
+
+.technologyItem strong {
+  color: #ddd;
+
+  font-size: 1.2rem;
+
+  font-weight: 500;
+}
+
+/* ========================================
+   PROCESS
+======================================== */
+
+.processList {
+  border-top: 1px solid #262626;
+}
+
+.processItem {
+  min-height: 100px;
+
+  padding: 1.5rem 0;
+
+  display: grid;
+
+  grid-template-columns: 80px 1fr auto;
+
+  align-items: center;
+
+  gap: 2rem;
+
+  border-bottom: 1px solid #262626;
+}
+
+.processItem span {
+  color: #d4af37;
+
+  font-size: 0.75rem;
+}
+
+.processItem h3 {
+  margin: 0;
+
+  color: #ddd;
+
+  font-size: clamp(1.3rem, 2vw, 2rem);
+
+  font-weight: 500;
+}
+
+.processItem div {
+  color: #d4af37;
+
+  font-size: 1.2rem;
+}
+
+/* ========================================
+   CTA
+======================================== */
+
+.cta {
+  padding: 9rem 2rem;
+
+  text-align: center;
+
+  border-top: 1px solid #202020;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(212, 175, 55, 0.07),
+      transparent 45%
+    );
+}
+
+.cta h2 {
+  max-width: 850px;
+
+  margin: 0 auto;
+}
+
+.cta > p:not(.eyebrow) {
+  max-width: 600px;
+
+  margin: 2rem auto 0;
+
+  color: #888;
+
+  font-size: 1.05rem;
+
+  line-height: 1.7;
+}
+
+.cta .primaryButton {
+  margin-top: 2.5rem;
+}
+
+/* ========================================
+   NOT FOUND
+======================================== */
+
+.notFound {
+  min-height: 100vh;
+
+  padding: 10rem 4rem;
+
+  background: #000;
+  color: #fff;
+}
+
+.notFound h1 {
+  max-width: 800px;
+
+  margin: 0;
+
+  font-size: clamp(3rem, 6vw, 6rem);
+
+  line-height: 0.95;
+
+  letter-spacing: -0.05em;
+}
+
+.backButton {
+  display: inline-flex;
+
+  margin-top: 2rem;
+
+  color: #d4af37;
+
+  text-decoration: none;
+}
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+
+    padding: 6rem 2rem 4rem;
+
+    gap: 3rem;
+  }
+
+  .heroVisual {
+    min-height: 420px;
+  }
+
+  .splitSection,
+  .industriesSection {
+    grid-template-columns: 1fr;
+
+    padding: 6rem 2rem;
+
+    gap: 2rem;
+  }
+
+  .capabilitiesSection,
+  .technologySection,
+  .processSection {
+    padding: 6rem 2rem;
+  }
+
+  .capabilityGrid,
+  .technologyGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+  .hero {
+    min-height: auto;
+
+    padding: 4.5rem 1.25rem 4rem;
+  }
+
+  .heroTitle {
+    font-size: clamp(3rem, 14vw, 4.5rem);
+  }
+
+  .heroDescription {
+    font-size: 1rem;
+  }
+
+  .heroVisual {
+    min-height: 340px;
+  }
+
+  .visualOrb {
+    width: 170px;
+    height: 170px;
+  }
+
+  .visualOrb::before {
+    width: 220px;
+    height: 75px;
+  }
+
+  .visualOrb::after {
+    width: 75px;
+    height: 220px;
+  }
+
+  .visualOrb span {
+    font-size: 2rem;
+  }
+
+  .splitSection,
+  .industriesSection {
+    padding: 5rem 1.25rem;
+  }
+
+  .capabilitiesSection,
+  .technologySection,
+  .processSection {
+    padding: 5rem 1.25rem;
+  }
+
+  .capabilityGrid,
+  .technologyGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .capabilityCard {
+    min-height: 200px;
+  }
+
+  .sectionContent h2,
+  .sectionIntro h2,
+  .industryContent h2,
+  .cta h2 {
+    font-size: 2.6rem;
+  }
+
+  .processItem {
+    grid-template-columns: 45px 1fr auto;
+
+    gap: 1rem;
+  }
+
+  .cta {
+    padding: 6rem 1.25rem;
+  }
+
+  .notFound {
+    padding: 8rem 1.25rem;
+  }
+}

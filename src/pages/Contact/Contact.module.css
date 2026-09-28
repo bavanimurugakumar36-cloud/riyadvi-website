@@ -1,0 +1,580 @@
+/* =========================================================
+   CONTACT PAGE
+   Riyadvi Software Technologies
+========================================================= */
+
+.page {
+  min-height: 100vh;
+
+  background: #000;
+  color: #fff;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+  padding: 5rem var(--page-padding) 6rem;
+
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.heroInner {
+  width: min(1100px, 100%);
+
+  margin: 0 auto;
+}
+
+.eyebrow,
+.sectionLabel {
+  margin: 0 0 1.5rem;
+
+  color: #d4af37;
+
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.4;
+
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.title {
+  max-width: 900px;
+
+  margin: 0;
+
+  font-size: clamp(3rem, 7vw, 7rem);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.description {
+  max-width: 650px;
+
+  margin: 2.25rem 0 0;
+
+  color: rgba(255, 255, 255, 0.62);
+
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  line-height: 1.7;
+}
+
+/* =========================================================
+   CONTACT SECTION
+========================================================= */
+
+.contactSection {
+  padding: 7rem var(--page-padding) 9rem;
+}
+
+.contactGrid {
+  width: min(1200px, 100%);
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 0.85fr)
+    minmax(420px, 1.15fr);
+
+  gap: clamp(4rem, 9vw, 8.75rem);
+
+  align-items: start;
+}
+
+/* =========================================================
+   INFORMATION
+========================================================= */
+
+.info {
+  padding-top: 1.25rem;
+}
+
+.infoTitle {
+  margin: 0;
+
+  font-size: clamp(2rem, 4vw, 4rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.infoText {
+  max-width: 500px;
+
+  margin: 1.75rem 0 0;
+
+  color: rgba(255, 255, 255, 0.58);
+
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+/* =========================================================
+   PROCESS / INFO ITEMS
+========================================================= */
+
+.infoItems {
+  margin-top: 4.375rem;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.infoItem {
+  display: grid;
+
+  grid-template-columns: 50px minmax(0, 1fr);
+
+  gap: 1.5rem;
+
+  padding: 1.75rem 0;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+  transition:
+    padding-left 250ms ease,
+    background-color 250ms ease;
+}
+
+.infoItem:hover {
+  padding-left: 0.5rem;
+
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.infoNumber {
+  color: #d4af37;
+
+  font-size: 0.75rem;
+  font-weight: 600;
+
+  letter-spacing: 0.08em;
+}
+
+.infoItem h3 {
+  margin: 0;
+
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.infoItem p {
+  margin: 0.5rem 0 0;
+
+  color: rgba(255, 255, 255, 0.5);
+
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   FORM WRAPPER
+========================================================= */
+
+.formWrapper {
+  padding: clamp(1.75rem, 4vw, 3rem);
+
+  border: 1px solid rgba(212, 175, 55, 0.2);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.055),
+      rgba(255, 255, 255, 0.015)
+    );
+
+  backdrop-filter: blur(18px);
+}
+
+.formHeader h2 {
+  margin: 0;
+
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.formHeader > p:last-child {
+  max-width: 520px;
+
+  margin: 1rem 0 0;
+
+  color: rgba(255, 255, 255, 0.52);
+
+  line-height: 1.7;
+}
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1.5rem;
+
+  margin-top: 2.625rem;
+}
+
+.row {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 1.25rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.55rem;
+}
+
+.field label {
+  color: rgba(255, 255, 255, 0.78);
+
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.field label span {
+  color: #d4af37;
+}
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  outline: none;
+  border-radius: 0;
+
+  background: rgba(255, 255, 255, 0.035);
+
+  color: #fff;
+
+  font: inherit;
+  line-height: 1.5;
+
+  padding: 0.9rem 1rem;
+
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.field select {
+  appearance: none;
+
+  cursor: pointer;
+}
+
+.field select option {
+  background: #111;
+  color: #fff;
+}
+
+.field textarea {
+  min-height: 150px;
+
+  resize: vertical;
+}
+
+.field input:hover,
+.field select:hover,
+.field textarea:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: rgba(212, 175, 55, 0.75);
+
+  background: rgba(212, 175, 55, 0.035);
+}
+
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible {
+  outline: 2px solid rgba(212, 175, 55, 0.35);
+
+  outline-offset: 2px;
+}
+
+.field input[aria-invalid='true'],
+.field select[aria-invalid='true'],
+.field textarea[aria-invalid='true'] {
+  border-color: rgba(232, 160, 160, 0.75);
+}
+
+/* =========================================================
+   VALIDATION
+========================================================= */
+
+.fieldError {
+  margin: 0;
+
+  color: #e8a0a0;
+
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+/* =========================================================
+   SUBMIT BUTTON
+========================================================= */
+
+.submitButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  min-height: 52px;
+
+  margin-top: 0.625rem;
+  padding: 1rem 1.25rem;
+
+  border: 1px solid #d4af37;
+
+  background: #d4af37;
+  color: #000;
+
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.submitButton:hover:not(:disabled) {
+  background: transparent;
+  color: #d4af37;
+
+  transform: translateY(-2px);
+}
+
+.submitButton:focus-visible {
+  outline: 2px solid #fff;
+
+  outline-offset: 4px;
+}
+
+.submitButton:disabled {
+  opacity: 0.55;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+/* =========================================================
+   SUCCESS MESSAGE
+========================================================= */
+
+.successMessage {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.375rem;
+
+  margin-top: 1.875rem;
+  padding: 1rem 1.125rem;
+
+  border-left: 2px solid #d4af37;
+
+  background: rgba(212, 175, 55, 0.06);
+}
+
+.successMessage strong {
+  color: #d4af37;
+
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.successMessage span {
+  color: rgba(255, 255, 255, 0.65);
+
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   ERROR MESSAGE
+========================================================= */
+
+.errorMessage {
+  margin-top: 1.875rem;
+  padding: 1rem 1.125rem;
+
+  border-left: 2px solid #e8a0a0;
+
+  background: rgba(232, 160, 160, 0.06);
+
+  color: #e8a0a0;
+
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+  .hero {
+    padding-top: 4.5rem;
+  }
+
+  .contactGrid {
+    grid-template-columns: 1fr;
+
+    gap: 4.5rem;
+  }
+
+  .info {
+    padding-top: 0;
+  }
+
+  .infoText {
+    max-width: 700px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 4rem 1.25rem 4.5rem;
+  }
+
+  .title {
+    font-size: clamp(2.8rem, 13vw, 4.5rem);
+  }
+
+  .description {
+    margin-top: 1.75rem;
+
+    font-size: 1rem;
+  }
+
+  .contactSection {
+    padding: 4.5rem 1.25rem 5.5rem;
+  }
+
+  .contactGrid {
+    gap: 3.75rem;
+  }
+
+  .infoTitle {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  .infoItems {
+    margin-top: 3.25rem;
+  }
+
+  .infoItem {
+    grid-template-columns: 40px minmax(0, 1fr);
+
+    gap: 0.875rem;
+
+    padding: 1.5rem 0;
+  }
+
+  .formWrapper {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .form {
+    gap: 1.25rem;
+
+    margin-top: 2.25rem;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+
+    gap: 1.25rem;
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    min-height: 50px;
+
+    padding: 0.85rem 0.9rem;
+  }
+
+  .field textarea {
+    min-height: 140px;
+  }
+
+  .submitButton {
+    min-height: 52px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+  .hero,
+  .contactSection {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .formWrapper {
+    padding: 1.25rem 1rem;
+  }
+
+  .infoItem {
+    grid-template-columns: 35px minmax(0, 1fr);
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .infoItem,
+  .field input,
+  .field select,
+  .field textarea,
+  .submitButton {
+    transition: none;
+  }
+}

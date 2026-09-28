@@ -1,0 +1,976 @@
+/* =========================================================
+   JOB DETAILS PAGE
+========================================================= */
+
+.page {
+  min-height: 100vh;
+  background: #000;
+  color: #fff;
+}
+
+/* =========================================================
+   SHARED
+========================================================= */
+
+.eyebrow {
+  margin: 0 0 1.5rem;
+  color: #d4af37;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+  max-width: 1400px;
+  min-height: 80vh;
+  margin: 0 auto;
+  padding: 5.5rem var(--page-padding) 6rem;
+
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(320px, 0.75fr);
+
+  align-items: center;
+  gap: 5rem;
+}
+
+.heroContent h1 {
+  max-width: 900px;
+  margin: 1.5rem 0 0;
+
+  font-size: clamp(4rem, 8vw, 8rem);
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+}
+
+.heroContent > p {
+  max-width: 680px;
+  margin: 2rem 0;
+
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+/* =========================================================
+   META
+========================================================= */
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.meta span {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+}
+
+.meta span:first-child {
+  color: #d4af37;
+}
+
+.location {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-top: 2.5rem;
+}
+
+.location span {
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+}
+
+.location strong {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* =========================================================
+   HERO VISUAL
+========================================================= */
+
+.heroVisual {
+  position: relative;
+
+  min-height: 450px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(212, 175, 55, 0.12),
+      transparent 45%
+    ),
+    #080808;
+}
+
+.visualGlow {
+  position: absolute;
+
+  width: 280px;
+  height: 280px;
+
+  border-radius: 50%;
+
+  background: rgba(212, 175, 55, 0.1);
+
+  filter: blur(80px);
+}
+
+.visualShape {
+  position: relative;
+
+  width: 220px;
+  height: 220px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(212, 175, 55, 0.6);
+  border-radius: 40%;
+
+  transform: rotate(25deg);
+
+  animation: float 7s ease-in-out infinite;
+}
+
+.visualShape::before {
+  content: '';
+
+  position: absolute;
+
+  width: 150px;
+  height: 150px;
+
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 50%;
+}
+
+.visualShape span {
+  position: relative;
+
+  transform: rotate(-25deg);
+
+  color: #d4af37;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.heroVisual > p {
+  position: absolute;
+
+  bottom: 1.5rem;
+  left: 1.5rem;
+
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: rotate(25deg) translateY(0);
+  }
+
+  50% {
+    transform: rotate(32deg) translateY(-12px);
+  }
+}
+
+/* =========================================================
+   COMMON SECTION
+========================================================= */
+
+.section {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 7rem var(--page-padding);
+
+  display: grid;
+  grid-template-columns: 0.35fr 1fr;
+  gap: 5rem;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sectionLabel {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.sectionLabel span {
+  color: #d4af37;
+  font-size: 0.7rem;
+}
+
+.sectionLabel p {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+}
+
+.sectionContent {
+  max-width: 850px;
+}
+
+.sectionContent > h2 {
+  margin: 0 0 3rem;
+
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+/* =========================================================
+   RESPONSIBILITIES
+========================================================= */
+
+.list {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.listItem {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  gap: 1rem;
+
+  padding: 1.5rem 0;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+  transition:
+    padding-left 250ms ease,
+    background-color 250ms ease;
+}
+
+.listItem:hover {
+  padding-left: 0.5rem;
+  background: #050505;
+}
+
+.listItem > span {
+  color: #d4af37;
+  font-size: 0.68rem;
+}
+
+.listItem p {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   SKILLS
+========================================================= */
+
+.skillsSection {
+  padding: 8rem var(--page-padding);
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sectionIntro {
+  max-width: 1400px;
+  margin: 0 auto 3.5rem;
+}
+
+.sectionIntro h2 {
+  max-width: 800px;
+  margin: 0;
+
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.skillGrid {
+  max-width: 1400px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.skill {
+  min-height: 100px;
+  padding: 2rem 1.5rem;
+
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  transition:
+    background-color 250ms ease,
+    border-color 250ms ease,
+    transform 250ms ease;
+}
+
+.skill:hover {
+  background: #080808;
+  border-color: rgba(212, 175, 55, 0.25);
+  transform: translateY(-2px);
+}
+
+.skill:focus-within {
+  border-color: rgba(212, 175, 55, 0.35);
+}
+
+.skill span {
+  color: #d4af37;
+  font-size: 0.65rem;
+}
+
+.skill strong {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* =========================================================
+   PROCESS
+========================================================= */
+
+.process {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.processItem {
+  display: grid;
+  grid-template-columns: 55px 1fr 30px;
+  align-items: center;
+  gap: 1rem;
+
+  padding: 1.5rem 0;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+  transition:
+    padding-left 250ms ease,
+    background-color 250ms ease,
+    border-color 250ms ease;
+}
+
+.processItem:hover {
+  padding-left: 0.5rem;
+  background: #050505;
+  border-color: rgba(212, 175, 55, 0.2);
+}
+
+.processItem > span:first-child {
+  color: #d4af37;
+  font-size: 0.68rem;
+}
+
+.processItem h3 {
+  margin: 0;
+
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.processItem > span:last-child {
+  color: rgba(255, 255, 255, 0.4);
+
+  transition:
+    color 250ms ease,
+    transform 250ms ease;
+}
+
+.processItem:hover > span:last-child {
+  color: #d4af37;
+  transform: translate(3px, -2px);
+}
+
+/* =========================================================
+   APPLICATION
+========================================================= */
+
+.application {
+  padding: 9rem var(--page-padding);
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(212, 175, 55, 0.08),
+      transparent 45%
+    );
+}
+
+.applicationHeader {
+  max-width: 900px;
+  margin: 0 auto 4rem;
+}
+
+.applicationHeader h2 {
+  margin: 0;
+
+  font-size: clamp(3rem, 6vw, 6rem);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+}
+
+.applicationHeader > p:not(.eyebrow) {
+  max-width: 600px;
+  margin: 2rem 0 0;
+
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.7;
+}
+
+/* =========================================================
+   APPLICATION FORM
+========================================================= */
+
+.applicationForm {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+
+  margin-bottom: 1.5rem;
+}
+
+.field label {
+  color: rgba(255, 255, 255, 0.7);
+
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+
+  border: 1px solid rgba(255, 255, 255, 0.14);
+
+  background: rgba(255, 255, 255, 0.025);
+  color: #fff;
+
+  border-radius: 0;
+
+  font: inherit;
+
+  transition:
+    border-color 200ms ease,
+    background-color 200ms ease;
+}
+
+.field input {
+  min-height: 52px;
+  padding: 0 1rem;
+}
+
+.field textarea {
+  min-height: 170px;
+  padding: 1rem;
+
+  resize: vertical;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: rgba(255, 255, 255, 0.28);
+}
+
+.field input:hover,
+.field textarea:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+
+  border-color: #d4af37;
+
+  background: rgba(212, 175, 55, 0.025);
+}
+
+.field input[aria-invalid='true'],
+.field textarea[aria-invalid='true'] {
+  border-color: #d46a6a;
+}
+
+.fieldHint {
+  color: rgba(255, 255, 255, 0.35);
+
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+
+.error {
+  color: #e28a8a;
+
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+.submitError {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+
+  border: 1px solid rgba(220, 100, 100, 0.3);
+
+  background: rgba(180, 60, 60, 0.08);
+  color: #e28a8a;
+
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.formFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+
+  padding-top: 1rem;
+}
+
+.formFooter p {
+  max-width: 450px;
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.35);
+
+  font-size: 0.72rem;
+  line-height: 1.6;
+}
+
+.applyButton,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+
+  min-height: 50px;
+  padding: 0.95rem 1.35rem;
+
+  border: none;
+
+  background: #d4af37;
+  color: #000;
+
+  text-decoration: none;
+
+  font-size: 0.8rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 250ms ease,
+    background-color 250ms ease,
+    color 250ms ease;
+}
+
+.applyButton:hover:not(:disabled),
+.secondaryButton:hover {
+  transform: translateY(-3px);
+  background: #e3c35a;
+}
+
+.applyButton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.applyButton:focus-visible,
+.secondaryButton:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+/* =========================================================
+   SUCCESS
+========================================================= */
+
+.success {
+  max-width: 900px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: 2rem;
+
+  padding: 3rem;
+
+  border: 1px solid rgba(212, 175, 55, 0.25);
+
+  background: rgba(212, 175, 55, 0.035);
+}
+
+.successNumber {
+  width: 55px;
+  height: 55px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #d4af37;
+  border-radius: 50%;
+
+  color: #d4af37;
+
+  font-size: 1.25rem;
+}
+
+.success h3 {
+  margin: 0 0 0.75rem;
+
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.success p {
+  max-width: 600px;
+  margin: 0 0 1.5rem;
+
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.7;
+}
+
+.success strong {
+  color: #fff;
+  font-weight: 500;
+}
+
+.secondaryButton {
+  background: transparent;
+  color: #d4af37;
+
+  border: 1px solid rgba(212, 175, 55, 0.5);
+}
+
+.secondaryButton:hover {
+  color: #000;
+  background: #d4af37;
+}
+
+/* =========================================================
+   NOT FOUND
+========================================================= */
+
+.notFound {
+  min-height: 80vh;
+  padding: 8rem var(--page-padding);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.notFound h1 {
+  max-width: 800px;
+  margin: 0 0 2rem;
+
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+}
+
+.backButton {
+  width: fit-content;
+
+  color: #d4af37;
+  text-decoration: none;
+
+  transition:
+    color 200ms ease,
+    transform 200ms ease;
+}
+
+.backButton:hover {
+  color: #e3c35a;
+  transform: translateX(4px);
+}
+
+.backButton:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding-top: 4.5rem;
+  }
+
+  .heroVisual {
+    min-height: 400px;
+  }
+
+  .section {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .skillGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .application {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 4rem 1.25rem 5rem;
+  }
+
+  .heroContent h1 {
+    font-size: clamp(
+      3.3rem,
+      14vw,
+      4.5rem
+    );
+  }
+
+  .heroContent > p {
+    font-size: 1rem;
+  }
+
+  .meta {
+    gap: 0.7rem;
+  }
+
+  .heroVisual {
+    min-height: 320px;
+  }
+
+  .visualGlow {
+    width: 220px;
+    height: 220px;
+  }
+
+  .visualShape {
+    width: 180px;
+    height: 180px;
+  }
+
+  .visualShape::before {
+    width: 120px;
+    height: 120px;
+  }
+
+  .section {
+    padding: 5rem 1.25rem;
+  }
+
+  .sectionContent > h2 {
+    font-size: clamp(
+      2.5rem,
+      11vw,
+      3.5rem
+    );
+  }
+
+  .listItem {
+    grid-template-columns: 40px 1fr;
+    gap: 0.75rem;
+  }
+
+  .skillsSection {
+    padding: 5rem 1.25rem;
+  }
+
+  .sectionIntro {
+    margin-bottom: 2.5rem;
+  }
+
+  .skillGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .skill {
+    min-height: 85px;
+    border-right: none;
+  }
+
+  .processItem {
+    grid-template-columns:
+      45px
+      1fr
+      20px;
+
+    gap: 0.75rem;
+  }
+
+  .processItem h3 {
+    font-size: 0.92rem;
+  }
+
+  .application {
+    padding: 6rem 1.25rem;
+  }
+
+  .applicationHeader h2 {
+    font-size: clamp(
+      2.7rem,
+      13vw,
+      4rem
+    );
+  }
+
+  .formGrid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .formFooter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .applyButton {
+    width: 100%;
+  }
+
+  .success {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+
+    padding: 2rem 1.25rem;
+  }
+
+  .secondaryButton {
+    width: 100%;
+  }
+
+  .notFound {
+    min-height: 70vh;
+    padding: 6rem 1.25rem;
+  }
+
+  .notFound h1 {
+    font-size: clamp(
+      2.8rem,
+      12vw,
+      4rem
+    );
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+  .hero,
+  .section,
+  .skillsSection,
+  .application,
+  .notFound {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .heroVisual {
+    min-height: 290px;
+  }
+
+  .visualShape {
+    width: 160px;
+    height: 160px;
+  }
+
+  .visualShape::before {
+    width: 105px;
+    height: 105px;
+  }
+
+  .skill {
+    padding: 1.5rem 1rem;
+  }
+
+  .applicationHeader h2 {
+    font-size: 2.7rem;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .visualShape {
+    animation: none;
+  }
+
+  .listItem,
+  .skill,
+  .processItem,
+  .processItem > span:last-child,
+  .applyButton,
+  .secondaryButton,
+  .backButton,
+  .field input,
+  .field textarea {
+    transition: none;
+  }
+}

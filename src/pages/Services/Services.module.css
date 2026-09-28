@@ -1,0 +1,707 @@
+.page {
+  min-height: 100vh;
+
+  background: #000000;
+  color: #ffffff;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+  width: min(1400px, 100%);
+
+  margin: 0 auto;
+
+  padding:
+    4.5rem
+    var(--page-padding)
+    4rem;
+}
+
+.eyebrow {
+  margin: 0 0 1.5rem;
+
+  color: #d4af37;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+
+  text-transform: uppercase;
+}
+
+.title {
+  max-width: 1000px;
+
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: clamp(3.5rem, 7vw, 7.5rem);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+}
+
+.description {
+  max-width: 680px;
+
+  margin: 1.75rem 0 0;
+
+  color: #9b9b9b;
+
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  line-height: 1.7;
+}
+
+/* =========================================================
+   INTERACTIVE EXPERIENCE
+   ========================================================= */
+
+.experience {
+  width: min(1400px, 100%);
+
+  min-height: 720px;
+
+  margin: 0 auto;
+
+  padding:
+    2rem
+    var(--page-padding)
+    8rem;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.15fr)
+    minmax(380px, 0.85fr);
+
+  gap: 4rem;
+}
+
+/* =========================================================
+   3D VISUAL
+   ========================================================= */
+
+.experienceVisual {
+  position: relative;
+
+  min-width: 0;
+  min-height: 620px;
+
+  overflow: hidden;
+
+  border: 1px solid #222222;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(212, 175, 55, 0.08),
+      transparent 55%
+    ),
+    #050505;
+}
+
+.scene {
+  position: absolute;
+
+  inset: 0;
+}
+
+.scene canvas {
+  display: block;
+
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.sceneLabel {
+  position: absolute;
+
+  left: 2rem;
+  bottom: 2rem;
+
+  display: flex;
+  align-items: center;
+
+  gap: 1rem;
+
+  color: #777777;
+
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+
+  pointer-events: none;
+}
+
+.sceneLabel span:first-child {
+  color: #d4af37;
+}
+
+/* =========================================================
+   EXPERIENCE CONTENT
+   ========================================================= */
+
+.experienceContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  min-width: 0;
+
+  padding: 2rem 0;
+
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+.experienceContentVisible {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+.experienceContentHidden {
+  opacity: 0;
+
+  transform: translateY(12px);
+}
+
+.experienceEyebrow {
+  margin: 0 0 1rem;
+
+  color: #d4af37;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+
+.experienceTitle {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: clamp(3rem, 5vw, 5.5rem);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+}
+
+.experienceDescription {
+  max-width: 500px;
+
+  margin: 2rem 0 0;
+
+  color: #999999;
+
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+/* =========================================================
+   EXPERIENCE LINK
+   ========================================================= */
+
+.experienceLink {
+  display: inline-flex;
+
+  width: fit-content;
+
+  align-items: center;
+
+  gap: 1rem;
+
+  margin-top: 2rem;
+
+  padding-bottom: 0.6rem;
+
+  border-bottom: 1px solid #d4af37;
+
+  color: #ffffff;
+
+  text-decoration: none;
+
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+
+  transition:
+    color 0.3s ease,
+    gap 0.3s ease;
+}
+
+.experienceLink span:last-child {
+  color: #d4af37;
+}
+
+.experienceLink:hover {
+  gap: 1.4rem;
+
+  color: #d4af37;
+}
+
+/* =========================================================
+   SERVICE SELECTOR
+   ========================================================= */
+
+.serviceSelector {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  margin-top: 4rem;
+
+  border-top: 1px solid #252525;
+}
+
+.selectorItem {
+  display: flex;
+  align-items: center;
+
+  gap: 1rem;
+
+  min-width: 0;
+
+  padding: 1rem 0.75rem;
+
+  border: 0;
+  border-bottom: 1px solid #252525;
+
+  background: transparent;
+
+  color: #666666;
+
+  text-align: left;
+
+  font: inherit;
+
+  cursor: pointer;
+
+  transition:
+    color 0.3s ease,
+    padding-left 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.selectorItem:nth-child(odd) {
+  border-right: 1px solid #252525;
+}
+
+.selectorItem span:first-child {
+  flex-shrink: 0;
+
+  color: #444444;
+
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+}
+
+.selectorItem span:last-child {
+  min-width: 0;
+
+  overflow: hidden;
+
+  color: inherit;
+
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.selectorItem:hover {
+  color: #ffffff;
+
+  background: rgba(212, 175, 55, 0.035);
+}
+
+.selectorItemActive {
+  padding-left: 1.1rem;
+
+  color: #ffffff;
+}
+
+.selectorItemActive span:first-child {
+  color: #d4af37;
+}
+
+/* =========================================================
+   SERVICES SECTION
+   ========================================================= */
+
+.services {
+  width: min(1400px, 100%);
+
+  margin: 0 auto;
+
+  padding:
+    0
+    var(--page-padding)
+    8rem;
+}
+
+.servicesHeader {
+  padding: 0 0 3rem;
+}
+
+.servicesTitle {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+/* =========================================================
+   SERVICE GRID
+   ========================================================= */
+
+.grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  border-top: 1px solid #262626;
+  border-left: 1px solid #262626;
+}
+
+.card {
+  position: relative;
+
+  min-width: 0;
+  min-height: 360px;
+
+  padding: 2.5rem;
+
+  border-right: 1px solid #262626;
+  border-bottom: 1px solid #262626;
+
+  color: #ffffff;
+
+  text-decoration: none;
+
+  transition:
+    background-color 0.4s ease,
+    transform 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.card:hover {
+  background: #0b0b0b;
+
+  border-color: rgba(212, 175, 55, 0.2);
+}
+
+.number {
+  display: block;
+
+  color: #d4af37;
+
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+}
+
+.cardContent {
+  position: absolute;
+
+  right: 3rem;
+  bottom: 2.5rem;
+  left: 2.5rem;
+}
+
+.cardContent h3 {
+  margin: 0 0 1rem;
+
+  color: #ffffff;
+
+  font-size: clamp(2rem, 3vw, 3.5rem);
+  font-weight: 500;
+
+  line-height: 1;
+
+  letter-spacing: -0.04em;
+}
+
+.cardContent p {
+  max-width: 560px;
+
+  margin: 0;
+
+  color: #888888;
+
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.arrow {
+  position: absolute;
+
+  right: 2.5rem;
+  bottom: 2.5rem;
+
+  color: #d4af37;
+
+  font-size: 1.5rem;
+
+  transition:
+    transform 0.3s ease;
+}
+
+.card:hover .arrow {
+  transform: translate(5px, -5px);
+}
+
+/* =========================================================
+   LARGE TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .experience {
+    grid-template-columns: 1fr;
+
+    gap: 2rem;
+
+    min-height: auto;
+  }
+
+  .experienceVisual {
+    min-height: 560px;
+  }
+
+  .experienceContent {
+    padding: 2rem 0 0;
+  }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .hero {
+    padding-inline: 2rem;
+  }
+
+  .experience {
+    padding-inline: 2rem;
+  }
+
+  .services {
+    padding-inline: 2rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .hero {
+    padding:
+      4.5rem
+      1.25rem
+      3rem;
+  }
+
+  .title {
+    font-size: clamp(3rem, 13vw, 4.5rem);
+
+    line-height: 0.98;
+  }
+
+  .description {
+    margin-top: 1.5rem;
+
+    font-size: 0.95rem;
+  }
+
+  .experience {
+    display: block;
+
+    padding:
+      0
+      1.25rem
+      5rem;
+  }
+
+  .experienceVisual {
+    min-height: 360px;
+
+    border-radius: var(--radius-md);
+  }
+
+  .scene {
+    position: absolute;
+
+    inset: 0;
+  }
+
+  .sceneLabel {
+    left: 1rem;
+    bottom: 1rem;
+
+    gap: 0.7rem;
+
+    font-size: 0.62rem;
+  }
+
+  .experienceContent {
+    padding-top: 3rem;
+  }
+
+  .experienceTitle {
+    font-size: clamp(2.75rem, 13vw, 4rem);
+  }
+
+  .experienceDescription {
+    margin-top: 1.5rem;
+
+    font-size: 0.95rem;
+  }
+
+  .experienceLink {
+    margin-top: 1.75rem;
+  }
+
+  .serviceSelector {
+    grid-template-columns: 1fr;
+
+    margin-top: 3rem;
+  }
+
+  .selectorItem:nth-child(odd) {
+    border-right: 0;
+  }
+
+  .selectorItem {
+    min-height: 48px;
+
+    padding-block: 0.9rem;
+  }
+
+  .selectorItemActive {
+    padding-left: 1rem;
+  }
+
+  .services {
+    padding-inline: 1.25rem;
+
+    padding-bottom: 5rem;
+  }
+
+  .servicesHeader {
+    padding-bottom: 2rem;
+  }
+
+  .card {
+    min-height: 320px;
+
+    padding: 1.5rem;
+  }
+
+  .cardContent {
+    right: 1.5rem;
+    bottom: 1.5rem;
+    left: 1.5rem;
+  }
+
+  .cardContent h3 {
+    padding-right: 2.5rem;
+
+    font-size: clamp(1.8rem, 9vw, 2.8rem);
+  }
+
+  .cardContent p {
+    padding-right: 0.5rem;
+
+    font-size: 0.9rem;
+  }
+
+  .arrow {
+    right: 1.5rem;
+    bottom: 1.5rem;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 400px) {
+  .hero {
+    padding:
+      4rem
+      1rem
+      2.5rem;
+  }
+
+  .experience {
+    padding-inline: 1rem;
+  }
+
+  .experienceVisual {
+    min-height: 320px;
+  }
+
+  .experienceTitle {
+    font-size: clamp(2.5rem, 13vw, 3.4rem);
+  }
+
+  .serviceSelector {
+    margin-top: 2.5rem;
+  }
+
+  .services {
+    padding-inline: 1rem;
+  }
+
+  .card {
+    min-height: 300px;
+
+    padding: 1.25rem;
+  }
+
+  .cardContent {
+    right: 1.25rem;
+    bottom: 1.25rem;
+    left: 1.25rem;
+  }
+
+  .cardContent h3 {
+    font-size: 1.8rem;
+  }
+
+  .arrow {
+    right: 1.25rem;
+    bottom: 1.25rem;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .experienceLink,
+  .selectorItem,
+  .card,
+  .arrow,
+  .experienceContent {
+    transition: none;
+  }
+}

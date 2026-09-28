@@ -1,0 +1,498 @@
+.page {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: 40px 24px;
+  background: #000000;
+  color: #ffffff;
+}
+
+.backgroundGlow {
+  position: absolute;
+  width: min(60vw, 800px);
+  height: min(60vw, 800px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(212, 175, 55, 0.09) 0%,
+    rgba(212, 175, 55, 0.025) 35%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* =========================================================
+   LOGIN SHELL
+========================================================= */
+
+.loginShell {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1080px);
+  min-height: 620px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.45),
+    0 0 80px rgba(212, 175, 55, 0.04);
+}
+
+/* =========================================================
+   BRAND PANEL
+========================================================= */
+
+.brandPanel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 620px;
+  padding: 52px;
+  background:
+    linear-gradient(
+      145deg,
+      #080808 0%,
+      #000000 60%,
+      #0b0b0b 100%
+    );
+  border-right: 1px solid
+    rgba(212, 175, 55, 0.18);
+}
+
+.brandPanel::after {
+  content: '';
+  position: absolute;
+  right: -100px;
+  bottom: -100px;
+  width: 300px;
+  height: 300px;
+  border: 1px solid
+    rgba(212, 175, 55, 0.12);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 40px
+      rgba(212, 175, 55, 0.025),
+    0 0 0 80px
+      rgba(212, 175, 55, 0.015);
+  pointer-events: none;
+}
+
+.brandMark {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border: 1px solid
+    rgba(212, 175, 55, 0.65);
+  border-radius: 12px;
+  color: #d4af37;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.brandContent {
+  position: relative;
+  z-index: 1;
+  max-width: 410px;
+}
+
+.eyebrow,
+.formEyebrow {
+  display: block;
+  color: #d4af37;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  line-height: 1.5;
+}
+
+.brandContent h1 {
+  margin: 18px 0 22px;
+  color: #ffffff;
+  font-size: clamp(
+    42px,
+    5vw,
+    68px
+  );
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.brandContent h1 span {
+  display: block;
+  color: #d4af37;
+}
+
+.brandContent p {
+  max-width: 390px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.8;
+}
+
+.brandFooter {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.36);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+}
+
+.goldLine {
+  width: 28px;
+  height: 1px;
+  background: #d4af37;
+}
+
+/* =========================================================
+   FORM PANEL
+========================================================= */
+
+.formPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 52px;
+  background: #ffffff;
+  color: #111111;
+}
+
+.formHeader {
+  margin-bottom: 34px;
+}
+
+.formHeader h2 {
+  margin: 10px 0 10px;
+  color: #111111;
+  font-size: clamp(
+    30px,
+    3vw,
+    42px
+  );
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+}
+
+.formHeader p {
+  max-width: 380px;
+  margin: 0;
+  color: #74746e;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.field label {
+  color: #252522;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 15px;
+  color: #a1a19b;
+  pointer-events: none;
+}
+
+.inputWrapper input {
+  width: 100%;
+  min-height: 50px;
+  padding: 0 15px 0 45px;
+  border: 1px solid #deded9;
+  border-radius: 8px;
+  outline: none;
+  background: #fafaf8;
+  color: #111111;
+  font: inherit;
+  font-size: 13px;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
+}
+
+.inputWrapper input::placeholder {
+  color: #aaa9a2;
+}
+
+.inputWrapper input:hover {
+  border-color: #c8c8c1;
+}
+
+.inputWrapper input:focus {
+  border-color: #d4af37;
+  background: #ffffff;
+  box-shadow:
+    0 0 0 3px
+      rgba(212, 175, 55, 0.1);
+}
+
+.inputWrapper input:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.passwordToggle {
+  position: absolute;
+  right: 8px;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #888880;
+  cursor: pointer;
+}
+
+.passwordToggle:hover {
+  color: #111111;
+}
+
+.passwordToggle:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.errorMessage {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 11px 13px;
+  border: 1px solid #e5caca;
+  border-radius: 7px;
+  background: #fff7f7;
+  color: #a33a3a;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.errorDot {
+  flex: 0 0 auto;
+  width: 6px;
+  height: 6px;
+  margin-top: 5px;
+  border-radius: 50%;
+  background: #b84a4a;
+}
+
+/* =========================================================
+   SUBMIT
+========================================================= */
+
+.submitButton {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 4px;
+  padding: 0 22px;
+  border: 1px solid #d4af37;
+  border-radius: 8px;
+  background: #d4af37;
+  color: #000000;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.submitButton:hover:not(:disabled) {
+  background: #e0be4e;
+  box-shadow:
+    0 10px 25px
+      rgba(212, 175, 55, 0.18);
+  transform: translateY(-1px);
+}
+
+.submitButton:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submitButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid
+    rgba(0, 0, 0, 0.25);
+  border-top-color: #000000;
+  border-radius: 50%;
+  animation: spin 700ms linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   SECURITY NOTE
+========================================================= */
+
+.securityNote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 28px;
+  color: #999990;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+  .loginShell {
+    width: min(100%, 720px);
+    grid-template-columns: 1fr;
+  }
+
+  .brandPanel {
+    min-height: auto;
+    padding: 38px;
+  }
+
+  .brandContent {
+    margin-top: 50px;
+  }
+
+  .brandContent h1 {
+    font-size: clamp(
+      40px,
+      8vw,
+      58px
+    );
+  }
+
+  .brandFooter {
+    margin-top: 50px;
+  }
+
+  .formPanel {
+    padding: 40px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+  .page {
+    min-height: 100dvh;
+    padding: 18px;
+  }
+
+  .loginShell {
+    border-radius: 14px;
+  }
+
+  .brandPanel {
+    padding: 28px;
+  }
+
+  .brandMark {
+    width: 42px;
+    height: 42px;
+    font-size: 18px;
+  }
+
+  .brandContent {
+    margin-top: 42px;
+  }
+
+  .brandContent h1 {
+    margin-top: 14px;
+    margin-bottom: 16px;
+    font-size: clamp(
+      38px,
+      13vw,
+      52px
+    );
+  }
+
+  .brandContent p {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .brandFooter {
+    margin-top: 40px;
+    font-size: 8px;
+  }
+
+  .formPanel {
+    padding: 30px 24px;
+  }
+
+  .formHeader {
+    margin-bottom: 28px;
+  }
+
+  .formHeader h2 {
+    font-size: 30px;
+  }
+
+  .form {
+    gap: 19px;
+  }
+}

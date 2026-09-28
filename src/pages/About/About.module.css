@@ -1,0 +1,1343 @@
+/* =========================================================
+   ABOUT PAGE
+   Riyadvi Software Technologies
+   ========================================================= */
+
+.page {
+  min-height: 100vh;
+  background: #000;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* =========================================================
+   SHARED
+   ========================================================= */
+
+.eyebrow {
+  margin: 0 0 1.5rem;
+  color: #d4af37;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.sectionLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.sectionLabel span {
+  color: #d4af37;
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.sectionLabel p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  line-height: 1.4;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+  max-width: 1400px;
+  min-height: 85vh;
+  margin: 0 auto;
+  padding: 5.5rem var(--page-padding) 6rem;
+
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(320px, 0.75fr);
+
+  align-items: center;
+  gap: 5rem;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+}
+
+.heroContent h1 {
+  margin: 0;
+
+  font-size: clamp(4rem, 9vw, 9rem);
+  font-weight: 500;
+  line-height: 0.88;
+  letter-spacing: -0.06em;
+}
+
+.heroContent h1 span {
+  color: #d4af37;
+}
+
+.heroDescription {
+  max-width: 650px;
+  margin: 2.5rem 0 0;
+
+  color: rgba(255, 255, 255, 0.6);
+
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  line-height: 1.75;
+}
+
+/* =========================================================
+   HERO 3D VISUAL
+   ========================================================= */
+
+.heroVisual {
+  position: relative;
+  min-height: 500px;
+  overflow: hidden;
+  isolation: isolate;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(212, 175, 55, 0.12),
+      transparent 45%
+    ),
+    #080808;
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.scene canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.visualLabel {
+  position: absolute;
+  z-index: 3;
+
+  bottom: 1.5rem;
+  left: 1.5rem;
+
+  color: rgba(255, 255, 255, 0.4);
+
+  font-size: 0.62rem;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.16em;
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   STORY
+   ========================================================= */
+
+.story {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 7rem var(--page-padding);
+
+  display: grid;
+  grid-template-columns: 0.35fr 1fr;
+  gap: 5rem;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.storyContent {
+  max-width: 850px;
+}
+
+.storyContent h2 {
+  margin: 0 0 2.5rem;
+
+  font-size: clamp(2.3rem, 4.5vw, 4.5rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.storyContent p {
+  max-width: 720px;
+  margin: 0 0 1.5rem;
+
+  color: rgba(255, 255, 255, 0.58);
+
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.storyContent p:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================================================
+   COMPANY JOURNEY
+   ========================================================= */
+
+.timelineSection {
+  padding: 8rem var(--page-padding);
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  background:
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(212, 175, 55, 0.06),
+      transparent 30%
+    ),
+    #000;
+}
+
+.timelineHeader {
+  max-width: 1400px;
+  margin: 0 auto 5rem;
+
+  display: grid;
+  grid-template-columns: 0.35fr 1fr;
+  gap: 5rem;
+}
+
+.timelineIntro {
+  max-width: 850px;
+}
+
+.timelineIntro .eyebrow {
+  margin-bottom: 1.5rem;
+}
+
+.timelineIntro h2 {
+  margin: 0;
+
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+.timelineIntro > p:last-child {
+  max-width: 680px;
+  margin: 2rem 0 0;
+
+  color: rgba(255, 255, 255, 0.5);
+
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.timeline {
+  position: relative;
+
+  max-width: 1400px;
+  margin: 0 auto;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.timelineItem {
+  position: relative;
+
+  display: grid;
+  grid-template-columns:
+    minmax(100px, 0.25fr)
+    40px
+    minmax(0, 1fr);
+
+  gap: 2rem;
+
+  padding: 3.5rem 0;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.timelineYear {
+  color: #d4af37;
+
+  font-size: clamp(1.5rem, 3vw, 2.8rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.timelineTrack {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+
+  width: 40px;
+}
+
+.timelineTrack::before {
+  content: '';
+
+  position: absolute;
+  top: 0;
+  bottom: -3.5rem;
+
+  width: 1px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(212, 175, 55, 0.7),
+      rgba(212, 175, 55, 0.08)
+    );
+}
+
+.timelineItem:last-child
+  .timelineTrack::before {
+  display: none;
+}
+
+.timelineMarker {
+  position: relative;
+  z-index: 2;
+
+  width: 10px;
+  height: 10px;
+
+  margin-top: 0.25rem;
+
+  border: 1px solid #d4af37;
+  border-radius: 50%;
+
+  background: #000;
+
+  box-shadow:
+    0 0 0 5px rgba(212, 175, 55, 0.08),
+    0 0 25px rgba(212, 175, 55, 0.15);
+}
+
+.timelineContent {
+  max-width: 780px;
+}
+
+.timelineIndex {
+  margin: 0 0 0.75rem;
+
+  color: rgba(255, 255, 255, 0.28);
+
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+}
+
+.timelineContent h3 {
+  margin: 0;
+
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.timelineContent > p:not(.timelineIndex) {
+  max-width: 680px;
+  margin: 1.25rem 0 0;
+
+  color: rgba(255, 255, 255, 0.5);
+
+  font-size: 0.98rem;
+  line-height: 1.75;
+}
+
+.recognitionBadge {
+  display: inline-flex;
+  align-items: center;
+
+  margin-top: 1.5rem;
+  padding: 0.55rem 0.8rem;
+
+  border: 1px solid
+    rgba(212, 175, 55, 0.35);
+
+  background: rgba(212, 175, 55, 0.06);
+  color: #d4af37;
+
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+/* =========================================================
+   VISION / MISSION
+   ========================================================= */
+
+.direction {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.directionCard {
+  min-height: 400px;
+  padding: 4rem var(--page-padding);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.directionCard + .directionCard {
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.directionCard h2 {
+  max-width: 600px;
+  margin: 0;
+
+  font-size: clamp(2.2rem, 4vw, 4rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+/* =========================================================
+   VALUES
+   ========================================================= */
+
+.values {
+  padding: 8rem var(--page-padding);
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sectionIntro {
+  max-width: 1400px;
+  margin: 0 auto 4rem;
+}
+
+.sectionIntro h2 {
+  margin: 0;
+
+  font-size: clamp(2.7rem, 5vw, 5rem);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+/* =========================================================
+   INTERACTIVE VALUES EXPERIENCE
+   ========================================================= */
+
+.valuesExperience {
+  max-width: 1400px;
+  min-height: 560px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns:
+    minmax(320px, 0.85fr)
+    minmax(0, 1.15fr);
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #050505;
+}
+
+/* =========================================================
+   VALUES VISUAL
+   ========================================================= */
+
+.valuesVisual {
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(212, 175, 55, 0.12),
+      transparent 45%
+    ),
+    #030303;
+}
+
+.valuesVisual::before {
+  content: '';
+
+  position: absolute;
+  inset: 0;
+
+  opacity: 0.2;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.08) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.08) 1px,
+      transparent 1px
+    );
+
+  background-size: 45px 45px;
+
+  pointer-events: none;
+}
+
+.valuesOrb {
+  position: relative;
+  z-index: 1;
+
+  width: min(20vw, 260px);
+  aspect-ratio: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  border-radius: 50%;
+
+  animation: valuesFloat 6s ease-in-out infinite;
+
+  box-shadow:
+    0 0 100px rgba(212, 175, 55, 0.08),
+    inset 0 0 80px rgba(212, 175, 55, 0.05);
+}
+
+.valuesOrb::before,
+.valuesOrb::after {
+  content: '';
+
+  position: absolute;
+
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 50%;
+}
+
+.valuesOrb::before {
+  inset: 15%;
+}
+
+.valuesOrb::after {
+  inset: -12%;
+  border-color: rgba(212, 175, 55, 0.08);
+}
+
+.valuesOrbInner {
+  width: 55%;
+  aspect-ratio: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(212, 175, 55, 0.04);
+
+  box-shadow:
+    inset 0 0 40px rgba(212, 175, 55, 0.08);
+}
+
+.valuesOrbInner span {
+  color: #d4af37;
+
+  font-size: clamp(2rem, 4vw, 4rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.valuesMeta {
+  position: absolute;
+  z-index: 2;
+
+  left: 1.5rem;
+  right: 1.5rem;
+  bottom: 1.5rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+
+  color: rgba(255, 255, 255, 0.35);
+
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+}
+
+/* =========================================================
+   VALUES CONTENT
+   ========================================================= */
+
+.valuesContent {
+  min-width: 0;
+  padding: 3rem;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.valuesHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+
+  padding-bottom: 1.5rem;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.valuesHeader span:first-child {
+  color: #d4af37;
+
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.valuesHeader span:last-child {
+  color: rgba(255, 255, 255, 0.3);
+
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+}
+
+.valuesCopy {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 3rem 0;
+}
+
+.smallLabel {
+  margin: 0 0 1rem;
+
+  color: rgba(255, 255, 255, 0.35);
+
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.valuesCopy h3 {
+  margin: 0 0 1.5rem;
+
+  font-size: clamp(2.4rem, 4vw, 4.5rem);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+
+  animation: valueContentIn 400ms ease;
+}
+
+.valuesCopy > p:last-child {
+  max-width: 620px;
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.55);
+
+  font-size: 1rem;
+  line-height: 1.8;
+
+  animation: valueContentIn 450ms ease;
+}
+
+/* =========================================================
+   VALUE SELECTOR
+   ========================================================= */
+
+.valueSelector {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.valueButton {
+  width: 100%;
+  min-width: 0;
+
+  display: grid;
+  grid-template-columns: 45px minmax(0, 1fr) 25px;
+  align-items: center;
+
+  gap: 1rem;
+
+  padding: 1rem 0;
+
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  background: transparent;
+  color: rgba(255, 255, 255, 0.45);
+
+  font: inherit;
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    color 220ms ease,
+    padding 220ms ease,
+    background 220ms ease;
+}
+
+.valueButton:hover {
+  padding-left: 0.5rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.valueButton:focus-visible {
+  outline: 1px solid #d4af37;
+  outline-offset: -1px;
+}
+
+.valueButton > span:first-child {
+  color: rgba(212, 175, 55, 0.65);
+
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+.valueButton strong {
+  min-width: 0;
+
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.valueButton > span:last-child {
+  color: rgba(255, 255, 255, 0.25);
+
+  text-align: right;
+
+  transition:
+    color 220ms ease,
+    transform 220ms ease;
+}
+
+.valueButtonActive {
+  color: #fff;
+}
+
+.valueButtonActive > span:first-child {
+  color: #d4af37;
+}
+
+.valueButtonActive > span:last-child {
+  color: #d4af37;
+  transform: translateX(3px);
+}
+
+/* =========================================================
+   CAPABILITIES
+   ========================================================= */
+
+.capabilities {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 7rem var(--page-padding);
+
+  display: grid;
+  grid-template-columns: 0.35fr 1fr;
+  gap: 5rem;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.capabilityContent {
+  max-width: 850px;
+}
+
+.capabilityIntro {
+  margin-bottom: 3rem;
+}
+
+.capabilityIntro h2 {
+  margin: 0;
+
+  font-size: clamp(2.3rem, 4.5vw, 4.5rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.capabilityList {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.capabilityItem {
+  display: grid;
+  grid-template-columns: 50px minmax(0, 1fr) 30px;
+  align-items: center;
+
+  gap: 1rem;
+
+  padding: 1.4rem 0;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+  transition:
+    padding 250ms ease,
+    color 250ms ease;
+}
+
+.capabilityItem:hover {
+  padding-left: 0.5rem;
+}
+
+.capabilityItem > span:first-child {
+  color: #d4af37;
+
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+.capabilityItem h3 {
+  margin: 0;
+
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.capabilityItem p {
+  max-width: 650px;
+  margin: 0.45rem 0 0;
+
+  color: rgba(255, 255, 255, 0.48);
+
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.capabilityItem > span:last-child {
+  color: rgba(255, 255, 255, 0.4);
+
+  text-align: right;
+
+  transition:
+    color 220ms ease,
+    transform 220ms ease;
+}
+
+.capabilityItem:hover > span:last-child {
+  color: #d4af37;
+  transform: translate(3px, -3px);
+}
+
+/* =========================================================
+   CTA
+   ========================================================= */
+
+.cta {
+  padding: 9rem var(--page-padding);
+
+  text-align: center;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(212, 175, 55, 0.08),
+      transparent 45%
+    );
+}
+
+.cta h2 {
+  margin: 0;
+
+  font-size: clamp(3rem, 6vw, 6rem);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+}
+
+.cta h2 span {
+  color: #d4af37;
+}
+
+.cta > p:not(.eyebrow) {
+  max-width: 550px;
+  margin: 2rem auto;
+
+  color: rgba(255, 255, 255, 0.55);
+
+  line-height: 1.7;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+
+  padding: 0.95rem 1.35rem;
+
+  border: 1px solid #d4af37;
+
+  background: #d4af37;
+  color: #000;
+
+  text-decoration: none;
+
+  font-size: 0.8rem;
+  font-weight: 600;
+
+  transition:
+    transform 250ms ease,
+    background 250ms ease,
+    color 250ms ease,
+    box-shadow 250ms ease;
+}
+
+.ctaButton:hover {
+  transform: translateY(-3px);
+
+  background: #e3c35a;
+
+  box-shadow:
+    0 12px 35px rgba(212, 175, 55, 0.15);
+}
+
+.ctaButton:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes valuesFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes valueContentIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1024px) {
+  .hero {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(280px, 0.7fr);
+
+    gap: 3rem;
+  }
+
+  .heroContent h1 {
+    font-size: clamp(4rem, 8vw, 7rem);
+  }
+
+  .story,
+  .capabilities {
+    gap: 3rem;
+  }
+
+  .timelineHeader {
+    gap: 3rem;
+  }
+
+  .valuesContent {
+    padding: 2.5rem;
+  }
+}
+
+/* =========================================================
+   TABLET / SMALL LAPTOP
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+
+    min-height: auto;
+
+    padding-top: 4.5rem;
+  }
+
+  .heroVisual {
+    min-height: 400px;
+  }
+
+  .story,
+  .capabilities {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .timelineHeader {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .timelineItem {
+    grid-template-columns:
+      100px
+      35px
+      minmax(0, 1fr);
+
+    gap: 1.5rem;
+  }
+
+  .valuesExperience {
+    grid-template-columns: 1fr;
+  }
+
+  .valuesVisual {
+    min-height: 430px;
+
+    border-right: none;
+    border-bottom: 1px solid
+      rgba(255, 255, 255, 0.12);
+  }
+
+  .valuesOrb {
+    width: min(35vw, 240px);
+  }
+
+  .capabilityContent {
+    max-width: none;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 4rem 1.25rem 5rem;
+  }
+
+  .heroContent h1 {
+    font-size: clamp(3.5rem, 15vw, 5rem);
+  }
+
+  .heroDescription {
+    margin-top: 2rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .heroVisual {
+    min-height: 330px;
+  }
+
+  .visualLabel {
+    left: 1rem;
+    bottom: 1rem;
+
+    font-size: 0.56rem;
+  }
+
+  .story,
+  .capabilities {
+    padding: 5rem 1.25rem;
+  }
+
+  .storyContent h2 {
+    font-size: clamp(2.2rem, 11vw, 3.5rem);
+  }
+
+  .storyContent p {
+    font-size: 0.92rem;
+  }
+
+  /* -------------------------------------------------------
+     TIMELINE
+  ------------------------------------------------------- */
+
+  .timelineSection {
+    padding: 5rem 1.25rem;
+  }
+
+  .timelineHeader {
+    margin-bottom: 3.5rem;
+  }
+
+  .timelineIntro h2 {
+    font-size: clamp(
+      2.3rem,
+      11vw,
+      3.8rem
+    );
+  }
+
+  .timelineIntro > p:last-child {
+    font-size: 0.92rem;
+  }
+
+  .timelineItem {
+    grid-template-columns:
+      65px
+      24px
+      minmax(0, 1fr);
+
+    gap: 0.75rem;
+
+    padding: 2.5rem 0;
+  }
+
+  .timelineYear {
+    font-size: 1.45rem;
+  }
+
+  .timelineTrack {
+    width: 24px;
+  }
+
+  .timelineMarker {
+    width: 8px;
+    height: 8px;
+  }
+
+  .timelineContent h3 {
+    font-size: clamp(
+      1.45rem,
+      7vw,
+      2.2rem
+    );
+  }
+
+  .timelineContent > p:not(.timelineIndex) {
+    font-size: 0.86rem;
+    line-height: 1.7;
+  }
+
+  .recognitionBadge {
+    font-size: 0.55rem;
+  }
+
+  /* -------------------------------------------------------
+     DIRECTION
+  ------------------------------------------------------- */
+
+  .direction {
+    grid-template-columns: 1fr;
+  }
+
+  .directionCard {
+    min-height: 300px;
+    padding: 3.5rem 1.25rem;
+  }
+
+  .directionCard + .directionCard {
+    border-left: none;
+    border-top: 1px solid
+      rgba(255, 255, 255, 0.1);
+  }
+
+  .directionCard h2 {
+    font-size: clamp(
+      2.2rem,
+      10vw,
+      3.5rem
+    );
+  }
+
+  /* -------------------------------------------------------
+     VALUES
+  ------------------------------------------------------- */
+
+  .values {
+    padding: 5rem 1.25rem;
+  }
+
+  .sectionIntro {
+    margin-bottom: 2.5rem;
+  }
+
+  .sectionIntro h2 {
+    font-size: clamp(
+      2.5rem,
+      11vw,
+      4rem
+    );
+  }
+
+  .valuesExperience {
+    min-height: auto;
+  }
+
+  .valuesVisual {
+    min-height: 320px;
+  }
+
+  .valuesOrb {
+    width: 170px;
+  }
+
+  .valuesContent {
+    padding: 1.5rem;
+  }
+
+  .valuesHeader {
+    padding-bottom: 1.25rem;
+  }
+
+  .valuesCopy {
+    padding: 2.5rem 0;
+  }
+
+  .valuesCopy h3 {
+    font-size: clamp(
+      2.3rem,
+      12vw,
+      3.5rem
+    );
+  }
+
+  .valuesCopy > p:last-child {
+    font-size: 0.92rem;
+  }
+
+  .valueButton {
+    grid-template-columns:
+      38px
+      minmax(0, 1fr)
+      20px;
+
+    gap: 0.75rem;
+
+    padding: 0.95rem 0;
+  }
+
+  .valueButton strong {
+    font-size: 0.85rem;
+  }
+
+  .valuesMeta {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  /* -------------------------------------------------------
+     CAPABILITIES
+  ------------------------------------------------------- */
+
+  .capabilityIntro {
+    margin-bottom: 2rem;
+  }
+
+  .capabilityIntro h2 {
+    font-size: clamp(
+      2.2rem,
+      11vw,
+      3.5rem
+    );
+  }
+
+  .capabilityItem {
+    grid-template-columns:
+      38px
+      minmax(0, 1fr)
+      20px;
+
+    gap: 0.75rem;
+
+    padding: 1.15rem 0;
+  }
+
+  .capabilityItem h3 {
+    font-size: 0.95rem;
+  }
+
+  .capabilityItem p {
+    font-size: 0.82rem;
+  }
+
+  /* -------------------------------------------------------
+     CTA
+  ------------------------------------------------------- */
+
+  .cta {
+    padding: 6rem 1.25rem;
+  }
+
+  .cta h2 {
+    font-size: clamp(
+      3rem,
+      15vw,
+      5rem
+    );
+  }
+
+  .cta > p:not(.eyebrow) {
+    margin: 1.5rem auto 2rem;
+    font-size: 0.92rem;
+  }
+
+  .ctaButton {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .valuesOrb {
+    animation: none;
+  }
+
+  .valuesCopy h3,
+  .valuesCopy > p:last-child {
+    animation: none;
+  }
+
+  .valueButton,
+  .capabilityItem,
+  .ctaButton {
+    transition: none;
+  }
+}

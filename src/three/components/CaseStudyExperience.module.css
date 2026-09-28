@@ -1,0 +1,272 @@
+.experience {
+  padding: 8rem var(--page-padding);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: #000;
+}
+
+.header {
+  max-width: 1400px;
+  margin: 0 auto 3.5rem;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.55fr);
+  gap: 5rem;
+  align-items: end;
+}
+
+.eyebrow {
+  margin: 0 0 1.25rem;
+
+  color: #d4af37;
+
+  font-size: 0.72rem;
+  font-weight: 600;
+
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.header h2 {
+  max-width: 850px;
+
+  margin: 0;
+
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-weight: 500;
+  line-height: 0.98;
+
+  letter-spacing: -0.045em;
+}
+
+.description {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.52);
+
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+.experienceGrid {
+  max-width: 1400px;
+  min-height: 620px;
+
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(300px, 0.6fr);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  background: #050505;
+}
+
+.sceneWrapper {
+  position: relative;
+
+  min-height: 620px;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(212, 175, 55, 0.08),
+      transparent 42%
+    ),
+    #050505;
+}
+
+.sceneWrapper canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.sceneHint {
+  position: absolute;
+
+  left: 1.5rem;
+  bottom: 1.5rem;
+
+  padding: 0.6rem 0.8rem;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.1);
+
+  background: rgba(0, 0, 0, 0.55);
+
+  color: rgba(255, 255, 255, 0.48);
+
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  pointer-events: none;
+}
+
+.infoPanel {
+  padding: 3rem 2.5rem;
+
+  border-left: 1px solid
+    rgba(255, 255, 255, 0.1);
+
+  background: #080808;
+}
+
+.infoNumber {
+  margin: 0 0 1.5rem;
+
+  color: #d4af37;
+
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+}
+
+.infoLabel {
+  margin: 0 0 1rem;
+
+  color: rgba(255, 255, 255, 0.35);
+
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+}
+
+.infoPanel h3 {
+  margin: 0 0 1.25rem;
+
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
+  font-weight: 500;
+
+  line-height: 1.05;
+}
+
+.infoPanel > p:not(.infoNumber):not(.infoLabel) {
+  margin: 0 0 2rem;
+
+  color: rgba(255, 255, 255, 0.52);
+
+  font-size: 0.9rem;
+  line-height: 1.75;
+}
+
+.techList {
+  border-top: 1px solid
+    rgba(255, 255, 255, 0.1);
+}
+
+.techButton,
+.activeTech {
+  width: 100%;
+
+  padding: 1rem 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border: 0;
+  border-bottom: 1px solid
+    rgba(255, 255, 255, 0.1);
+
+  background: transparent;
+
+  color: rgba(255, 255, 255, 0.48);
+
+  font: inherit;
+  font-size: 0.78rem;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    color 200ms ease,
+    padding 200ms ease;
+}
+
+.techButton:hover,
+.techButton:focus-visible {
+  padding-left: 0.5rem;
+
+  color: #fff;
+}
+
+.activeTech {
+  padding-left: 0.5rem;
+
+  color: #d4af37;
+}
+
+.techButton:focus-visible,
+.activeTech:focus-visible {
+  outline: 2px solid #d4af37;
+  outline-offset: -2px;
+}
+
+@media (max-width: 1000px) {
+  .header {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .experienceGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .sceneWrapper {
+    min-height: 520px;
+  }
+
+  .infoPanel {
+    border-top: 1px solid
+      rgba(255, 255, 255, 0.1);
+
+    border-left: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .experience {
+    padding: 5rem 1.25rem;
+  }
+
+  .header {
+    margin-bottom: 2rem;
+  }
+
+  .header h2 {
+    font-size: clamp(2.3rem, 11vw, 3.5rem);
+  }
+
+  .experienceGrid {
+    min-height: auto;
+  }
+
+  .sceneWrapper {
+    min-height: 390px;
+  }
+
+  .sceneHint {
+    left: 1rem;
+    bottom: 1rem;
+
+    font-size: 0.58rem;
+  }
+
+  .infoPanel {
+    padding: 2rem 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .techButton,
+  .activeTech {
+    transition: none;
+  }
+
+  .techButton:hover,
+  .techButton:focus-visible {
+    padding-left: 0;
+  }
+}
