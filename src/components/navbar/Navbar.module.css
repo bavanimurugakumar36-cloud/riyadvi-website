@@ -232,7 +232,9 @@
 ======================================== */
 
 .desktopActions {
-  margin-left: var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
 }
 
 .consultationButton {
@@ -518,4 +520,15 @@
   .dropdown {
     animation: none;
   }
+}
+.adminLink {
+  color: #777777;
+  font-size: 0.72rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.adminLink:hover {
+  color: #d4af37;
 }
