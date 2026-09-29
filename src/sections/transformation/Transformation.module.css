@@ -1,68 +1,100 @@
 /* =========================================================
-   DIGITAL TRANSFORMATION
+   TRANSFORMATION SECTION
 ========================================================= */
 
 .section {
   position: relative;
 
-  width: 100%;
+  min-height: 115vh;
 
-  padding: clamp(6.5rem, 11vw, 10rem) 0;
+  overflow: hidden;
 
   background: #050505;
 
   color: #ffffff;
-
-  overflow: hidden;
 }
 
-.container {
-  width: min(1200px, calc(100% - 96px));
-
-  margin: 0 auto;
-}
 
 /* =========================================================
-   INTRO
+   BACKGROUND GRID
 ========================================================= */
 
-.intro {
-  margin-bottom: clamp(5rem, 9vw, 8rem);
+.backgroundGrid {
+  position: absolute;
 
-  will-change: transform, opacity;
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.3;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size: 70px 70px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      transparent,
+      black 12%,
+      black 82%,
+      transparent
+    );
 }
 
-.introLabel {
-  display: flex;
-  align-items: center;
 
-  gap: 0.85rem;
+/* =========================================================
+   CONTAINER
+========================================================= */
 
-  margin-bottom: 2.5rem;
+.container {
+  position: relative;
+
+  z-index: 2;
+
+  width:
+    min(
+      calc(100% - 4rem),
+      1280px
+    );
+
+  margin: 0 auto;
+
+  padding: 5.5rem 0;
 }
 
-.introNumber {
-  color: #d4af37;
 
-  font-size: 0.65rem;
-  font-weight: 600;
+/* =========================================================
+   HEADER
+========================================================= */
 
-  letter-spacing: 0.12em;
+.header {
+  margin-bottom: 3.2rem;
 }
 
-.introLine {
-  width: 36px;
-  height: 1px;
-
-  background: #d4af37;
-}
 
 .eyebrow {
-  margin: 0;
+  display: flex;
 
-  color: #8b8b8b;
+  align-items: center;
 
-  font-size: 0.68rem;
+  gap: 0.65rem;
+
+  margin-bottom: 1.1rem;
+
+  color: #666666;
+
+  font-size: 0.55rem;
+
   font-weight: 600;
 
   letter-spacing: 0.16em;
@@ -70,628 +102,1326 @@
   text-transform: uppercase;
 }
 
-.introGrid {
+
+.eyebrowLine {
+  width: 30px;
+
+  height: 1px;
+
+  background: #d4af37;
+}
+
+
+.headingRow {
   display: grid;
 
   grid-template-columns:
-    minmax(0, 1.4fr)
-    minmax(250px, 0.6fr);
+    minmax(0, 1fr)
+    minmax(240px, 340px);
 
-  gap: clamp(3rem, 8vw, 8rem);
+  gap: 4rem;
 
   align-items: end;
 }
 
-.title {
-  max-width: 850px;
 
+.title {
   margin: 0;
 
-  color: #ffffff;
-
-  font-size: clamp(3.2rem, 6.5vw, 6.4rem);
+  font-size:
+    clamp(
+      2.5rem,
+      4.2vw,
+      4.4rem
+    );
 
   font-weight: 500;
 
-  line-height: 0.96;
+  line-height: 0.98;
 
-  letter-spacing: -0.055em;
+  letter-spacing: -0.05em;
 }
+
 
 .title span {
-  color: #8b8b8b;
+  color: #d4af37;
 }
 
-.introAside {
-  padding-bottom: 0.45rem;
-}
 
-.description {
-  max-width: 360px;
+.intro {
+  max-width: 330px;
 
   margin: 0;
 
-  color: #969696;
+  color: #777777;
 
-  font-size: clamp(0.95rem, 1.3vw, 1.08rem);
-
-  font-weight: 400;
+  font-size: 0.78rem;
 
   line-height: 1.75;
 }
 
-.introRule {
-  width: 100%;
-
-  height: 1px;
-
-  margin: 1.8rem 0 1.2rem;
-
-  background: #282828;
-}
-
-.asideNote {
-  margin: 0;
-
-  color: #555555;
-
-  font-size: 0.65rem;
-
-  font-weight: 500;
-
-  line-height: 1.6;
-
-  letter-spacing: 0.08em;
-
-  text-transform: uppercase;
-}
 
 /* =========================================================
-   PROCESS
+   JOURNEY
 ========================================================= */
 
-.process {
+.journey {
   position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    58px
+    minmax(0, 1fr);
+
+  gap: 1.8rem;
+
+  min-height: 520px;
 }
 
-.progressHeader {
+
+/* =========================================================
+   PROGRESS RAIL
+========================================================= */
+
+.progressRail {
+  position: relative;
+
   display: flex;
 
-  align-items: center;
+  flex-direction: column;
+
   justify-content: space-between;
 
-  padding-bottom: 0.85rem;
-
-  color: #555555;
-
-  font-size: 0.6rem;
-
-  font-weight: 600;
-
-  letter-spacing: 0.13em;
-
-  text-transform: uppercase;
+  padding: 2.8rem 0;
 }
 
-.progressBar {
-  position: relative;
-
-  width: 100%;
-
-  height: 1px;
-
-  margin-bottom: 0;
-}
 
 .progressTrack {
   position: absolute;
 
-  inset: 0;
+  top: 3.2rem;
 
-  background: #292929;
+  bottom: 3.2rem;
+
+  left: 50%;
+
+  width: 1px;
+
+  transform:
+    translateX(-50%);
+
+  background:
+    rgba(255, 255, 255, 0.1);
 }
 
+
 .progressFill {
-  position: absolute;
-
-  top: 0;
-  left: 0;
-
-  width: 100%;
-  height: 2px;
+  width: 1px;
 
   background: #d4af37;
 
-  transform: scaleX(0);
-
-  transform-origin: left center;
+  transition:
+    height 450ms
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
 }
+
+
+.progressNode {
+  position: relative;
+
+  z-index: 2;
+
+  width: 34px;
+
+  height: 34px;
+
+  margin: 0 auto;
+
+  padding: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.14);
+
+  border-radius: 50%;
+
+  background: #050505;
+
+  color: #555555;
+
+  cursor: pointer;
+
+  font-size: 0.52rem;
+
+  font-weight: 600;
+
+  transition:
+    color 250ms ease,
+    border-color 250ms ease,
+    background 250ms ease,
+    transform 250ms ease;
+}
+
+
+.progressNode:hover {
+  color: #ffffff;
+
+  border-color:
+    rgba(212, 175, 55, 0.6);
+}
+
+
+.progressNodeActive {
+  border-color: #d4af37;
+
+  background: #d4af37;
+
+  color: #050505;
+
+  transform: scale(1.08);
+}
+
+
+.progressNodeComplete {
+  border-color:
+    rgba(212, 175, 55, 0.45);
+
+  color: #d4af37;
+}
+
 
 /* =========================================================
-   STAGE LIST
+   EXPERIENCE BOX
 ========================================================= */
 
-.stageList {
-  width: 100%;
+.experience {
+  position: relative;
+
+  min-height: 520px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.09);
+
+  background:
+    radial-gradient(
+      circle at 70% 45%,
+      rgba(212, 175, 55, 0.065),
+      transparent 35%
+    ),
+    #080808;
+
+  overflow: hidden;
 }
+
+
+.experience::before {
+  content: '';
+
+  position: absolute;
+
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 1px
+    );
+
+  background-size: 50px 50px;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   STAGE META
+========================================================= */
+
+.stageMeta {
+  position: relative;
+
+  z-index: 3;
+
+  min-height: 42px;
+
+  padding: 0 1.5rem;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  border-bottom:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+
+  color: #505050;
+
+  font-size: 0.48rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.13em;
+}
+
+
+/* =========================================================
+   STAGE
+========================================================= */
 
 .stage {
   position: relative;
 
-  display: grid;
+  min-height: 415px;
 
-  grid-template-columns: 90px minmax(0, 1fr) 90px;
-
-  align-items: center;
-
-  min-height: 175px;
-
-  border-bottom: 1px solid #292929;
-
-  transition:
-    background-color 350ms ease,
-    padding 350ms ease;
-
-  will-change: transform, opacity;
-}
-
-.stage:first-child {
-  border-top: 1px solid #292929;
-}
-
-.stage:hover {
-  background: rgba(212, 175, 55, 0.025);
-}
-
-/* =========================================================
-   STAGE INDEX
-========================================================= */
-
-.stageIndex {
-  position: relative;
-
-  height: 100%;
-
-  display: flex;
-  align-items: flex-start;
-
-  padding-top: 2.2rem;
-}
-
-.stageNumber {
-  color: #d4af37;
-
-  font-size: 0.68rem;
-
-  font-weight: 600;
-
-  letter-spacing: 0.08em;
-}
-
-.stageConnector {
-  position: absolute;
-
-  top: 0;
-  left: 22px;
-
-  width: 1px;
-  height: 100%;
-
-  background: transparent;
-}
-
-/* =========================================================
-   STAGE MAIN
-========================================================= */
-
-.stageMain {
   display: grid;
 
   grid-template-columns:
-    minmax(200px, 0.7fr)
-    minmax(280px, 1fr);
-
-  gap: clamp(2rem, 7vw, 7rem);
+    minmax(0, 1fr)
+    minmax(260px, 0.75fr);
 
   align-items: center;
 
-  padding: 2.3rem 0;
+  padding:
+    2rem 2.5rem 1.5rem;
+
+  overflow: hidden;
 }
 
-.stageHeading {
+
+/* =========================================================
+   LARGE BACKGROUND NUMBER
+========================================================= */
+
+.largeNumber {
+  position: absolute;
+
+  z-index: 0;
+
+  right: -1rem;
+
+  top: 50%;
+
+  transform:
+    translateY(-55%);
+
+  color:
+    rgba(212, 175, 55, 0.035);
+
+  font-size:
+    clamp(
+      15rem,
+      27vw,
+      27rem
+    );
+
+  font-weight: 700;
+
+  line-height: 0.8;
+
+  letter-spacing: -0.09em;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   STAGE CONTENT
+========================================================= */
+
+.stageContent {
+  position: relative;
+
+  z-index: 2;
+
+  max-width: 470px;
+}
+
+
+.stageLabel {
   display: flex;
-  flex-direction: column;
 
-  gap: 0.45rem;
-}
+  align-items: center;
 
-.stageKicker {
-  color: #666666;
+  gap: 0.55rem;
 
-  font-size: 0.58rem;
+  color: #d4af37;
 
-  font-weight: 600;
+  font-size: 0.52rem;
 
-  letter-spacing: 0.12em;
+  font-weight: 700;
+
+  letter-spacing: 0.14em;
 
   text-transform: uppercase;
 }
 
+
+.activeDot {
+  width: 5px;
+
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #d4af37;
+
+  box-shadow:
+    0 0 10px
+    rgba(212, 175, 55, 0.8);
+}
+
+
 .stageTitle {
-  margin: 0;
+  margin:
+    1rem 0 1.1rem;
 
   color: #ffffff;
 
-  font-size: clamp(1.7rem, 3vw, 2.65rem);
+  font-size:
+    clamp(
+      3rem,
+      5.2vw,
+      5.2rem
+    );
 
-  font-weight: 450;
+  font-weight: 500;
 
-  line-height: 1;
+  line-height: 0.86;
 
-  letter-spacing: -0.035em;
-
-  transition:
-    color 250ms ease,
-    transform 250ms ease;
+  letter-spacing: -0.06em;
 }
 
-.stage:hover .stageTitle {
-  color: #d4af37;
-
-  transform: translateX(5px);
-}
 
 .stageDescription {
-  max-width: 430px;
+  max-width: 500px;
 
   margin: 0;
 
-  color: #818181;
+  color: #858585;
 
-  font-size: 0.92rem;
+  font-size: 0.95rem;
 
   line-height: 1.75;
 }
 
+
 /* =========================================================
-   STAGE ACTION
+   POINTS
 ========================================================= */
 
-.stageAction {
-  height: 100%;
+.points {
+  margin-top: 1.5rem;
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap:
+    0.5rem 1.2rem;
+}
+
+
+.point {
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.4rem;
+
+  color: #666666;
+
+  font-size: 0.55rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.02em;
+}
+
+
+.point span:first-child {
+  color: #d4af37;
+}
+
+
+/* =========================================================
+   VISUAL
+========================================================= */
+
+.stageVisual {
+  position: relative;
+
+  width:
+    min(
+      100%,
+      290px
+    );
+
+  aspect-ratio: 1;
+
+  margin-left: auto;
 
   display: flex;
 
   align-items: center;
-  justify-content: flex-end;
 
-  gap: 0.8rem;
+  justify-content: center;
 }
 
-.stageActionText {
-  color: #444444;
 
-  font-size: 0.58rem;
+.visualCircleOuter,
+.visualCircleMiddle,
+.visualCircleInner {
+  position: absolute;
+
+  border-radius: 50%;
+
+  border:
+    1px solid
+    rgba(212, 175, 55, 0.15);
+}
+
+
+.visualCircleOuter {
+  width: 90%;
+
+  height: 90%;
+
+  animation:
+    slowRotate 28s
+    linear infinite;
+}
+
+
+.visualCircleMiddle {
+  width: 66%;
+
+  height: 66%;
+
+  border-color:
+    rgba(255, 255, 255, 0.09);
+
+  animation:
+    slowRotateReverse 20s
+    linear infinite;
+}
+
+
+.visualCircleInner {
+  width: 40%;
+
+  height: 40%;
+
+  border-color:
+    rgba(212, 175, 55, 0.25);
+}
+
+
+.visualCore {
+  position: relative;
+
+  z-index: 3;
+
+  width: 78px;
+
+  height: 78px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border:
+    1px solid
+    #d4af37;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(212, 175, 55, 0.22),
+      #090909 68%
+    );
+
+  box-shadow:
+    0 0 40px
+    rgba(212, 175, 55, 0.12);
+}
+
+
+.visualCore::before {
+  content: '';
+
+  position: absolute;
+
+  inset: 7px;
+
+  border:
+    1px solid
+    rgba(212, 175, 55, 0.3);
+}
+
+
+.visualCore span {
+  position: relative;
+
+  color: #d4af37;
+
+  font-size: 0.65rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+}
+
+
+.visualOrbit {
+  position: absolute;
+
+  width: 108%;
+
+  height: 28%;
+
+  border:
+    1px solid
+    rgba(212, 175, 55, 0.25);
+
+  border-radius: 50%;
+
+  transform:
+    rotate(-28deg);
+
+  animation:
+    orbitPulse 5s
+    ease-in-out infinite;
+}
+
+
+.visualOrbit span {
+  position: absolute;
+
+  top: 50%;
+
+  right: -4px;
+
+  width: 6px;
+
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: #d4af37;
+
+  box-shadow:
+    0 0 14px
+    rgba(212, 175, 55, 0.8);
+}
+
+
+.visualLineOne,
+.visualLineTwo {
+  position: absolute;
+
+  width: 60%;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(212, 175, 55, 0.5),
+      transparent
+    );
+}
+
+
+.visualLineOne {
+  transform:
+    rotate(45deg);
+}
+
+
+.visualLineTwo {
+  transform:
+    rotate(-45deg);
+}
+
+
+/* =========================================================
+   STAGE NAVIGATION
+========================================================= */
+
+.stageNavigation {
+  position: relative;
+
+  z-index: 4;
+
+  min-height: 54px;
+
+  padding: 0 1.5rem;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  border-top:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+}
+
+
+.stageNavigation button {
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: #666666;
+
+  cursor: pointer;
+
+  font: inherit;
+
+  font-size: 0.52rem;
 
   font-weight: 600;
 
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
 
-  transition: color 250ms ease;
-}
-
-.stageArrow {
-  display: grid;
-
-  width: 34px;
-  height: 34px;
-
-  place-items: center;
-
-  border: 1px solid #303030;
-
-  color: #777777;
-
-  font-size: 0.9rem;
+  text-transform: uppercase;
 
   transition:
-    transform 250ms ease,
-    color 250ms ease,
-    border-color 250ms ease;
+    color 200ms ease;
 }
 
-.stage:hover .stageActionText {
+
+.stageNavigation button:hover:not(
+    :disabled
+  ) {
   color: #d4af37;
 }
 
-.stage:hover .stageArrow {
-  border-color: #d4af37;
 
-  color: #d4af37;
+.stageNavigation button:disabled {
+  color: #292929;
 
-  transform: translate(3px, -3px);
+  cursor: not-allowed;
 }
+
+
+.stageCounter {
+  display: flex;
+
+  gap: 0.45rem;
+
+  color: #444444;
+
+  font-size: 0.5rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.07em;
+}
+
+
+.stageCounter span:first-child {
+  color: #d4af37;
+}
+
 
 /* =========================================================
    BOTTOM STATEMENT
 ========================================================= */
 
-.bottomStatement {
+.bottom {
+  margin-top: 3rem;
+}
+
+
+.bottomLine {
+  width: 100%;
+
+  height: 1px;
+
+  background:
+    rgba(255, 255, 255, 0.1);
+}
+
+
+.bottomContent {
   display: flex;
 
   align-items: center;
 
-  gap: 1.5rem;
+  justify-content: space-between;
 
-  margin-top: clamp(4rem, 7vw, 6rem);
+  gap: 2rem;
+
+  padding-top: 1.2rem;
 }
 
-.bottomLine {
-  width: 60px;
-  height: 1px;
 
-  background: #d4af37;
+.bottomContent p {
+  max-width: 520px;
 
-  flex-shrink: 0;
-}
-
-.bottomStatement p {
   margin: 0;
 
-  color: #626262;
+  color: #666666;
 
-  font-size: clamp(0.85rem, 1.1vw, 0.98rem);
+  font-size: 0.68rem;
 
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
-.bottomStatement strong {
-  margin-left: 0.4rem;
 
-  color: #b4b4b4;
+.bottomLink {
+  display: inline-flex;
 
-  font-weight: 500;
+  align-items: center;
+
+  gap: 0.7rem;
+
+  color: #ffffff;
+
+  text-decoration: none;
+
+  font-size: 0.56rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.07em;
+
+  text-transform: uppercase;
+
+  transition:
+    color 200ms ease;
 }
+
+
+.bottomLink span {
+  color: #d4af37;
+
+  font-size: 0.9rem;
+}
+
+
+.bottomLink:hover {
+  color: #d4af37;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes slowRotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+@keyframes slowRotateReverse {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+
+@keyframes orbitPulse {
+  0%,
+  100% {
+    opacity: 0.35;
+
+    transform:
+      rotate(-28deg)
+      scale(0.98);
+  }
+
+  50% {
+    opacity: 0.8;
+
+    transform:
+      rotate(-28deg)
+      scale(1.02);
+  }
+}
+
 
 /* =========================================================
    TABLET
 ========================================================= */
 
-@media (max-width: 900px) {
-  .section {
-    padding: 7rem 0;
-  }
-
+@media (max-width: 1000px) {
   .container {
-    width: min(100% - 56px, 760px);
+    width:
+      calc(100% - 3rem);
+
+    padding:
+      5rem 0;
   }
 
-  .intro {
-    margin-bottom: 4.5rem;
+
+  .headingRow {
+    gap: 3rem;
   }
 
-  .introGrid {
-    grid-template-columns: 1fr;
 
-    gap: 2rem;
+  .journey {
+    grid-template-columns:
+      50px
+      minmax(0, 1fr);
+
+    gap: 1.3rem;
+
+    min-height: 500px;
   }
 
-  .title {
-    max-width: 720px;
+
+  .experience {
+    min-height: 500px;
   }
 
-  .introAside {
-    max-width: 560px;
-  }
-
-  .introRule {
-    width: min(100%, 420px);
-  }
-
-  .progressHeader,
-  .progressBar {
-    display: none;
-  }
 
   .stage {
-    grid-template-columns: 70px minmax(0, 1fr) 65px;
+    min-height: 395px;
 
-    min-height: 165px;
+    padding:
+      2.3rem;
   }
 
-  .stageMain {
-    grid-template-columns: 1fr;
 
-    gap: 0.9rem;
-
-    padding: 2rem 0;
+  .stageTitle {
+    font-size:
+      clamp(
+        3rem,
+        7vw,
+        4.8rem
+      );
   }
 
-  .stageDescription {
-    max-width: 560px;
+
+  .stageVisual {
+    width: 260px;
   }
 }
+
 
 /* =========================================================
    MOBILE
 ========================================================= */
 
-@media (max-width: 600px) {
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
   .section {
-    padding: 5.5rem 0;
+    min-height: auto;
   }
 
   .container {
-    width: calc(100% - 40px);
+    width:
+      calc(100% - 1.5rem);
+
+    padding:
+      4rem 0;
   }
 
-  .intro {
-    margin-bottom: 3.5rem;
+  .header {
+    margin-bottom: 2rem;
   }
 
-  .introLabel {
-    margin-bottom: 1.8rem;
-  }
+  .headingRow {
+    grid-template-columns: 1fr;
 
-  .introLine {
-    width: 25px;
-  }
-
-  .eyebrow {
-    font-size: 0.58rem;
+    gap: 1.2rem;
   }
 
   .title {
-    font-size: clamp(2.6rem, 12vw, 4rem);
-
-    line-height: 0.98;
+    font-size:
+      clamp(
+        2.3rem,
+        10vw,
+        3.5rem
+      );
   }
 
-  .description {
-    font-size: 0.92rem;
+  .intro {
+    max-width: 500px;
 
-    line-height: 1.7;
+    font-size: 0.72rem;
   }
 
-  .introRule {
-    margin: 1.5rem 0 1rem;
-  }
 
-  .stage {
-    grid-template-columns: 45px minmax(0, 1fr);
+  /* =====================================================
+     MOBILE 01 → 06 PROGRESS
+  ===================================================== */
+
+  .journey {
+    grid-template-columns: 1fr;
 
     min-height: auto;
+  }
+
+  .progressRail {
+    display: grid;
+
+    grid-template-columns:
+      repeat(6, 1fr);
+
+    height: 36px;
 
     padding: 0;
+
+    align-items: center;
   }
 
-  .stageIndex {
-    padding-top: 1.8rem;
-  }
+  .progressTrack {
+    top: 50%;
 
-  .stageMain {
-    grid-column: 2;
+    bottom: auto;
 
-    gap: 0.8rem;
-
-    padding: 1.8rem 0;
-  }
-
-  .stageNumber {
-    font-size: 0.6rem;
-  }
-
-  .stageKicker {
-    font-size: 0.52rem;
-  }
-
-  .stageTitle {
-    font-size: 1.65rem;
-
-    line-height: 1.05;
-  }
-
-  .stageDescription {
-    font-size: 0.88rem;
-
-    line-height: 1.7;
-  }
-
-  .stageAction {
-    position: absolute;
+    left: 0;
 
     right: 0;
-    top: 1.65rem;
 
-    height: auto;
+    width: auto;
+
+    height: 1px;
+
+    transform:
+      translateY(-50%);
   }
 
-  .stageActionText {
-    display: none;
+  .progressFill {
+    width: 100%;
+
+    height: 1px !important;
+
+    transition:
+      width 450ms
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
   }
 
-  .stageArrow {
-    width: 30px;
-    height: 30px;
+  .progressNode {
+    width: 24px;
 
-    font-size: 0.8rem;
+    height: 24px;
+
+    font-size: 0.45rem;
   }
 
-  .bottomStatement {
+
+  /* =====================================================
+     MOBILE EXPERIENCE BOX
+  ===================================================== */
+
+  .experience {
+    min-height: auto;
+  }
+
+  .stageMeta {
+    min-height: 34px;
+
+    padding:
+      0 0.8rem;
+
+    font-size: 0.43rem;
+  }
+
+
+  /* =====================================================
+     MOBILE STAGE
+  ===================================================== */
+
+  .stage {
+    min-height: 390px;
+
+    grid-template-columns: 1fr;
+
+    padding:
+      1.5rem 1rem 1rem;
+  }
+
+
+  .largeNumber {
+    top: 7%;
+
+    right: -0.5rem;
+
+    transform: none;
+
+    font-size: 10rem;
+  }
+
+
+  .stageContent {
+    max-width: none;
+  }
+
+
+  .stageLabel {
+    font-size: 0.48rem;
+  }
+
+
+  .stageTitle {
+    margin:
+      0.7rem 0 0.8rem;
+
+    font-size:
+      clamp(
+        2.8rem,
+        16vw,
+        4rem
+      );
+  }
+
+
+  .stageDescription {
+    max-width: 100%;
+
+    font-size: 0.82rem;
+
+    line-height: 1.65;
+  }
+
+
+  .points {
+    margin-top: 0.9rem;
+
+    gap:
+      0.4rem 0.8rem;
+  }
+
+
+  .point {
+    font-size: 0.48rem;
+  }
+
+
+  /* =====================================================
+     MOBILE VISUAL
+  ===================================================== */
+
+  .stageVisual {
+    width: 165px;
+
+    margin:
+      0.2rem auto 0;
+  }
+
+
+  .visualCore {
+    width: 58px;
+
+    height: 58px;
+  }
+
+
+  .visualCore span {
+    font-size: 0.58rem;
+  }
+
+
+  /* =====================================================
+     MOBILE NAVIGATION
+  ===================================================== */
+
+  .stageNavigation {
+    min-height: 44px;
+
+    padding:
+      0 0.8rem;
+  }
+
+
+  .stageNavigation button {
+    font-size: 0.46rem;
+  }
+
+
+  .stageCounter {
+    font-size: 0.45rem;
+  }
+
+
+  /* =====================================================
+     BOTTOM CONTENT
+  ===================================================== */
+
+  .bottom {
+    margin-top: 2rem;
+  }
+
+  .bottomContent {
     align-items: flex-start;
 
+    flex-direction: column;
+
     gap: 1rem;
-
-    margin-top: 3.5rem;
   }
 
-  .bottomLine {
-    width: 32px;
-
-    margin-top: 0.65rem;
-  }
-
-  .bottomStatement p {
-    font-size: 0.82rem;
-  }
-
-  .bottomStatement strong {
-    display: block;
-
-    margin: 0.1rem 0 0;
+  .bottomContent p {
+    font-size: 0.62rem;
   }
 }
+
 
 /* =========================================================
    SMALL MOBILE
 ========================================================= */
 
-@media (max-width: 400px) {
-  .section {
-    padding: 4.75rem 0;
-  }
-
+@media (max-width: 420px) {
   .container {
-    width: calc(100% - 32px);
+    width:
+      calc(100% - 1rem);
+
+    padding:
+      3.5rem 0;
   }
 
-  .intro {
-    margin-bottom: 3rem;
+
+  .eyebrow {
+    font-size: 0.45rem;
   }
 
-  .title {
-    font-size: 2.45rem;
+
+  .progressRail {
+    height: 34px;
   }
+
+
+  .progressNode {
+    width: 22px;
+
+    height: 22px;
+
+    font-size: 0.42rem;
+  }
+
 
   .stage {
-    grid-template-columns: 38px minmax(0, 1fr);
+    min-height: 370px;
+
+    padding:
+      1.3rem 0.9rem 0.9rem;
   }
+
 
   .stageTitle {
-    font-size: 1.45rem;
+    font-size:
+      clamp(
+        2.6rem,
+        15vw,
+        3.6rem
+      );
   }
+
 
   .stageDescription {
-    font-size: 0.84rem;
+    font-size: 0.78rem;
+
+    line-height: 1.6;
   }
 
-  .stageArrow {
-    width: 27px;
-    height: 27px;
 
-    font-size: 0.72rem;
+  .points {
+    margin-top: 0.75rem;
+  }
+
+
+  .point {
+    font-size: 0.45rem;
+  }
+
+
+  .stageVisual {
+    width: 145px;
+  }
+
+
+  .visualCore {
+    width: 52px;
+
+    height: 52px;
+  }
+
+
+  .stageNavigation {
+    min-height: 42px;
+  }
+
+
+  .stageNavigation button {
+    font-size: 0.43rem;
+  }
+
+
+  .stageCounter {
+    font-size: 0.42rem;
+  }
+
+
+  .bottom {
+    margin-top: 1.8rem;
   }
 }
+
 
 /* =========================================================
    REDUCED MOTION
 ========================================================= */
 
-@media (prefers-reduced-motion: reduce) {
-  .stage,
-  .stageTitle,
-  .stageArrow,
-  .stageActionText {
+@media (
+  prefers-reduced-motion: reduce
+) {
+  .visualCircleOuter,
+  .visualCircleMiddle,
+  .visualOrbit {
+    animation: none;
+  }
+
+  .progressNode,
+  .stageNavigation button,
+  .bottomLink {
     transition: none;
   }
 }

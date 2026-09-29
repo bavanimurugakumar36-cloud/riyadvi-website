@@ -129,12 +129,14 @@ function Footer() {
             © {currentYear} Riyadvi Software Technologies. All rights reserved.
           </p>
 
-          <div className={styles.bottomLinks}>
+                   <div className={styles.bottomLinks}>
             <Link to="/contact">Get in touch</Link>
 
             <a href="mailto:careers@riyadvi.com">
               Careers
             </a>
+
+            <Link to="/admin/login">Admin</Link>
           </div>
         </div>
       </div>

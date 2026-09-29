@@ -63,9 +63,9 @@ function BusinessHealthCheckup() {
 
   const selectedAnswer = answers[question.id];
 
-  /* =====================================================
+  /* ============================================================
      ANSWER HANDLING
-  ===================================================== */
+  ============================================================ */
 
   const handleAnswer = (optionId) => {
     setAnswers((previous) => ({
@@ -74,19 +74,17 @@ function BusinessHealthCheckup() {
     }));
   };
 
-  /* =====================================================
+  /* ============================================================
      RESULT CALCULATION
-  ===================================================== */
+  ============================================================ */
 
   const getResultData = () => {
     const scoreData = calculateHealthScore(
       answers,
-      healthCheckupQuestions
+      healthCheckupQuestions,
     );
 
-    const result = getHealthResult(
-      scoreData.totalScore
-    );
+    const result = getHealthResult(scoreData.totalScore);
 
     return {
       ...scoreData,
@@ -94,9 +92,9 @@ function BusinessHealthCheckup() {
     };
   };
 
-  /* =====================================================
+  /* ============================================================
      LEAD SUBMISSION
-  ===================================================== */
+  ============================================================ */
 
   const handleLeadSubmit = async (formData) => {
     setIsSubmitting(true);
@@ -111,16 +109,15 @@ function BusinessHealthCheckup() {
         result,
       } = getResultData();
 
-      const categoryScores =
-        calculateCategoryScores(
-          answers,
-          healthCheckupQuestions
-        );
+      const categoryScores = calculateCategoryScores(
+        answers,
+        healthCheckupQuestions,
+      );
 
       const categorySummary = categoryScores
         .map(
           (category) =>
-            `${category.category}: ${category.score}/${category.maxScore}`
+            `${category.category}: ${category.score}/${category.maxScore}`,
         )
         .join('\n');
 
@@ -155,21 +152,21 @@ function BusinessHealthCheckup() {
     } catch (error) {
       console.error(
         'Health checkup submission failed:',
-        error
+        error,
       );
 
       setSubmitError(
         error?.response?.data?.message ||
-          'Something went wrong while submitting your details. Please try again.'
+          'Something went wrong while submitting your details. Please try again.',
       );
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  /* =====================================================
-     RETAKE ASSESSMENT
-  ===================================================== */
+  /* ============================================================
+     RETAKE
+  ============================================================ */
 
   const handleRetake = () => {
     setAnswers({});
@@ -187,9 +184,9 @@ function BusinessHealthCheckup() {
     });
   };
 
-  /* =====================================================
+  /* ============================================================
      RESULT SCREEN
-  ===================================================== */
+  ============================================================ */
 
   if (isComplete) {
     const {
@@ -199,72 +196,82 @@ function BusinessHealthCheckup() {
       result,
     } = getResultData();
 
-    const categoryScores =
-      calculateCategoryScores(
-        answers,
-        healthCheckupQuestions
-      );
+    const categoryScores = calculateCategoryScores(
+      answers,
+      healthCheckupQuestions,
+    );
 
     return (
       <div className={styles.page}>
         <section className={styles.resultSection}>
           <div className={styles.resultContainer}>
-            {/* RESULT EYEBROW */}
 
-            <p className={styles.eyebrow}>
-              YOUR BUSINESS HEALTH RESULT
-            </p>
+            {/* RESULT TOP */}
 
-            {/* SCORE */}
+            <div className={styles.resultTop}>
+              <div>
+                <p className={styles.eyebrow}>
+                  DIGITAL BUSINESS HEALTH
+                </p>
 
-            <div
-              className={styles.scoreCircle}
-              aria-label={`Digital score ${percentage} percent`}
-            >
-              <span className={styles.scorePercentage}>
-                {percentage}%
-              </span>
+                <p className={styles.resultIntro}>
+                  YOUR ASSESSMENT IS COMPLETE
+                </p>
+              </div>
 
-              <span className={styles.scoreLabel}>
-                DIGITAL SCORE
+              <span className={styles.resultCode}>
+                RH / 01
               </span>
             </div>
 
-            {/* RESULT LEVEL */}
+            {/* SCORE AREA */}
 
-            <p className={styles.resultLevel}>
-              {result.level}
-            </p>
+            <div className={styles.scoreLayout}>
+              <div className={styles.scoreVisual}>
+                <div
+                  className={styles.scoreCircle}
+                  aria-label={`Digital score ${percentage} percent`}
+                >
+                  <span className={styles.scorePercentage}>
+                    {percentage}%
+                  </span>
 
-            {/* RESULT TITLE */}
+                  <span className={styles.scoreLabel}>
+                    DIGITAL SCORE
+                  </span>
+                </div>
 
-            <h1 className={styles.resultTitle}>
-              {result.title}
-            </h1>
-
-            {/* RESULT DESCRIPTION */}
-
-            <p className={styles.resultDescription}>
-              {result.description}
-            </p>
-
-            {/* SCORE DETAILS */}
-
-            <div className={styles.scoreDetails}>
-              <div>
-                <span>YOUR SCORE</span>
-
-                <strong>
-                  {totalScore} / {maxScore}
-                </strong>
+                <div className={styles.scoreOrbit} />
               </div>
 
-              <div>
-                <span>AREAS ASSESSED</span>
+              <div className={styles.resultCopy}>
+                <span className={styles.resultLevel}>
+                  {result.level}
+                </span>
 
-                <strong>
-                  {healthCheckupQuestions.length}
-                </strong>
+                <h1 className={styles.resultTitle}>
+                  {result.title}
+                </h1>
+
+                <p className={styles.resultDescription}>
+                  {result.description}
+                </p>
+
+                <div className={styles.scoreDetails}>
+                  <div>
+                    <span>YOUR SCORE</span>
+                    <strong>
+                      {totalScore} / {maxScore}
+                    </strong>
+                  </div>
+
+                  <div>
+                    <span>AREAS ASSESSED</span>
+                    <strong>
+                      {healthCheckupQuestions.length}
+                    </strong>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -272,7 +279,14 @@ function BusinessHealthCheckup() {
 
             <div className={styles.categoryBreakdown}>
               <div className={styles.categoryHeader}>
-                <p>YOUR DIGITAL AREAS</p>
+                <div>
+                  <p>YOUR DIGITAL AREAS</p>
+
+                  <h2>
+                    Where your business
+                    <span> stands today.</span>
+                  </h2>
+                </div>
 
                 <span>
                   Based on your assessment responses
@@ -285,41 +299,27 @@ function BusinessHealthCheckup() {
                     key={category.id}
                     className={styles.categoryItem}
                   >
-                    <div
-                      className={styles.categoryInfo}
-                    >
+                    <div className={styles.categoryInfo}>
                       <span
-                        className={
-                          styles.categoryNumber
-                        }
+                        className={styles.categoryNumber}
                       >
                         {category.number}
                       </span>
 
                       <span
-                        className={
-                          styles.categoryName
-                        }
+                        className={styles.categoryName}
                       >
                         {category.category}
                       </span>
                     </div>
 
-                    <div
-                      className={
-                        styles.categoryScore
-                      }
-                    >
+                    <div className={styles.categoryScore}>
                       <div
-                        className={
-                          styles.categoryTrack
-                        }
+                        className={styles.categoryTrack}
                         aria-hidden="true"
                       >
                         <div
-                          className={
-                            styles.categoryBar
-                          }
+                          className={styles.categoryBar}
                           style={{
                             width: `${category.percentage}%`,
                           }}
@@ -341,19 +341,24 @@ function BusinessHealthCheckup() {
             {!submitSuccess ? (
               <div className={styles.leadCapture}>
                 <div className={styles.leadHeader}>
+                  <span className={styles.leadNumber}>
+                    NEXT / 01
+                  </span>
+
                   <p className={styles.leadEyebrow}>
-                    GET YOUR RESULTS
+                    CONTINUE THE CONVERSATION
                   </p>
 
                   <h2>
-                    Want to discuss your
-                    <br />
-                    digital opportunities?
+                    Turn your digital
+                    <span>
+                      opportunities into action.
+                    </span>
                   </h2>
 
                   <p>
-                    Share your details and our team
-                    can help you understand the areas
+                    Share your details and our team can
+                    help you understand the areas
                     identified in your assessment.
                   </p>
                 </div>
@@ -361,7 +366,7 @@ function BusinessHealthCheckup() {
                 <form
                   className={styles.leadForm}
                   onSubmit={handleSubmit(
-                    handleLeadSubmit
+                    handleLeadSubmit,
                   )}
                   noValidate
                 >
@@ -369,8 +374,10 @@ function BusinessHealthCheckup() {
 
                   <div className={styles.formField}>
                     <label htmlFor="health-name">
-                      Name{' '}
-                      <span aria-hidden="true">*</span>
+                      Name
+                      <span aria-hidden="true">
+                        *
+                      </span>
                     </label>
 
                     <input
@@ -379,7 +386,7 @@ function BusinessHealthCheckup() {
                       placeholder="Your name"
                       autoComplete="name"
                       aria-invalid={Boolean(
-                        errors.name
+                        errors.name,
                       )}
                       aria-describedby={
                         errors.name
@@ -404,8 +411,10 @@ function BusinessHealthCheckup() {
 
                   <div className={styles.formField}>
                     <label htmlFor="health-email">
-                      Email{' '}
-                      <span aria-hidden="true">*</span>
+                      Email
+                      <span aria-hidden="true">
+                        *
+                      </span>
                     </label>
 
                     <input
@@ -415,7 +424,7 @@ function BusinessHealthCheckup() {
                       autoComplete="email"
                       inputMode="email"
                       aria-invalid={Boolean(
-                        errors.email
+                        errors.email,
                       )}
                       aria-describedby={
                         errors.email
@@ -440,8 +449,10 @@ function BusinessHealthCheckup() {
 
                   <div className={styles.formField}>
                     <label htmlFor="health-phone">
-                      Phone{' '}
-                      <span aria-hidden="true">*</span>
+                      Phone
+                      <span aria-hidden="true">
+                        *
+                      </span>
                     </label>
 
                     <input
@@ -451,7 +462,7 @@ function BusinessHealthCheckup() {
                       autoComplete="tel"
                       inputMode="tel"
                       aria-invalid={Boolean(
-                        errors.phone
+                        errors.phone,
                       )}
                       aria-describedby={
                         errors.phone
@@ -472,7 +483,7 @@ function BusinessHealthCheckup() {
                     )}
                   </div>
 
-                  {/* SUBMISSION ERROR */}
+                  {/* ERROR */}
 
                   {submitError && (
                     <div
@@ -484,7 +495,7 @@ function BusinessHealthCheckup() {
                     </div>
                   )}
 
-                  {/* SUBMIT BUTTON */}
+                  {/* SUBMIT */}
 
                   <button
                     type="submit"
@@ -500,15 +511,13 @@ function BusinessHealthCheckup() {
 
                     {!isSubmitting && (
                       <span aria-hidden="true">
-                        →
+                        ↗
                       </span>
                     )}
                   </button>
                 </form>
               </div>
             ) : (
-              /* SUCCESS STATE */
-
               <div
                 className={styles.successMessage}
                 role="status"
@@ -536,7 +545,7 @@ function BusinessHealthCheckup() {
               </div>
             )}
 
-            {/* RESULT ACTIONS */}
+            {/* ACTIONS */}
 
             <div className={styles.resultActions}>
               <button
@@ -547,15 +556,16 @@ function BusinessHealthCheckup() {
                 ↻ Retake Assessment
               </button>
             </div>
+
           </div>
         </section>
       </div>
     );
   }
 
-  /* =====================================================
-     QUESTIONNAIRE SCREEN
-  ===================================================== */
+  /* ============================================================
+     QUESTIONNAIRE
+  ============================================================ */
 
   const progressPercentage =
     ((currentQuestion + 1) /
@@ -564,49 +574,75 @@ function BusinessHealthCheckup() {
 
   return (
     <div className={styles.page}>
-      {/* HERO */}
+
+      {/* ========================================================
+          HERO
+      ======================================================== */}
 
       <section className={styles.hero}>
         <div className={styles.heroInner}>
-          <p className={styles.eyebrow}>
-            BUSINESS HEALTH CHECKUP
-          </p>
 
-          <h1 className={styles.title}>
-            Understand where your
-            <br />
-            business stands digitally.
-          </h1>
+          <div className={styles.heroTop}>
+            <p className={styles.eyebrow}>
+              BUSINESS HEALTH CHECKUP
+            </p>
 
-          <p className={styles.description}>
-            Answer a few questions about your business
-            and technology environment to identify areas
-            that may be ready for improvement.
-          </p>
-
-          <div className={styles.heroMeta}>
-            <span>
-              {String(
-                healthCheckupQuestions.length
-              ).padStart(2, '0')}{' '}
-              QUESTIONS
+            <span className={styles.heroCode}>
+              RIYADVI / DIGITAL AUDIT
             </span>
-
-            <span aria-hidden="true">•</span>
-
-            <span>~3 MINUTES</span>
           </div>
+
+          <div className={styles.heroGrid}>
+            <div>
+              <h1 className={styles.title}>
+                Understand where your
+                <span>
+                  business stands digitally.
+                </span>
+              </h1>
+            </div>
+
+            <div className={styles.heroRight}>
+              <p className={styles.description}>
+                Answer a few questions about your
+                business and technology environment
+                to identify areas that may be ready
+                for improvement.
+              </p>
+
+              <div className={styles.heroMeta}>
+                <span>
+                  {String(
+                    healthCheckupQuestions.length,
+                  ).padStart(2, '0')}{' '}
+                  QUESTIONS
+                </span>
+
+                <span className={styles.metaDivider}>
+                  /
+                </span>
+
+                <span>
+                  ~3 MINUTES
+                </span>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
-      {/* QUESTIONNAIRE */}
+      {/* ========================================================
+          CHECKUP
+      ======================================================== */}
 
       <section
         className={styles.checkupSection}
         aria-labelledby="health-checkup-question"
       >
         <div className={styles.checkupContainer}>
-          {/* PROGRESS HEADER */}
+
+          {/* PROGRESS */}
 
           <div
             className={styles.progressHeader}
@@ -614,10 +650,8 @@ function BusinessHealthCheckup() {
               currentQuestion + 1
             } of ${healthCheckupQuestions.length}`}
           >
-            <div>
-              <span
-                className={styles.questionNumber}
-              >
+            <div className={styles.questionIdentity}>
+              <span className={styles.questionNumber}>
                 {question.number}
               </span>
 
@@ -627,23 +661,18 @@ function BusinessHealthCheckup() {
             </div>
 
             <span className={styles.progressText}>
-              {currentQuestion + 1} /{' '}
-              {healthCheckupQuestions.length}
+              {String(currentQuestion + 1).padStart(
+                2,
+                '0',
+              )}{' '}
+              /
+              {String(
+                healthCheckupQuestions.length,
+              ).padStart(2, '0')}
             </span>
           </div>
 
-          {/* PROGRESS BAR */}
-
-          <div
-            className={styles.progressTrack}
-            role="progressbar"
-            aria-valuemin="1"
-            aria-valuemax={
-              healthCheckupQuestions.length
-            }
-            aria-valuenow={currentQuestion + 1}
-            aria-label="Assessment progress"
-          >
+          <div className={styles.progressTrack}>
             <div
               className={styles.progressBar}
               style={{
@@ -652,13 +681,23 @@ function BusinessHealthCheckup() {
             />
           </div>
 
-          {/* QUESTION */}
+          {/* QUESTION CARD */}
 
           <div
-            className={styles.questionArea}
+            className={styles.questionCard}
             role="group"
             aria-labelledby="health-checkup-question"
           >
+            <div className={styles.questionTop}>
+              <span>
+                QUESTION {question.number}
+              </span>
+
+              <span>
+                SELECT ONE
+              </span>
+            </div>
+
             <h2 id="health-checkup-question">
               {question.question}
             </h2>
@@ -666,7 +705,7 @@ function BusinessHealthCheckup() {
             {/* OPTIONS */}
 
             <div className={styles.options}>
-              {question.options.map((option) => {
+              {question.options.map((option, index) => {
                 const isSelected =
                   selectedAnswer === option.id;
 
@@ -674,19 +713,25 @@ function BusinessHealthCheckup() {
                   <button
                     key={option.id}
                     type="button"
-                    className={`
-                      ${styles.option}
-                      ${
-                        isSelected
-                          ? styles.optionSelected
-                          : ''
-                      }
-                    `}
+                    className={`${styles.option} ${
+                      isSelected
+                        ? styles.optionSelected
+                        : ''
+                    }`}
                     aria-pressed={isSelected}
                     onClick={() =>
                       handleAnswer(option.id)
                     }
                   >
+                    <span
+                      className={styles.optionIndex}
+                    >
+                      {String(index + 1).padStart(
+                        2,
+                        '0',
+                      )}
+                    </span>
+
                     <span
                       className={
                         styles.optionIndicator
@@ -696,7 +741,22 @@ function BusinessHealthCheckup() {
                       {isSelected ? '✓' : ''}
                     </span>
 
-                    <span>{option.label}</span>
+                    <span
+                      className={
+                        styles.optionLabel
+                      }
+                    >
+                      {option.label}
+                    </span>
+
+                    <span
+                      className={
+                        styles.optionArrow
+                      }
+                      aria-hidden="true"
+                    >
+                      →
+                    </span>
                   </button>
                 );
               })}
@@ -706,22 +766,27 @@ function BusinessHealthCheckup() {
           {/* NAVIGATION */}
 
           <div className={styles.navigation}>
-            {/* PREVIOUS */}
-
             <button
               type="button"
               className={styles.backButton}
               disabled={currentQuestion === 0}
               onClick={() =>
                 setCurrentQuestion(
-                  (previous) => previous - 1
+                  (previous) => previous - 1,
                 )
               }
             >
-              ← Previous
+              <span>←</span>
+              Previous
             </button>
 
-            {/* NEXT / RESULT */}
+            <div className={styles.navigationInfo}>
+              <span>
+                {selectedAnswer
+                  ? 'ANSWER SELECTED'
+                  : 'SELECT AN OPTION'}
+              </span>
+            </div>
 
             <button
               type="button"
@@ -733,7 +798,7 @@ function BusinessHealthCheckup() {
                   healthCheckupQuestions.length - 1
                 ) {
                   setCurrentQuestion(
-                    (previous) => previous + 1
+                    (previous) => previous + 1,
                   );
 
                   return;
@@ -754,6 +819,7 @@ function BusinessHealthCheckup() {
               </span>
             </button>
           </div>
+
         </div>
       </section>
     </div>

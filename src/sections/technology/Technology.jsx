@@ -1,496 +1,300 @@
-import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
+import { useMemo, useState } from 'react';
 import styles from './Technology.module.css';
 
-gsap.registerPlugin(ScrollTrigger);
-
-const technologyGroups = [
+const technologies = [
   {
-    id: 'web',
-    number: '01',
-    label: 'WEB & SOFTWARE',
-    title: 'Digital products built for real-world use.',
+    name: 'React',
+    short: 'REACT',
+    category: 'Frontend',
     description:
-      'Modern web technologies help us create responsive, scalable and maintainable digital products around business requirements.',
-    technologies: [
-      'React',
-      'JavaScript',
-      'Node.js',
-      'Express',
-      'MongoDB',
-    ],
+      'Component-driven interfaces built for scalable, responsive and maintainable digital products.',
+    role: 'Interactive interfaces',
   },
   {
-    id: 'immersive',
-    number: '02',
-    label: '3D & IMMERSIVE',
-    title: 'Digital experiences with depth.',
+    name: 'Next.js',
+    short: 'NEXT',
+    category: 'Frontend',
     description:
-      'Interactive 3D technologies allow digital experiences to move beyond conventional interfaces and communicate ideas visually.',
-    technologies: [
-      'Three.js',
-      'React Three Fiber',
-      'Drei',
-      'GSAP',
-      'GLTF / GLB',
-    ],
+      'Modern React applications with structured routing, rendering strategies and production-ready architecture.',
+    role: 'Modern web platforms',
   },
   {
-    id: 'ai',
-    number: '03',
-    label: 'AI & INTELLIGENCE',
-    title: 'Intelligence connected to useful experiences.',
+    name: 'JavaScript',
+    short: 'JS',
+    category: 'Language',
     description:
-      'AI-assisted experiences can connect information, automation and intelligent interfaces to solve specific business problems.',
-    technologies: [
-      'AI Applications',
-      'RAG',
-      'Vector Search',
-      'Embeddings',
-      'LLM Integration',
-    ],
+      'The foundation for interactive web experiences, application logic and dynamic digital products.',
+    role: 'Web application logic',
   },
   {
-    id: 'data',
-    number: '04',
-    label: 'DATA & BACKEND',
-    title: 'Reliable systems behind every experience.',
+    name: 'Node.js',
+    short: 'NODE',
+    category: 'Backend',
     description:
-      'Backend services and structured data systems provide the foundation required for secure, connected and scalable applications.',
-    technologies: [
-      'REST APIs',
-      'Node.js',
-      'Express',
-      'MongoDB',
-      'Authentication',
-    ],
+      'Server-side JavaScript for APIs, backend services and scalable application architectures.',
+    role: 'Backend & APIs',
+  },
+  {
+    name: 'MongoDB',
+    short: 'MONGO',
+    category: 'Database',
+    description:
+      'Flexible document-based data storage for applications that need scalable and adaptable data models.',
+    role: 'Application data',
+  },
+  {
+    name: 'MySQL',
+    short: 'MYSQL',
+    category: 'Database',
+    description:
+      'Relational database technology for structured, transactional and business-critical application data.',
+    role: 'Structured data',
+  },
+  {
+    name: 'Three.js',
+    short: 'THREE',
+    category: '3D',
+    description:
+      'Web-based 3D rendering for immersive product experiences, visual storytelling and interactive environments.',
+    role: '3D experiences',
+  },
+  {
+    name: 'React Three Fiber',
+    short: 'R3F',
+    category: '3D',
+    description:
+      'React-based 3D development for building interactive WebGL experiences inside modern applications.',
+    role: 'React + 3D',
+  },
+  {
+    name: 'WordPress',
+    short: 'WP',
+    category: 'CMS',
+    description:
+      'Content-driven website solutions for businesses that need flexible publishing and manageable digital content.',
+    role: 'Content platforms',
   },
 ];
 
+const orbitPositions = [
+  { x: 50, y: 7 },
+  { x: 78, y: 19 },
+  { x: 92, y: 50 },
+  { x: 78, y: 81 },
+  { x: 50, y: 93 },
+  { x: 22, y: 81 },
+  { x: 8, y: 50 },
+  { x: 22, y: 19 },
+  { x: 50, y: 50 },
+];
+
 function Technology() {
-  const [activeTechnology, setActiveTechnology] = useState(0);
+  const [activeTechnology, setActiveTechnology] = useState(technologies[0]);
 
-  const sectionRef = useRef(null);
-  const headerRef = useRef(null);
-  const explorerRef = useRef(null);
-  const footerRef = useRef(null);
-  const visualRef = useRef(null);
-  const visualCoreRef = useRef(null);
+  const activeIndex = useMemo(
+    () =>
+      technologies.findIndex(
+        (technology) => technology.name === activeTechnology.name
+      ),
+    [activeTechnology]
+  );
 
-  const selectedTechnology =
-    technologyGroups[activeTechnology];
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    const header = headerRef.current;
-    const explorer = explorerRef.current;
-    const footer = footerRef.current;
-
-    if (!section || !header || !explorer || !footer) {
-      return undefined;
-    }
-
-    const reducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)',
-    ).matches;
-
-    if (reducedMotion) {
-      return undefined;
-    }
-
-    const context = gsap.context(() => {
-      gsap.set(
-        [header, explorer, footer],
-        {
-          opacity: 0,
-          y: 35,
-        },
-      );
-
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 78%',
-          once: true,
-        },
-      });
-
-      timeline
-        .to(header, {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: 'power3.out',
-        })
-        .to(
-          explorer,
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.9,
-            ease: 'power3.out',
-          },
-          '-=0.5',
-        )
-        .to(
-          footer,
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.7,
-            ease: 'power3.out',
-          },
-          '-=0.5',
-        );
-    }, section);
-
-    return () => {
-      context.revert();
-    };
-  }, []);
-
-  useEffect(() => {
-    const visual = visualRef.current;
-    const core = visualCoreRef.current;
-
-    if (!visual || !core) {
-      return undefined;
-    }
-
-    const reducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)',
-    ).matches;
-
-    const coarsePointer = window.matchMedia(
-      '(pointer: coarse)',
-    ).matches;
-
-    if (reducedMotion || coarsePointer) {
-      return undefined;
-    }
-
-    const handleMouseMove = (event) => {
-      const bounds = visual.getBoundingClientRect();
-
-      const x =
-        (event.clientX - bounds.left) / bounds.width - 0.5;
-
-      const y =
-        (event.clientY - bounds.top) / bounds.height - 0.5;
-
-      gsap.to(visual, {
-        rotateX: -y * 8,
-        rotateY: x * 10,
-        transformPerspective: 900,
-        duration: 0.55,
-        ease: 'power3.out',
-        overwrite: true,
-      });
-
-      gsap.to(core, {
-        x: x * 14,
-        y: y * 14,
-        duration: 0.55,
-        ease: 'power3.out',
-        overwrite: true,
-      });
-    };
-
-    const handleMouseLeave = () => {
-      gsap.to(visual, {
-        rotateX: 0,
-        rotateY: 0,
-        duration: 0.7,
-        ease: 'power3.out',
-        overwrite: true,
-      });
-
-      gsap.to(core, {
-        x: 0,
-        y: 0,
-        duration: 0.7,
-        ease: 'power3.out',
-        overwrite: true,
-      });
-    };
-
-    visual.addEventListener(
-      'mousemove',
-      handleMouseMove,
-    );
-
-    visual.addEventListener(
-      'mouseleave',
-      handleMouseLeave,
-    );
-
-    return () => {
-      visual.removeEventListener(
-        'mousemove',
-        handleMouseMove,
-      );
-
-      visual.removeEventListener(
-        'mouseleave',
-        handleMouseLeave,
-      );
-    };
-  }, []);
+  const selectTechnology = (technology) => {
+    setActiveTechnology(technology);
+  };
 
   return (
-    <section
-      ref={sectionRef}
-      className={styles.section}
-      aria-labelledby="technology-title"
-    >
+    <section className={styles.section} id="technology">
+      <div className={styles.backgroundGlow} aria-hidden="true" />
+
       <div className={styles.container}>
+        <div className={styles.header}>
+          <div>
+            <p className={styles.eyebrow}>TECHNOLOGY ECOSYSTEM</p>
 
-        {/* =====================================================
-            HEADER
-        ===================================================== */}
-
-        <div
-          ref={headerRef}
-          className={styles.header}
-        >
-          <div className={styles.label}>
-            <span className={styles.labelLine} />
-            <span>TECHNOLOGY</span>
-          </div>
-
-          <div className={styles.headerGrid}>
-            <h2
-              id="technology-title"
-              className={styles.title}
-            >
-              The technology
-              <br />
-              behind the experience.
+            <h2 className={styles.title}>
+              The technology behind
+              <span> meaningful digital products.</span>
             </h2>
-
-            <div className={styles.headerCopy}>
-              <p>
-                We combine modern development,
-                immersive technologies and intelligent
-                systems to create purposeful digital
-                experiences.
-              </p>
-            </div>
           </div>
+
+          <p className={styles.intro}>
+            We combine modern development technologies with thoughtful
+            architecture to build digital experiences that are scalable,
+            reliable and ready for growth.
+          </p>
         </div>
 
-        {/* =====================================================
-            TECHNOLOGY EXPLORER
-        ===================================================== */}
+        <div className={styles.experience}>
+          <div className={styles.visualColumn}>
+            <div className={styles.orbit} aria-label="Interactive technology ecosystem">
+              <div className={styles.orbitRing} aria-hidden="true" />
+              <div className={styles.orbitRingInner} aria-hidden="true" />
 
-        <div
-          ref={explorerRef}
-          className={styles.explorer}
-        >
-
-          {/* -------------------------------------------------
-              NAVIGATION
-          ------------------------------------------------- */}
-
-          <div className={styles.navigation}>
-            <div className={styles.navigationHeader}>
-              <span>CAPABILITY</span>
-              <span>04</span>
-            </div>
-
-            <div className={styles.navigationList}>
-              {technologyGroups.map(
-                (technology, index) => {
-                  const isActive =
-                    activeTechnology === index;
+              <div className={styles.connectionLayer} aria-hidden="true">
+                {technologies.slice(0, 8).map((technology, index) => {
+                  const position = orbitPositions[index];
 
                   return (
-                    <button
-                      key={technology.id}
-                      type="button"
-                      className={`${styles.navigationItem} ${
-                        isActive
-                          ? styles.navigationItemActive
-                          : ''
-                      }`}
-                      onClick={() =>
-                        setActiveTechnology(index)
-                      }
-                      aria-pressed={isActive}
-                    >
-                      <span
-                        className={
-                          styles.navigationNumber
-                        }
-                      >
-                        {technology.number}
-                      </span>
-
-                      <span
-                        className={
-                          styles.navigationLabel
-                        }
-                      >
-                        {technology.label}
-                      </span>
-
-                      <span
-                        className={
-                          styles.navigationArrow
-                        }
-                        aria-hidden="true"
-                      >
-                        →
-                      </span>
-                    </button>
-                  );
-                },
-              )}
-            </div>
-          </div>
-
-          {/* -------------------------------------------------
-              VISUAL
-          ------------------------------------------------- */}
-
-          <div
-            ref={visualRef}
-            className={styles.visual}
-          >
-            <div
-              className={styles.visualGrid}
-              aria-hidden="true"
-            />
-
-            <div
-              className={styles.visualGlow}
-              aria-hidden="true"
-            />
-
-            <div
-              className={styles.scanLine}
-              aria-hidden="true"
-            />
-
-            <div
-              className={`${styles.orbit} ${styles.orbitOne}`}
-              aria-hidden="true"
-            />
-
-            <div
-              className={`${styles.orbit} ${styles.orbitTwo}`}
-              aria-hidden="true"
-            />
-
-            <div
-              className={`${styles.orbit} ${styles.orbitThree}`}
-              aria-hidden="true"
-            />
-
-            <div
-              ref={visualCoreRef}
-              className={styles.visualCore}
-              aria-hidden="true"
-            >
-              <span>
-                {selectedTechnology.number}
-              </span>
-            </div>
-
-            <div
-              className={styles.visualCorner}
-            >
-              <span>RIYADVI SYSTEM</span>
-              <span>ACTIVE</span>
-            </div>
-          </div>
-
-          {/* -------------------------------------------------
-              CONTENT
-          ------------------------------------------------- */}
-
-          <div className={styles.content}>
-            <div className={styles.contentTop}>
-              <span>
-                {selectedTechnology.number}
-              </span>
-
-              <span>
-                {selectedTechnology.label}
-              </span>
-            </div>
-
-            <div
-              key={selectedTechnology.id}
-              className={styles.contentMain}
-            >
-              <h3>
-                {selectedTechnology.title}
-              </h3>
-
-              <p>
-                {selectedTechnology.description}
-              </p>
-            </div>
-
-            <div className={styles.technologyList}>
-              <span className={styles.listLabel}>
-                TECHNOLOGIES
-              </span>
-
-              <div className={styles.tags}>
-                {selectedTechnology.technologies.map(
-                  (technology) => (
                     <span
-                      key={technology}
-                      className={styles.tag}
-                    >
-                      {technology}
+                      key={`${technology.name}-line`}
+                      className={`${styles.connection} ${
+                        index === activeIndex ? styles.connectionActive : ''
+                      }`}
+                      style={{
+                        '--line-x': `${position.x}%`,
+                        '--line-y': `${position.y}%`,
+                      }}
+                    />
+                  );
+                })}
+              </div>
+
+              {technologies.slice(0, 8).map((technology, index) => {
+                const position = orbitPositions[index];
+                const isActive =
+                  technology.name === activeTechnology.name;
+
+                return (
+                  <button
+                    key={technology.name}
+                    type="button"
+                    className={`${styles.node} ${
+                      isActive ? styles.nodeActive : ''
+                    }`}
+                    style={{
+                      '--node-x': `${position.x}%`,
+                      '--node-y': `${position.y}%`,
+                    }}
+                    onClick={() => selectTechnology(technology)}
+                    aria-label={`Explore ${technology.name}`}
+                    aria-pressed={isActive}
+                  >
+                    <span className={styles.nodePulse} aria-hidden="true" />
+                    <span className={styles.nodeDot} aria-hidden="true" />
+
+                    <span className={styles.nodeLabel}>
+                      {technology.short}
                     </span>
-                  ),
-                )}
+                  </button>
+                );
+              })}
+
+              <div className={styles.core}>
+                <div className={styles.coreGrid} aria-hidden="true" />
+
+                <div className={styles.coreLogo}>
+                  <span>R</span>
+                </div>
+
+                <p className={styles.coreName}>RIYADVI</p>
+                <span className={styles.coreCaption}>TECH CORE</span>
               </div>
             </div>
+
+            <div className={styles.mobileSelector}>
+              <label htmlFor="technology-select">
+                Explore technology
+              </label>
+
+              <select
+                id="technology-select"
+                value={activeTechnology.name}
+                onChange={(event) => {
+                  const selected = technologies.find(
+                    (technology) =>
+                      technology.name === event.target.value
+                  );
+
+                  if (selected) {
+                    selectTechnology(selected);
+                  }
+                }}
+              >
+                {technologies.map((technology) => (
+                  <option
+                    key={technology.name}
+                    value={technology.name}
+                  >
+                    {technology.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <div className={styles.infoColumn}>
+            <div className={styles.infoTop}>
+              <span className={styles.index}>
+                {String(activeIndex + 1).padStart(2, '0')}
+              </span>
+
+              <span className={styles.category}>
+                {activeTechnology.category}
+              </span>
+            </div>
+
+            <div className={styles.infoContent}>
+              <p className={styles.kicker}>SELECTED TECHNOLOGY</p>
+
+              <h3 className={styles.technologyName}>
+                {activeTechnology.name}
+              </h3>
+
+              <p className={styles.description}>
+                {activeTechnology.description}
+              </p>
+
+              <div className={styles.role}>
+                <span className={styles.roleLine} />
+                <div>
+                  <span className={styles.roleLabel}>PRIMARY ROLE</span>
+                  <strong>{activeTechnology.role}</strong>
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.selectorList}>
+              {technologies.map((technology, index) => {
+                const isActive =
+                  technology.name === activeTechnology.name;
+
+                return (
+                  <button
+                    key={technology.name}
+                    type="button"
+                    className={`${styles.selector} ${
+                      isActive ? styles.selectorActive : ''
+                    }`}
+                    onClick={() => selectTechnology(technology)}
+                    aria-pressed={isActive}
+                  >
+                    <span>
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+
+                    <strong>{technology.name}</strong>
+
+                    <span className={styles.selectorArrow}>
+                      ↗
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
-        {/* =====================================================
-            FOOTER STATEMENT
-        ===================================================== */}
-
-        <div
-          ref={footerRef}
-          className={styles.footer}
-        >
-          <div className={styles.footerIndex}>
-            03
-          </div>
+        <div className={styles.footerNote}>
+          <span className={styles.footerLine} />
 
           <p>
-            Technology is a means to an outcome. We
-            select and combine tools according to the
-            experience and business requirement being
-            built.
+            Technology is selected around the business problem — not the
+            other way around.
           </p>
 
-          <Link
-            to="/services"
-            className={styles.footerLink}
-          >
-            <span>Explore our capabilities</span>
-
-            <span
-              className={styles.footerArrow}
-              aria-hidden="true"
-            >
-              ↗
-            </span>
-          </Link>
+          <span className={styles.footerLine} />
         </div>
-
       </div>
     </section>
   );

@@ -1,368 +1,512 @@
-import { useLayoutEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import styles from './Transformation.module.css';
 
-gsap.registerPlugin(ScrollTrigger);
-
-const stages = [
+const JOURNEY = [
   {
     number: '01',
     title: 'Challenge',
-    shortTitle: 'Understand',
+    label: 'UNDERSTAND',
     description:
-      'We begin by understanding your business challenges, customer needs and opportunities for digital growth.',
+      'We begin by understanding the business problem, existing workflows, customer expectations, and the opportunities hidden inside them.',
+    points: [
+      'Business objectives',
+      'Existing systems',
+      'Customer needs',
+    ],
   },
   {
     number: '02',
     title: 'Strategy',
-    shortTitle: 'Define',
+    label: 'DEFINE',
     description:
-      'We define a clear technology and digital strategy aligned with your business objectives.',
+      'We translate business goals into a clear digital strategy with the right priorities, technology direction, and measurable outcomes.',
+    points: [
+      'Product direction',
+      'Technology roadmap',
+      'Growth opportunities',
+    ],
   },
   {
     number: '03',
     title: 'Design',
-    shortTitle: 'Shape',
+    label: 'EXPERIENCE',
     description:
-      'We transform the strategy into intuitive digital experiences designed around real users.',
+      'We design intuitive digital experiences that connect business requirements with how real people interact with the product.',
+    points: [
+      'UX architecture',
+      'Visual systems',
+      'Interaction design',
+    ],
   },
   {
     number: '04',
     title: 'Technology',
-    shortTitle: 'Build',
+    label: 'ENGINEER',
     description:
-      'We engineer scalable software solutions using modern technologies and robust architecture.',
+      'We build the software foundation using modern technologies, scalable architecture, APIs, databases, and intelligent systems.',
+    points: [
+      'Custom software',
+      'APIs & databases',
+      'AI & automation',
+    ],
   },
   {
     number: '05',
     title: 'Launch',
-    shortTitle: 'Deliver',
+    label: 'DELIVER',
     description:
-      'We bring the solution to life, test it thoroughly and prepare it for a reliable production launch.',
+      'We move the product from development into a reliable production environment with testing, deployment, and performance considerations.',
+    points: [
+      'Quality assurance',
+      'Cloud deployment',
+      'Performance',
+    ],
   },
   {
     number: '06',
     title: 'Growth',
-    shortTitle: 'Evolve',
+    label: 'EVOLVE',
     description:
-      'We continuously optimize the digital experience so your technology can evolve with your business.',
+      'Launch is not the end. We continue improving the digital product using data, feedback, automation, and new opportunities.',
+    points: [
+      'Continuous improvement',
+      'Analytics & insights',
+      'Long-term evolution',
+    ],
   },
 ];
 
 function Transformation() {
   const sectionRef = useRef(null);
-  const stageRefs = useRef([]);
-  const progressRef = useRef(null);
-  const introRef = useRef(null);
 
-  useLayoutEffect(() => {
-    const section = sectionRef.current;
-    const stagesElements = stageRefs.current.filter(Boolean);
-    const progress = progressRef.current;
-    const intro = introRef.current;
+  const [activeIndex, setActiveIndex] =
+    useState(0);
 
-    if (
-      !section ||
-      !stagesElements.length ||
-      !progress ||
-      !intro
-    ) {
+  const [visible, setVisible] =
+    useState(false);
+
+  useEffect(() => {
+    const element = sectionRef.current;
+
+    if (!element) {
       return undefined;
     }
 
-    const context = gsap.context(() => {
-      const reducedMotion = window.matchMedia(
-        '(prefers-reduced-motion: reduce)',
+    const observer =
+      new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setVisible(true);
+          }
+        },
+        {
+          threshold: 0.12,
+        },
       );
 
-      const isMobile = window.matchMedia(
-        '(max-width: 900px)',
-      );
-
-      if (reducedMotion.matches) {
-        gsap.set(
-          [
-            intro,
-            ...stagesElements,
-          ],
-          {
-            opacity: 1,
-            y: 0,
-          },
-        );
-
-        gsap.set(progress, {
-          scaleX: 1,
-        });
-
-        return;
-      }
-
-      /*
-       * -----------------------------------------------------
-       * INTRO REVEAL
-       * -----------------------------------------------------
-       */
-
-      gsap.set(intro, {
-        opacity: 0,
-        y: 35,
-      });
-
-      gsap.to(intro, {
-        opacity: 1,
-        y: 0,
-        duration: 0.9,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: intro,
-          start: 'top 82%',
-          once: true,
-        },
-      });
-
-      /*
-       * -----------------------------------------------------
-       * MOBILE / TABLET
-       * -----------------------------------------------------
-       *
-       * Keep the experience simple on smaller screens.
-       * The section remains normal document flow.
-       */
-
-      if (isMobile.matches) {
-        gsap.set(stagesElements, {
-          opacity: 0,
-          y: 25,
-        });
-
-        stagesElements.forEach((stage) => {
-          gsap.to(stage, {
-            opacity: 1,
-            y: 0,
-            duration: 0.7,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: stage,
-              start: 'top 86%',
-              once: true,
-            },
-          });
-        });
-
-        return;
-      }
-
-      /*
-       * -----------------------------------------------------
-       * DESKTOP PROCESS REVEAL
-       * -----------------------------------------------------
-       */
-
-      gsap.set(stagesElements, {
-        opacity: 0.35,
-        y: 28,
-      });
-
-      /*
-       * First stage starts active.
-       */
-
-      gsap.set(stagesElements[0], {
-        opacity: 1,
-        y: 0,
-      });
-
-      /*
-       * -----------------------------------------------------
-       * PROGRESS LINE
-       * -----------------------------------------------------
-       *
-       * No pinning.
-       * The line simply responds to normal page scrolling.
-       */
-
-      gsap.set(progress, {
-        scaleX: 0,
-        transformOrigin: 'left center',
-      });
-
-      gsap.to(progress, {
-        scaleX: 1,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: progress.parentElement,
-          start: 'top 82%',
-          end: 'bottom 72%',
-          scrub: 0.7,
-        },
-      });
-
-      /*
-       * -----------------------------------------------------
-       * STAGE REVEALS
-       * -----------------------------------------------------
-       */
-
-      stagesElements.forEach((stage, index) => {
-        if (index === 0) {
-          return;
-        }
-
-        gsap.to(stage, {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: stage,
-            start: 'top 84%',
-            end: 'top 62%',
-            scrub: 0.65,
-          },
-        });
-      });
-
-      requestAnimationFrame(() => {
-        ScrollTrigger.refresh();
-      });
-    }, section);
+    observer.observe(element);
 
     return () => {
-      context.revert();
+      observer.disconnect();
     };
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const element = sectionRef.current;
+
+      if (!element) {
+        return;
+      }
+
+      const rect =
+        element.getBoundingClientRect();
+
+      const viewportHeight =
+        window.innerHeight;
+
+      const sectionHeight =
+        element.offsetHeight;
+
+      const travelled =
+        viewportHeight - rect.top;
+
+      const usableHeight =
+        sectionHeight - viewportHeight;
+
+      if (usableHeight <= 0) {
+        return;
+      }
+
+      const progress = Math.min(
+        1,
+        Math.max(
+          0,
+          (travelled -
+            viewportHeight * 0.2) /
+            usableHeight,
+        ),
+      );
+
+      const nextIndex = Math.min(
+        JOURNEY.length - 1,
+        Math.floor(
+          progress *
+            JOURNEY.length,
+        ),
+      );
+
+      setActiveIndex(nextIndex);
+    };
+
+    window.addEventListener(
+      'scroll',
+      handleScroll,
+      { passive: true },
+    );
+
+    handleScroll();
+
+    return () => {
+      window.removeEventListener(
+        'scroll',
+        handleScroll,
+      );
+    };
+  }, []);
+
+  const active =
+    JOURNEY[activeIndex];
 
   return (
     <section
       ref={sectionRef}
-      className={styles.section}
+      className={`${styles.section} ${
+        visible
+          ? styles.visible
+          : ''
+      }`}
       aria-labelledby="transformation-title"
     >
-      <div className={styles.container}>
+      <div className={styles.backgroundGrid} />
 
+      <div className={styles.container}>
         {/* =================================================
-            SECTION INTRO
+            HEADER
         ================================================= */}
 
-        <div
-          ref={introRef}
-          className={styles.intro}
-        >
-          <div className={styles.introLabel}>
-            <span className={styles.introNumber}>
-              01
+        <header className={styles.header}>
+          <div className={styles.eyebrow}>
+            <span
+              className={
+                styles.eyebrowLine
+              }
+            />
+
+            <span>
+              HOW WE CREATE VALUE
             </span>
+          </div>
 
-            <span className={styles.introLine} />
+          <div className={styles.headingRow}>
+            <div>
+              <h2
+                id="transformation-title"
+                className={styles.title}
+              >
+                From business challenge
+                <br />
+                to{' '}
+                <span>
+                  digital growth.
+                </span>
+              </h2>
+            </div>
 
-            <p className={styles.eyebrow}>
-              DIGITAL TRANSFORMATION
+            <p className={styles.intro}>
+              A structured transformation
+              process that connects
+              strategy, experience,
+              technology and measurable
+              business outcomes.
             </p>
           </div>
-
-          <div className={styles.introGrid}>
-            <h2
-              id="transformation-title"
-              className={styles.title}
-            >
-              From challenge to growth,
-              <span> we build the journey.</span>
-            </h2>
-
-            <div className={styles.introAside}>
-              <p className={styles.description}>
-                Every successful digital product begins with
-                understanding the problem and ends with creating
-                measurable business value.
-              </p>
-
-              <div className={styles.introRule} />
-
-              <p className={styles.asideNote}>
-                A practical process.
-                <br />
-                Built around your business.
-              </p>
-            </div>
-          </div>
-        </div>
+        </header>
 
         {/* =================================================
-            PROCESS
+            JOURNEY
         ================================================= */}
 
-        <div className={styles.process}>
+        <div className={styles.journey}>
+          {/* Progress rail */}
 
-          {/* Desktop progress */}
-          <div className={styles.progressHeader}>
-            <span>OUR APPROACH</span>
-
-            <span>01 — 06</span>
-          </div>
-
-          <div className={styles.progressBar}>
-            <span className={styles.progressTrack} />
-
-            <span
-              ref={progressRef}
-              className={styles.progressFill}
-            />
-          </div>
-
-          {/* =================================================
-              STAGES
-          ================================================= */}
-
-          <div className={styles.stageList}>
-            {stages.map((stage, index) => (
-              <article
-                key={stage.number}
-                ref={(element) => {
-                  stageRefs.current[index] = element;
+          <div
+            className={
+              styles.progressRail
+            }
+          >
+            <div
+              className={
+                styles.progressTrack
+              }
+            >
+              <div
+                className={
+                  styles.progressFill
+                }
+                style={{
+                  height: `${
+                    (activeIndex /
+                      (JOURNEY.length -
+                        1)) *
+                    100
+                  }%`,
                 }}
-                className={styles.stage}
+              />
+            </div>
+
+            {JOURNEY.map(
+              (item, index) => (
+                <button
+                  key={item.number}
+                  type="button"
+                  className={`${styles.progressNode} ${
+                    index ===
+                    activeIndex
+                      ? styles.progressNodeActive
+                      : ''
+                  } ${
+                    index <
+                    activeIndex
+                      ? styles.progressNodeComplete
+                      : ''
+                  }`}
+                  onClick={() =>
+                    setActiveIndex(
+                      index,
+                    )
+                  }
+                  aria-label={`View ${item.title} stage`}
+                >
+                  <span>
+                    {item.number}
+                  </span>
+                </button>
+              ),
+            )}
+          </div>
+
+          {/* Main experience */}
+
+          <div className={styles.experience}>
+            <div className={styles.stageMeta}>
+              <span>
+                DIGITAL
+                TRANSFORMATION
+              </span>
+
+              <span>
+                {String(
+                  active.number,
+                )}{' '}
+                / 06
+              </span>
+            </div>
+
+            <div className={styles.stage}>
+              {/* Decorative number */}
+
+              <div
+                className={
+                  styles.largeNumber
+                }
+                aria-hidden="true"
               >
-                <div className={styles.stageIndex}>
-                  <span className={styles.stageNumber}>
-                    {stage.number}
-                  </span>
+                {active.number}
+              </div>
 
-                  <span className={styles.stageConnector} />
-                </div>
+              {/* Main stage content */}
 
-                <div className={styles.stageMain}>
-                  <div className={styles.stageHeading}>
-                    <span className={styles.stageKicker}>
-                      {stage.shortTitle}
-                    </span>
-
-                    <h3 className={styles.stageTitle}>
-                      {stage.title}
-                    </h3>
-                  </div>
-
-                  <p className={styles.stageDescription}>
-                    {stage.description}
-                  </p>
-                </div>
-
-                <div className={styles.stageAction}>
-                  <span className={styles.stageActionText}>
-                    {stage.number}
-                  </span>
-
+              <div
+                className={
+                  styles.stageContent
+                }
+              >
+                <div
+                  className={
+                    styles.stageLabel
+                  }
+                >
                   <span
-                    className={styles.stageArrow}
-                    aria-hidden="true"
-                  >
-                    ↗
+                    className={
+                      styles.activeDot
+                    }
+                  />
+
+                  {active.label}
+                </div>
+
+                <h3
+                  className={
+                    styles.stageTitle
+                  }
+                >
+                  {active.title}
+                </h3>
+
+                <p
+                  className={
+                    styles.stageDescription
+                  }
+                >
+                  {active.description}
+                </p>
+
+                <div
+                  className={
+                    styles.points
+                  }
+                >
+                  {active.points.map(
+                    (point) => (
+                      <div
+                        key={point}
+                        className={
+                          styles.point
+                        }
+                      >
+                        <span>
+                          +
+                        </span>
+
+                        <span>
+                          {point}
+                        </span>
+                      </div>
+                    ),
+                  )}
+                </div>
+              </div>
+
+              {/* Visual system */}
+
+              <div
+                className={
+                  styles.stageVisual
+                }
+                aria-hidden="true"
+              >
+                <div
+                  className={
+                    styles.visualCircleOuter
+                  }
+                />
+
+                <div
+                  className={
+                    styles.visualCircleMiddle
+                  }
+                />
+
+                <div
+                  className={
+                    styles.visualCircleInner
+                  }
+                />
+
+                <div
+                  className={
+                    styles.visualCore
+                  }
+                >
+                  <span>
+                    {active.number}
                   </span>
                 </div>
-              </article>
-            ))}
+
+                <div
+                  className={
+                    styles.visualOrbit
+                  }
+                >
+                  <span />
+                </div>
+
+                <div
+                  className={
+                    styles.visualLineOne
+                  }
+                />
+
+                <div
+                  className={
+                    styles.visualLineTwo
+                  }
+                />
+              </div>
+            </div>
+
+            {/* Stage navigation */}
+
+            <div
+              className={
+                styles.stageNavigation
+              }
+            >
+              <button
+                type="button"
+                disabled={
+                  activeIndex === 0
+                }
+                onClick={() =>
+                  setActiveIndex(
+                    (current) =>
+                      Math.max(
+                        0,
+                        current - 1,
+                      ),
+                  )
+                }
+              >
+                ← Previous
+              </button>
+
+              <div
+                className={
+                  styles.stageCounter
+                }
+              >
+                <span>
+                  {activeIndex + 1}
+                </span>
+
+                <span>/</span>
+
+                <span>06</span>
+              </div>
+
+              <button
+                type="button"
+                disabled={
+                  activeIndex ===
+                  JOURNEY.length - 1
+                }
+                onClick={() =>
+                  setActiveIndex(
+                    (current) =>
+                      Math.min(
+                        JOURNEY.length -
+                          1,
+                        current + 1,
+                      ),
+                  )
+                }
+              >
+                Next →
+              </button>
+            </div>
           </div>
         </div>
 
@@ -370,15 +514,31 @@ function Transformation() {
             BOTTOM STATEMENT
         ================================================= */}
 
-        <div className={styles.bottomStatement}>
-          <span className={styles.bottomLine} />
+        <div className={styles.bottom}>
+          <div className={styles.bottomLine} />
 
-          <p>
-            Technology is the tool.
-            <strong>
-              Business impact is the goal.
-            </strong>
-          </p>
+          <div
+            className={
+              styles.bottomContent
+            }
+          >
+            <p>
+              We don't just build digital
+              products. We connect
+              technology to the business
+              outcomes that matter.
+            </p>
+
+            <Link
+              to="/services"
+              className={
+                styles.bottomLink
+              }
+            >
+              Explore our capabilities
+              <span>↗</span>
+            </Link>
+          </div>
         </div>
       </div>
     </section>

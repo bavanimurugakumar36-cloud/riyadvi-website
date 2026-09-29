@@ -127,6 +127,13 @@ function Navbar() {
 
         <div className={styles.desktopActions}>
           <Link
+            to="/admin/login"
+            className={styles.adminLink}
+          >
+            Admin
+          </Link>
+
+          <Link
             to="/contact"
             className={styles.consultationButton}
           >
