@@ -1,11 +1,11 @@
-const express = require('express');
-const cors = require('cors');
-const helmet = require('helmet');
-const rateLimit = require('express-rate-limit');
+import express from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
 
-const leadRoutes = require('./routes/leadRoutes');
-const applicationRoutes = require('./routes/applicationRoutes');
-const adminRoutes = require('./routes/adminRoutes');
+import leadRoutes from './routes/leadRoutes.js';
+import applicationRoutes from './routes/applicationRoutes.js';
+import adminRoutes from './routes/adminRoutes.js';
 
 const app = express();
 
@@ -146,4 +146,4 @@ app.use((err, req, res, next) => {
   });
 });
 
-module.exports = app;
+export default app;
