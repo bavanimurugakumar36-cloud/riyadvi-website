@@ -21,6 +21,10 @@
   backdrop-filter: blur(18px);
 }
 
+/* ========================================
+   CONTAINER
+======================================== */
+
 .container {
   width: 100%;
   max-width: var(--container-wide);
@@ -31,8 +35,13 @@
 
   display: flex;
   align-items: center;
+
   gap: var(--space-8);
 }
+
+/* ========================================
+   LOGO
+======================================== */
 
 .logo {
   flex-shrink: 0;
@@ -42,6 +51,8 @@
   font-size: 1.05rem;
   font-weight: var(--font-weight-bold);
   letter-spacing: 0.12em;
+
+  text-decoration: none;
 
   transition: color var(--transition-fast);
 }
@@ -57,6 +68,7 @@
 .desktopNav {
   display: flex;
   align-items: center;
+
   gap: clamp(1rem, 2vw, 2rem);
 
   margin-left: auto;
@@ -68,6 +80,7 @@
 
   display: inline-flex;
   align-items: center;
+
   gap: 0.4rem;
 
   padding: 0.5rem 0;
@@ -78,31 +91,27 @@
   font-size: 0.875rem;
   font-weight: var(--font-weight-medium);
 
+  line-height: 1;
+
   white-space: nowrap;
+
+  text-decoration: none;
 
   transition:
     color var(--transition-fast),
     opacity var(--transition-fast);
 }
 
-.navLink::after {
-  content: '';
+/* ========================================
+   DESKTOP NAV UNDERLINE
+======================================== */
 
-  position: absolute;
-  right: 0;
-  bottom: 0;
-
-  width: 0;
-  height: 1px;
-
-  background: var(--color-gold);
-
-  transition: width var(--transition-normal);
-}
+.navLink::after,
 .servicesButton::after {
   content: '';
 
   position: absolute;
+
   right: 0;
   bottom: 0;
 
@@ -112,11 +121,6 @@
   background: var(--color-gold);
 
   transition: width var(--transition-normal);
-}
-
-.servicesButton:hover::after,
-.servicesButton.active::after {
-  width: 100%;
 }
 
 .navLink:hover,
@@ -126,9 +130,15 @@
 }
 
 .navLink:hover::after,
-.active::after {
+.navLink.active::after,
+.servicesButton:hover::after,
+.servicesButton.active::after {
   width: 100%;
 }
+
+/* ========================================
+   DESKTOP SERVICES
+======================================== */
 
 .servicesWrapper {
   position: relative;
@@ -139,9 +149,12 @@
 }
 
 .chevron {
+  display: inline-block;
+
   font-size: 0.7rem;
 
-  transition: transform var(--transition-fast);
+  transition:
+    transform var(--transition-fast);
 }
 
 .chevronOpen {
@@ -154,6 +167,7 @@
 
 .dropdown {
   position: absolute;
+
   top: calc(100% + 1rem);
   left: 50%;
 
@@ -164,6 +178,7 @@
   transform: translateX(-50%);
 
   background: rgba(17, 17, 17, 0.98);
+
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
 
@@ -177,12 +192,16 @@
 @keyframes dropdownEnter {
   from {
     opacity: 0;
-    transform: translate(-50%, -8px);
+
+    transform:
+      translate(-50%, -8px);
   }
 
   to {
     opacity: 1;
-    transform: translate(-50%, 0);
+
+    transform:
+      translate(-50%, 0);
   }
 }
 
@@ -200,6 +219,8 @@
 
   border-radius: var(--radius-sm);
 
+  text-decoration: none;
+
   transition:
     background-color var(--transition-fast),
     color var(--transition-fast);
@@ -207,6 +228,7 @@
 
 .dropdownLink:hover {
   background: rgba(212, 175, 55, 0.08);
+
   color: var(--color-gold-light);
 }
 
@@ -224,18 +246,76 @@
 
 .dropdownLink:hover .arrow {
   opacity: 1;
+
   transform: translateX(0);
 }
 
 /* ========================================
-   CONSULTATION BUTTON
+   DESKTOP ACTIONS
 ======================================== */
 
 .desktopActions {
   display: flex;
   align-items: center;
+
   gap: 1.25rem;
 }
+
+/* ========================================
+   ADMIN - DESKTOP
+======================================== */
+
+.adminLink {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+
+  padding: 0.5rem 0;
+
+  color: var(--text-secondary);
+
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+
+  line-height: 1;
+
+  white-space: nowrap;
+
+  text-decoration: none;
+
+  transition:
+    color var(--transition-fast);
+}
+
+.adminLink::after {
+  content: '';
+
+  position: absolute;
+
+  right: 0;
+  bottom: 0;
+
+  width: 0;
+  height: 1px;
+
+  background: var(--color-gold);
+
+  transition:
+    width var(--transition-normal);
+}
+
+.adminLink:hover {
+  color: var(--color-white);
+}
+
+.adminLink:hover::after {
+  width: 100%;
+}
+
+/* ========================================
+   CONSULTATION BUTTON
+======================================== */
 
 .consultationButton {
   display: inline-flex;
@@ -254,9 +334,12 @@
 
   font-size: 0.78rem;
   font-weight: var(--font-weight-semibold);
+
   letter-spacing: 0.01em;
 
   white-space: nowrap;
+
+  text-decoration: none;
 
   transition:
     background-color var(--transition-fast),
@@ -267,7 +350,9 @@
 
 .consultationButton:hover {
   background: var(--color-gold-light);
+
   transform: translateY(-2px);
+
   box-shadow: var(--shadow-gold);
 }
 
@@ -287,10 +372,15 @@
 
   background: transparent;
 
+  border: 0;
+
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   gap: 5px;
+
+  cursor: pointer;
 }
 
 .menuButton span {
@@ -307,7 +397,9 @@
 }
 
 .menuButtonOpen span:nth-child(1) {
-  transform: translateY(6.5px) rotate(45deg);
+  transform:
+    translateY(6.5px)
+    rotate(45deg);
 }
 
 .menuButtonOpen span:nth-child(2) {
@@ -315,7 +407,9 @@
 }
 
 .menuButtonOpen span:nth-child(3) {
-  transform: translateY(-6.5px) rotate(-45deg);
+  transform:
+    translateY(-6.5px)
+    rotate(-45deg);
 }
 
 /* ========================================
@@ -344,6 +438,7 @@
     display: block;
 
     position: fixed;
+
     top: 78px;
     left: 0;
 
@@ -360,6 +455,7 @@
 
     opacity: 0;
     visibility: hidden;
+
     transform: translateY(-10px);
 
     transition:
@@ -371,6 +467,7 @@
   .mobileMenuOpen {
     opacity: 1;
     visibility: visible;
+
     transform: translateY(0);
   }
 
@@ -383,8 +480,11 @@
     margin: 0 auto;
   }
 
-  .mobileNavLink,
-  .mobileServicesButton {
+  /* ========================================
+     MOBILE NAV LINKS
+  ======================================== */
+
+  .mobileNavLink {
     width: 100%;
 
     padding: 1rem 0;
@@ -392,63 +492,225 @@
     background: transparent;
     color: var(--text-secondary);
 
+    border: 0;
     border-bottom: 1px solid var(--border-subtle);
 
     font-size: 1.25rem;
     font-weight: var(--font-weight-medium);
 
-    text-align: left;
+    line-height: 1.2;
 
-    transition: color var(--transition-fast);
+    text-align: left;
+    text-decoration: none;
+
+    transition:
+      color var(--transition-fast);
   }
 
   .mobileNavLink:hover,
-  .mobileActive,
-  .mobileServicesButton:hover {
+  .mobileActive {
     color: var(--color-gold);
   }
 
-  .mobileServicesButton {
+  /* ========================================
+     MOBILE SERVICES
+     
+     Services text = real link
+     + button = submenu toggle
+  ======================================== */
+
+  .mobileServices {
+    width: 100%;
+  }
+
+  .mobileServicesRow {
+    display: flex;
+    align-items: stretch;
+
+    width: 100%;
+
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .mobileServicesLink {
+    flex: 1;
+
     display: flex;
     align-items: center;
-    justify-content: space-between;
+
+    min-width: 0;
+
+    padding: 1rem 0;
+
+    background: transparent;
+    color: var(--text-secondary);
+
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-medium);
+
+    line-height: 1.2;
+
+    text-align: left;
+    text-decoration: none;
+
+    transition:
+      color var(--transition-fast);
+  }
+
+  .mobileServicesLink:hover,
+  .mobileServicesLink.mobileActive {
+    color: var(--color-gold);
+  }
+
+  /* ========================================
+     MOBILE SERVICES TOGGLE
+  ======================================== */
+
+  .mobileServicesToggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 52px;
+
+    width: 52px;
+    min-width: 52px;
+
+    min-height: 52px;
+
+    padding: 0;
+
+    background: transparent;
+    color: var(--color-gold);
+
+    border: 0;
 
     cursor: pointer;
+
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .mobileServicesToggle:hover {
+    color: var(--color-gold-light);
+  }
+
+  .mobileServicesToggle:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: -3px;
   }
 
   .mobileChevron {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
     color: var(--color-gold);
 
     font-size: 1.5rem;
     font-weight: var(--font-weight-regular);
 
-    transition: transform var(--transition-fast);
+    line-height: 1;
+
+    transition:
+      transform var(--transition-fast);
   }
 
   .mobileChevronOpen {
     transform: rotate(45deg);
   }
 
+  /* ========================================
+     MOBILE SERVICE SUBMENU
+  ======================================== */
+
   .mobileServiceLinks {
     display: flex;
     flex-direction: column;
 
     padding: 0.5rem 0 0.75rem 1rem;
+
+    border-bottom: 1px solid var(--border-subtle);
   }
 
   .mobileServiceLink {
+    display: block;
+
     padding: 0.7rem 0;
 
     color: var(--text-muted);
 
     font-size: 0.95rem;
 
-    transition: color var(--transition-fast);
+    line-height: 1.4;
+
+    text-decoration: none;
+
+    transition:
+      color var(--transition-fast);
   }
 
-  .mobileServiceLink:hover {
+  .mobileServiceLink:hover,
+  .mobileServiceLink:focus-visible {
     color: var(--color-gold-light);
   }
+
+  /* ========================================
+     MOBILE ADMIN
+  ======================================== */
+
+  .mobileAdminLink {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+
+    padding: 1rem 0;
+
+    color: var(--text-secondary);
+
+    border-bottom: 1px solid var(--border-subtle);
+
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-medium);
+
+    line-height: 1.2;
+
+    text-decoration: none;
+
+    transition:
+      color var(--transition-fast);
+  }
+
+  .mobileAdminLink:hover {
+    color: var(--color-gold);
+  }
+
+  .mobileAdminLink::after {
+    content: '';
+
+    position: absolute;
+
+    left: 0;
+    bottom: -1px;
+
+    width: 0;
+    height: 1px;
+
+    background: var(--color-gold);
+
+    transition:
+      width var(--transition-normal);
+  }
+
+  .mobileAdminLink:hover::after {
+    width: 100%;
+  }
+
+  /* ========================================
+     MOBILE CONSULTATION
+  ======================================== */
 
   .mobileConsultationButton {
     display: flex;
@@ -456,6 +718,7 @@
     justify-content: center;
 
     margin-top: 2rem;
+
     min-height: 52px;
 
     padding: 0.9rem 1.5rem;
@@ -468,6 +731,8 @@
     font-size: 0.9rem;
     font-weight: var(--font-weight-semibold);
 
+    text-decoration: none;
+
     transition:
       background-color var(--transition-fast),
       transform var(--transition-fast);
@@ -475,6 +740,7 @@
 
   .mobileConsultationButton:hover {
     background: var(--color-gold-light);
+
     transform: translateY(-2px);
   }
 }
@@ -490,11 +756,29 @@
 
   .mobileMenu {
     top: 68px;
+
     height: calc(100vh - 68px);
   }
 
   .logo {
     font-size: 0.95rem;
+  }
+
+  .mobileNavLink,
+  .mobileServicesLink,
+  .mobileAdminLink {
+    font-size: 1.15rem;
+  }
+
+  .mobileServicesToggle {
+    flex-basis: 48px;
+
+    width: 48px;
+    min-width: 48px;
+  }
+
+  .mobileServiceLink {
+    font-size: 0.9rem;
   }
 }
 
@@ -507,12 +791,15 @@
   .navLink,
   .servicesButton,
   .dropdownLink,
+  .adminLink,
   .consultationButton,
   .menuButton span,
   .mobileMenu,
   .mobileNavLink,
-  .mobileServicesButton,
+  .mobileServicesLink,
+  .mobileServicesToggle,
   .mobileChevron,
+  .mobileAdminLink,
   .mobileConsultationButton {
     transition: none;
   }
@@ -520,15 +807,4 @@
   .dropdown {
     animation: none;
   }
-}
-.adminLink {
-  color: #777777;
-  font-size: 0.72rem;
-  font-weight: 500;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.adminLink:hover {
-  color: #d4af37;
 }

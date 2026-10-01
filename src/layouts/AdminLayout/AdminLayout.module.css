@@ -1,8 +1,30 @@
 .adminShell {
   min-height: 100vh;
   display: flex;
-  background: #f7f7f5;
+
+  background: #f7f6f2;
   color: #111111;
+}
+
+/* =========================================================
+   BRAND COLORS
+========================================================= */
+
+:global(:root) {
+  --admin-gold: #d4af37;
+  --admin-gold-light: #e3c35a;
+  --admin-gold-dark: #a78620;
+
+  --admin-black: #000000;
+  --admin-black-soft: #0b0b0b;
+
+  --admin-white: #ffffff;
+  --admin-background: #f7f6f2;
+  --admin-card: #ffffff;
+
+  --admin-border: #e5e3dc;
+  --admin-text: #111111;
+  --admin-muted: #777777;
 }
 
 /* =========================================================
@@ -12,13 +34,19 @@
 .sidebar {
   position: fixed;
   inset: 0 auto 0 0;
+
   z-index: 100;
+
   width: 260px;
+
   display: flex;
   flex-direction: column;
-  background: #000000;
-  color: #ffffff;
-  border-right: 1px solid rgba(212, 175, 55, 0.2);
+
+  background: var(--admin-black);
+  color: var(--admin-white);
+
+  border-right: 1px solid
+    rgba(212, 175, 55, 0.22);
 }
 
 /* =========================================================
@@ -27,12 +55,15 @@
 
 .sidebarHeader {
   min-height: 82px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   padding: 0 24px;
+
   border-bottom: 1px solid
-    rgba(255, 255, 255, 0.08);
+    rgba(212, 175, 55, 0.14);
 }
 
 .brand {
@@ -44,12 +75,29 @@
 .brandMark {
   width: 38px;
   height: 38px;
+
   display: grid;
   place-items: center;
+
   border: 1px solid
-    rgba(212, 175, 55, 0.6);
+    rgba(212, 175, 55, 0.7);
+
   border-radius: 10px;
-  color: #d4af37;
+
+  color: var(--admin-gold);
+
+  background: rgba(212, 175, 55, 0.04);
+
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.brandMark:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: var(--admin-gold);
+  color: var(--admin-gold-light);
 }
 
 .brandText {
@@ -59,23 +107,31 @@
 }
 
 .brandName {
+  color: #ffffff;
+
   font-size: 15px;
   font-weight: 700;
+
   letter-spacing: 0.14em;
 }
 
 .brandLabel {
-  color: #d4af37;
+  color: var(--admin-gold);
+
   font-size: 9px;
-  font-weight: 600;
+  font-weight: 700;
+
   letter-spacing: 0.22em;
 }
 
 .closeButton {
   display: none;
+
   border: 0;
   background: transparent;
+
   color: #ffffff;
+
   cursor: pointer;
 }
 
@@ -85,54 +141,97 @@
 
 .navigation {
   flex: 1;
+
   padding: 30px 16px;
 }
 
 .navigationLabel {
   margin: 0 12px 14px;
-  color: rgba(255, 255, 255, 0.4);
+
+  color: rgba(255, 255, 255, 0.42);
+
   font-size: 10px;
-  font-weight: 600;
+  font-weight: 700;
+
   letter-spacing: 0.16em;
 }
 
 .navItem {
   position: relative;
+
   display: flex;
   align-items: center;
+
   gap: 13px;
+
   min-height: 48px;
+
   margin-bottom: 6px;
+
   padding: 0 13px;
+
   border-radius: 8px;
+
   color: rgba(255, 255, 255, 0.68);
+
   text-decoration: none;
+
   font-size: 14px;
   font-weight: 500;
+
   transition:
     color 180ms ease,
-    background-color 180ms ease;
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.navItem svg {
+  color: rgba(255, 255, 255, 0.58);
+
+  transition:
+    color 180ms ease,
+    transform 180ms ease;
 }
 
 .navItem:hover {
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.06);
+
+  background: rgba(212, 175, 55, 0.07);
+
+  transform: translateX(2px);
+}
+
+.navItem:hover svg {
+  color: var(--admin-gold-light);
 }
 
 .navItemActive {
   color: #ffffff;
-  background: rgba(212, 175, 55, 0.1);
+
+  background: rgba(212, 175, 55, 0.12);
+}
+
+.navItemActive svg {
+  color: var(--admin-gold);
 }
 
 .navItemActive::before {
   content: '';
+
   position: absolute;
+
   left: 0;
   top: 10px;
   bottom: 10px;
-  width: 2px;
-  border-radius: 2px;
-  background: #d4af37;
+
+  width: 3px;
+
+  border-radius: 0 3px 3px 0;
+
+  background: var(--admin-gold);
+
+  box-shadow:
+    0 0 12px rgba(212, 175, 55, 0.35);
 }
 
 /* =========================================================
@@ -141,47 +240,64 @@
 
 .sidebarFooter {
   padding: 20px 16px;
+
   border-top: 1px solid
-    rgba(255, 255, 255, 0.08);
+    rgba(212, 175, 55, 0.14);
 }
 
 .adminIdentity {
   display: flex;
   align-items: center;
+
   gap: 11px;
+
   padding: 4px 8px 16px;
 }
 
 .avatar {
   flex: 0 0 auto;
+
   width: 36px;
   height: 36px;
+
   display: grid;
   place-items: center;
+
   border-radius: 50%;
-  background: #d4af37;
+
+  background: var(--admin-gold);
   color: #000000;
+
   font-size: 14px;
   font-weight: 700;
+
+  box-shadow:
+    0 0 0 4px rgba(212, 175, 55, 0.08);
 }
 
 .identityText {
   min-width: 0;
+
   display: flex;
   flex-direction: column;
+
   gap: 3px;
 }
 
 .identityName {
   color: #ffffff;
+
   font-size: 12px;
   font-weight: 600;
 }
 
 .identityEmail {
   overflow: hidden;
+
   color: rgba(255, 255, 255, 0.48);
+
   font-size: 10px;
+
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -189,29 +305,48 @@
 .logoutButton {
   width: 100%;
   min-height: 44px;
+
   display: flex;
   align-items: center;
+
   gap: 11px;
+
   padding: 0 12px;
+
   border: 1px solid
     rgba(255, 255, 255, 0.1);
+
   border-radius: 8px;
+
   background: transparent;
+
   color: rgba(255, 255, 255, 0.7);
+
   cursor: pointer;
+
   font: inherit;
   font-size: 13px;
+
   text-align: left;
+
   transition:
     color 180ms ease,
     border-color 180ms ease,
     background-color 180ms ease;
 }
 
+.logoutButton svg {
+  color: var(--admin-gold);
+}
+
 .logoutButton:hover {
   color: #ffffff;
-  border-color: rgba(212, 175, 55, 0.45);
-  background: rgba(212, 175, 55, 0.06);
+
+  border-color:
+    rgba(212, 175, 55, 0.5);
+
+  background:
+    rgba(212, 175, 55, 0.08);
 }
 
 /* =========================================================
@@ -220,8 +355,12 @@
 
 .mainArea {
   width: calc(100% - 260px);
+
   min-height: 100vh;
+
   margin-left: 260px;
+
+  background: var(--admin-background);
 }
 
 /* =========================================================
@@ -230,39 +369,73 @@
 
 .topbar {
   position: sticky;
+
   top: 0;
+
   z-index: 50;
+
   min-height: 72px;
+
   display: flex;
   align-items: center;
+
   gap: 14px;
+
   padding: 0 32px;
-  border-bottom: 1px solid #e8e8e5;
-  background: rgba(255, 255, 255, 0.94);
+
+  border-bottom: 1px solid
+    var(--admin-border);
+
+  background:
+    rgba(255, 255, 255, 0.96);
+
   backdrop-filter: blur(14px);
 }
 
 .menuButton {
   display: none;
+
   align-items: center;
   justify-content: center;
+
   width: 40px;
   height: 40px;
+
   padding: 0;
+
   border: 1px solid #ddddda;
+
   border-radius: 8px;
+
   background: #ffffff;
+
   color: #111111;
+
   cursor: pointer;
+}
+
+.menuButton:hover {
+  border-color: var(--admin-gold);
+
+  color: var(--admin-gold-dark);
+
+  background: #fffdf6;
 }
 
 .topbarTitle {
   display: flex;
   align-items: center;
+
   gap: 9px;
+
   color: #111111;
+
   font-size: 13px;
   font-weight: 600;
+}
+
+.topbarTitle span:last-child {
+  color: var(--admin-gold-dark);
 }
 
 .separator {
@@ -271,7 +444,9 @@
 
 .topbarUser {
   margin-left: auto;
+
   color: #777771;
+
   font-size: 12px;
 }
 
@@ -281,8 +456,11 @@
 
 .content {
   width: 100%;
+
   max-width: 1600px;
+
   margin: 0 auto;
+
   padding: 36px;
 }
 
@@ -305,6 +483,7 @@
 
   .mainArea {
     width: 100%;
+
     margin-left: 0;
   }
 
@@ -314,12 +493,15 @@
 
   .closeButton {
     display: grid;
+
     place-items: center;
   }
 
   .sidebar {
     transform: translateX(-100%);
-    transition: transform 240ms ease;
+
+    transition:
+      transform 240ms ease;
   }
 
   .sidebarOpen {
@@ -328,12 +510,20 @@
 
   .overlay {
     position: fixed;
+
     inset: 0;
+
     z-index: 90;
+
     display: block;
+
     padding: 0;
+
     border: 0;
-    background: rgba(0, 0, 0, 0.48);
+
+    background:
+      rgba(0, 0, 0, 0.48);
+
     cursor: pointer;
   }
 
@@ -353,13 +543,17 @@
 @media (max-width: 640px) {
   .topbar {
     min-height: 64px;
+
     padding: 0 16px;
   }
 
   .topbarUser {
     max-width: 130px;
+
     overflow: hidden;
+
     text-overflow: ellipsis;
+
     white-space: nowrap;
   }
 
@@ -369,5 +563,19 @@
 
   .sidebar {
     width: min(290px, 86vw);
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .brandMark,
+  .navItem,
+  .navItem svg,
+  .logoutButton,
+  .menuButton {
+    transition: none;
   }
 }

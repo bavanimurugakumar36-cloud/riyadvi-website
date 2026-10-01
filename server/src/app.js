@@ -1,49 +1,36 @@
-import express from 'express';
-import cors from 'cors';
-import helmet from 'helmet';
-import rateLimit from 'express-rate-limit';
+const express = require('express');
+const cors = require('cors');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
 
-import leadRoutes from './routes/leadRoutes.js';
-import applicationRoutes from './routes/applicationRoutes.js';
-import adminRoutes from './routes/adminRoutes.js';
+const leadRoutes = require('./routes/leadRoutes');
+const applicationRoutes = require('./routes/applicationRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 
 const app = express();
 
-/* =========================================================
-   TRUST PROXY
-   ========================================================= */
+/* ========================================
+   SECURITY
+======================================== */
 
-app.set('trust proxy', 1);
+app.use(helmet());
 
-/* =========================================================
-   SECURITY HEADERS
-   ========================================================= */
-
-app.use(
-  helmet({
-    crossOriginResourcePolicy: {
-      policy: 'cross-origin',
-    },
-  })
-);
-
-/* =========================================================
+/* ========================================
    CORS
-   ========================================================= */
+======================================== */
 
 const allowedOrigins = [
-  process.env.FRONTEND_URL,
+  'https://riyadvi-website-gamma.vercel.app',
+  'https://www.riyadvisoftwaretechnologies.com',
+  'https://riyadvisoftwaretechnologies.com',
   'http://localhost:5173',
-  'http://127.0.0.1:5173',
-].filter(Boolean);
+];
 
 app.use(
   cors({
-    origin(origin, callback) {
-      /*
-       * Allow requests without an Origin header.
-       * This includes tools such as curl and PowerShell.
-       */
+    origin: function (origin, callback) {
+      // Allow requests without an Origin header
+      // such as server-to-server requests.
       if (!origin) {
         return callback(null, true);
       }
@@ -52,8 +39,10 @@ app.use(
         return callback(null, true);
       }
 
+      console.log('CORS blocked origin:', origin);
+
       return callback(
-        new Error('CORS policy: Origin is not allowed.')
+        new Error('Not allowed by CORS')
       );
     },
 
@@ -71,118 +60,90 @@ app.use(
       'Authorization',
     ],
 
-    credentials: false,
+    credentials: true,
+
+    optionsSuccessStatus: 204,
   })
 );
 
-/* =========================================================
-   JSON BODY PARSER
-   ========================================================= */
+/* ========================================
+   BODY PARSING
+======================================== */
 
-app.use(
-  express.json({
-    limit: '100kb',
-  })
-);
+app.use(express.json());
 
-/* =========================================================
-   GLOBAL API RATE LIMITER
-   ========================================================= */
+app.use(express.urlencoded({ extended: true }));
+
+/* ========================================
+   RATE LIMIT
+======================================== */
 
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 100,
+  max: 200,
 
   standardHeaders: true,
   legacyHeaders: false,
 
   message: {
     success: false,
-    message:
-      'Too many requests from this IP. Please try again later.',
+    message: 'Too many requests. Please try again later.',
   },
 });
 
 app.use('/api', apiLimiter);
 
-/* =========================================================
+/* ========================================
    HEALTH CHECK
-   ========================================================= */
+======================================== */
 
 app.get('/api/health', (req, res) => {
-  return res.status(200).json({
+  res.status(200).json({
     success: true,
-    message: 'Riyadvi API is running.',
-    timestamp: new Date().toISOString(),
+    message: 'Riyadvi backend is running',
   });
 });
 
-/* =========================================================
-   LEAD ROUTES
-   ========================================================= */
+/* ========================================
+   API ROUTES
+======================================== */
 
 app.use('/api/leads', leadRoutes);
 
-/* =========================================================
-   CAREER APPLICATION ROUTES
-   ========================================================= */
-
 app.use('/api/applications', applicationRoutes);
-
-/* =========================================================
-   ADMIN ROUTES
-   ========================================================= */
 
 app.use('/api/admin', adminRoutes);
 
-/* =========================================================
-   API 404 HANDLER
-   ========================================================= */
+/* ========================================
+   404
+======================================== */
 
-app.use('/api/*splat', (req, res) => {
-  return res.status(404).json({
+app.use((req, res) => {
+  res.status(404).json({
     success: false,
-    message: 'API endpoint not found.',
+    message: 'Route not found',
   });
 });
 
-/* =========================================================
-   GLOBAL ERROR HANDLER
-   ========================================================= */
+/* ========================================
+   ERROR HANDLER
+======================================== */
 
-app.use((error, req, res, next) => {
-  console.error('Server Error:', error);
+app.use((err, req, res, next) => {
+  console.error('Server error:', err);
 
-  /*
-   * CORS errors
-   */
-  if (error.message?.startsWith('CORS policy')) {
+  if (err.message === 'Not allowed by CORS') {
     return res.status(403).json({
       success: false,
-      message: 'Request blocked by CORS policy.',
+      message: 'CORS origin not allowed',
     });
   }
 
-  /*
-   * Invalid JSON
-   */
-  if (
-    error instanceof SyntaxError &&
-    error.status === 400
-  ) {
-    return res.status(400).json({
-      success: false,
-      message: 'Invalid JSON request body.',
-    });
-  }
-
-  /*
-   * Generic server error
-   */
-  return res.status(500).json({
+  res.status(err.status || 500).json({
     success: false,
-    message: 'Something went wrong on the server.',
+    message:
+      err.message || 'Internal server error',
   });
 });
 
-export default app;
+module.exports = app;

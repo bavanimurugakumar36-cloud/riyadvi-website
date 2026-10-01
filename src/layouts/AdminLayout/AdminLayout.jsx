@@ -21,8 +21,7 @@ import styles from './AdminLayout.module.css';
 const AdminLayout = () => {
   const navigate = useNavigate();
 
-  const [isSidebarOpen, setIsSidebarOpen] =
-    useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const adminUser = getAdminUser();
 
@@ -48,6 +47,7 @@ const AdminLayout = () => {
   const handleLogout = () => {
     clearAdminSession();
     setIsSidebarOpen(false);
+
     navigate('/admin/login', {
       replace: true,
     });
@@ -59,30 +59,18 @@ const AdminLayout = () => {
 
   return (
     <div className={styles.adminShell}>
-      {/* =================================================
-          MOBILE OVERLAY
-      ================================================= */}
-
       {isSidebarOpen && (
         <button
           type="button"
           className={styles.overlay}
           aria-label="Close admin navigation"
-          onClick={() =>
-            setIsSidebarOpen(false)
-          }
+          onClick={() => setIsSidebarOpen(false)}
         />
       )}
 
-      {/* =================================================
-          SIDEBAR
-      ================================================= */}
-
       <aside
         className={`${styles.sidebar} ${
-          isSidebarOpen
-            ? styles.sidebarOpen
-            : ''
+          isSidebarOpen ? styles.sidebarOpen : ''
         }`}
       >
         <div className={styles.sidebarHeader}>
@@ -105,18 +93,12 @@ const AdminLayout = () => {
           <button
             type="button"
             className={styles.closeButton}
-            onClick={() =>
-              setIsSidebarOpen(false)
-            }
+            onClick={() => setIsSidebarOpen(false)}
             aria-label="Close navigation"
           >
             <X size={21} />
           </button>
         </div>
-
-        {/* =================================================
-            NAVIGATION
-        ================================================= */}
 
         <nav
           className={styles.navigation}
@@ -157,10 +139,6 @@ const AdminLayout = () => {
           )}
         </nav>
 
-        {/* =================================================
-            SIDEBAR FOOTER
-        ================================================= */}
-
         <div className={styles.sidebarFooter}>
           <div className={styles.adminIdentity}>
             <div className={styles.avatar}>
@@ -175,8 +153,7 @@ const AdminLayout = () => {
               </span>
 
               <span className={styles.identityEmail}>
-                {adminUser?.email ||
-                  'Admin'}
+                {adminUser?.email || 'Admin'}
               </span>
             </div>
           </div>
@@ -196,18 +173,12 @@ const AdminLayout = () => {
         </div>
       </aside>
 
-      {/* =================================================
-          MAIN AREA
-      ================================================= */}
-
       <div className={styles.mainArea}>
         <header className={styles.topbar}>
           <button
             type="button"
             className={styles.menuButton}
-            onClick={() =>
-              setIsSidebarOpen(true)
-            }
+            onClick={() => setIsSidebarOpen(true)}
             aria-label="Open admin navigation"
             aria-expanded={isSidebarOpen}
           >
@@ -216,15 +187,16 @@ const AdminLayout = () => {
 
           <div className={styles.topbarTitle}>
             <span>Riyadvi</span>
+
             <span className={styles.separator}>
               /
             </span>
+
             <span>Admin</span>
           </div>
 
           <div className={styles.topbarUser}>
-            {adminUser?.email ||
-              'Administrator'}
+            {adminUser?.email || 'Administrator'}
           </div>
         </header>
 

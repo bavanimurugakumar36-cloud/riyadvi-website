@@ -4,138 +4,176 @@ import { Link } from 'react-router-dom';
 import ThreeSceneLoader from '../../components/loaders/ThreeSceneLoader.jsx';
 import styles from './Hero.module.css';
 
-const HeroScene = lazy(() => import('../../three/scenes/HeroScene.jsx'));
+const HeroScene = lazy(
+  () => import('../../three/scenes/HeroScene.jsx'),
+);
 
 function Hero() {
   return (
     <section className={styles.hero}>
+      {/* Background */}
+      <div
+        className={styles.backgroundGlow}
+        aria-hidden="true"
+      />
+
+      <div
+        className={styles.grid}
+        aria-hidden="true"
+      />
+
       <div className={styles.container}>
-        {/* =====================================================
-            HERO CONTENT
-        ===================================================== */}
+        {/* ==================================================
+            LEFT CONTENT
+        ================================================== */}
 
         <div className={styles.content}>
-          <div className={styles.intro}>
-            <span className={styles.introLine} />
+          {/* Company name */}
 
-            <p className={styles.eyebrow}>
+          <div className={styles.brandLabel}>
+            <span className={styles.brandLine} />
+
+            <span>
               RIYADVI SOFTWARE TECHNOLOGIES
-            </p>
+            </span>
           </div>
+
+          {/* Main heading */}
 
           <h1 className={styles.title}>
-            Custom Software &amp; Digital Solutions to Grow Your
-            <span className={styles.titleAccent}> Business</span>
+            <span>
+              Custom Software &amp;
+            </span>
+
+            <span>
+              Digital Solutions to Grow
+            </span>
+
+            <span>
+              Your <em>Business</em>
+            </span>
           </h1>
 
-          <div className={styles.lowerContent}>
-            <p className={styles.description}>
-              Web &amp; App Development, UI/UX Design, and Business
-              Strategy — all tailored to your needs.
-            </p>
+          {/* Description */}
 
-            <div className={styles.actions}>
-              <Link
-                to="/contact"
-                className={styles.primaryButton}
-              >
-                <span>Book a Free Consultation</span>
-                <span
-                  className={styles.buttonArrow}
-                  aria-hidden="true"
-                >
-                  ↗
-                </span>
-              </Link>
+          <p className={styles.description}>
+            Web &amp; App Development, UI/UX Design,
+            and Business Strategy — all tailored to
+            your needs.
+          </p>
 
-              <Link
-                to="/services"
-                className={styles.secondaryButton}
+          {/* CTA buttons */}
+
+          <div className={styles.actions}>
+            <Link
+              to="/contact"
+              className={`${styles.actionButton} ${styles.primaryButton}`}
+            >
+              <span className={styles.buttonText}>
+                Book a Free Consultation
+              </span>
+
+              <span
+                className={styles.buttonArrow}
+                aria-hidden="true"
               >
-                <span>Explore Our Solutions</span>
-                <span
-                  className={styles.secondaryArrow}
-                  aria-hidden="true"
-                >
-                  →
-                </span>
-              </Link>
-            </div>
+                →
+              </span>
+            </Link>
+
+            <Link
+              to="/services"
+              className={`${styles.actionButton} ${styles.secondaryButton}`}
+            >
+              <span className={styles.buttonText}>
+                Explore Our Solutions
+              </span>
+
+              <span
+                className={styles.buttonArrow}
+                aria-hidden="true"
+              >
+                →
+              </span>
+            </Link>
           </div>
 
-          <div className={styles.heroMeta}>
-            <div className={styles.metaItem}>
-              <span className={styles.metaNumber}>01</span>
-              <span className={styles.metaLabel}>
-                DIGITAL
-                <br />
-                SOLUTIONS
-              </span>
+          {/* ==================================================
+              FEATURE ROW
+          ================================================== */}
+
+          <div className={styles.stats}>
+            <div className={styles.stat}>
+              <span className={styles.statLine} />
+
+              <div className={styles.statContent}>
+                <span className={styles.statNumber}>
+                  01
+                </span>
+
+                <span className={styles.statLabel}>
+                  DIGITAL
+                  <br />
+                  SOLUTIONS
+                </span>
+              </div>
             </div>
 
-            <div className={styles.metaDivider} />
+            <div className={styles.statDivider} />
 
-            <div className={styles.metaItem}>
-              <span className={styles.metaNumber}>02</span>
-              <span className={styles.metaLabel}>
-                SOFTWARE
-                <br />
-                DEVELOPMENT
-              </span>
+            <div className={styles.stat}>
+              <span className={styles.statLine} />
+
+              <div className={styles.statContent}>
+                <span className={styles.statNumber}>
+                  02
+                </span>
+
+                <span className={styles.statLabel}>
+                  SOFTWARE
+                  <br />
+                  DEVELOPMENT
+                </span>
+              </div>
             </div>
 
-            <div className={styles.metaDivider} />
+            <div className={styles.statDivider} />
 
-            <div className={styles.metaItem}>
-              <span className={styles.metaNumber}>03</span>
-              <span className={styles.metaLabel}>
-                DIGITAL
-                <br />
-                EXPERIENCE
-              </span>
+            <div className={styles.stat}>
+              <span className={styles.statLine} />
+
+              <div className={styles.statContent}>
+                <span className={styles.statNumber}>
+                  03
+                </span>
+
+                <span className={styles.statLabel}>
+                  DIGITAL
+                  <br />
+                  EXPERIENCE
+                </span>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* =====================================================
-            3D EXPERIENCE
-        ===================================================== */}
+        {/* ==================================================
+            RIGHT 3D VISUAL
+        ================================================== */}
 
         <div className={styles.visualArea}>
-          <div className={styles.visualHeader}>
-            <span>INTERACTIVE SYSTEM</span>
-            <span>RIYADVI / 01</span>
-          </div>
-
           <div className={styles.visual}>
-            <Suspense fallback={<ThreeSceneLoader label="Loading interactive system" />}><HeroScene /></Suspense>
-          </div>
-
-          <div className={styles.visualFooter}>
-            <span className={styles.visualStatus}>
-              <span className={styles.statusDot} />
-              DIGITAL EXPERIENCE
-            </span>
-
-            <span className={styles.visualHint}>
-              MOVE TO EXPLORE
-            </span>
+            <Suspense
+              fallback={
+                <ThreeSceneLoader
+                  label="Loading digital experience"
+                />
+              }
+            >
+              <HeroScene />
+            </Suspense>
           </div>
         </div>
-      </div>
-
-      {/* =====================================================
-          SCROLL INDICATOR
-      ===================================================== */}
-
-      <div className={styles.scrollIndicator}>
-        <span className={styles.scrollNumber}>01</span>
-
-        <span className={styles.scrollLine} />
-
-        <span className={styles.scrollText}>
-          Scroll to explore
-        </span>
       </div>
     </section>
   );

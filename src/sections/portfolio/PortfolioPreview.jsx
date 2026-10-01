@@ -14,11 +14,11 @@ function PortfolioPreview() {
 
   const sectionRef = useRef(null);
   const headerRef = useRef(null);
-  const experienceRef = useRef(null);
-  const bottomRef = useRef(null);
+  const projectRef = useRef(null);
   const visualRef = useRef(null);
   const visualCoreRef = useRef(null);
-  const projectContentRef = useRef(null);
+  const contentRef = useRef(null);
+  const bottomRef = useRef(null);
 
   const selectedProject = caseStudies[activeProject];
 
@@ -48,7 +48,7 @@ function PortfolioPreview() {
     const context = gsap.context(() => {
       const elements = [
         headerRef.current,
-        experienceRef.current,
+        projectRef.current,
         bottomRef.current,
       ].filter(Boolean);
 
@@ -69,28 +69,28 @@ function PortfolioPreview() {
         .to(headerRef.current, {
           opacity: 1,
           y: 0,
-          duration: 0.8,
+          duration: 0.75,
           ease: 'power3.out',
         })
         .to(
-          experienceRef.current,
+          projectRef.current,
           {
             opacity: 1,
             y: 0,
             duration: 0.9,
             ease: 'power3.out',
           },
-          '-=0.45',
+          '-=0.35',
         )
         .to(
           bottomRef.current,
           {
             opacity: 1,
             y: 0,
-            duration: 0.7,
+            duration: 0.65,
             ease: 'power3.out',
           },
-          '-=0.45',
+          '-=0.4',
         );
     }, section);
 
@@ -100,7 +100,7 @@ function PortfolioPreview() {
   }, []);
 
   /* ============================================================
-     MOUSE 3D INTERACTION
+     DESKTOP 3D TILT
   ============================================================ */
 
   useEffect(() => {
@@ -126,6 +126,10 @@ function PortfolioPreview() {
     const handleMouseMove = (event) => {
       const bounds = visual.getBoundingClientRect();
 
+      if (!bounds.width || !bounds.height) {
+        return;
+      }
+
       const x =
         (event.clientX - bounds.left) / bounds.width - 0.5;
 
@@ -133,18 +137,18 @@ function PortfolioPreview() {
         (event.clientY - bounds.top) / bounds.height - 0.5;
 
       gsap.to(visual, {
-        rotateX: -y * 7,
-        rotateY: x * 9,
-        transformPerspective: 900,
-        duration: 0.55,
+        rotateX: -y * 5,
+        rotateY: x * 7,
+        transformPerspective: 1000,
+        duration: 0.5,
         ease: 'power3.out',
         overwrite: true,
       });
 
       gsap.to(core, {
-        x: x * 16,
-        y: y * 16,
-        duration: 0.55,
+        x: x * 12,
+        y: y * 12,
+        duration: 0.5,
         ease: 'power3.out',
         overwrite: true,
       });
@@ -154,7 +158,7 @@ function PortfolioPreview() {
       gsap.to(visual, {
         rotateX: 0,
         rotateY: 0,
-        duration: 0.7,
+        duration: 0.65,
         ease: 'power3.out',
         overwrite: true,
       });
@@ -162,21 +166,14 @@ function PortfolioPreview() {
       gsap.to(core, {
         x: 0,
         y: 0,
-        duration: 0.7,
+        duration: 0.65,
         ease: 'power3.out',
         overwrite: true,
       });
     };
 
-    visual.addEventListener(
-      'mousemove',
-      handleMouseMove,
-    );
-
-    visual.addEventListener(
-      'mouseleave',
-      handleMouseLeave,
-    );
+    visual.addEventListener('mousemove', handleMouseMove);
+    visual.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
       visual.removeEventListener(
@@ -192,11 +189,11 @@ function PortfolioPreview() {
   }, []);
 
   /* ============================================================
-     PROJECT CHANGE ANIMATION
+     PROJECT CHANGE
   ============================================================ */
 
   useEffect(() => {
-    const content = projectContentRef.current;
+    const content = contentRef.current;
 
     if (!content) {
       return undefined;
@@ -214,18 +211,22 @@ function PortfolioPreview() {
       content,
       {
         opacity: 0,
-        x: 20,
+        y: 12,
       },
       {
         opacity: 1,
-        x: 0,
-        duration: 0.45,
+        y: 0,
+        duration: 0.4,
         ease: 'power3.out',
       },
     );
 
     return undefined;
   }, [activeProject]);
+
+  /* ============================================================
+     RENDER
+  ============================================================ */
 
   return (
     <section
@@ -234,18 +235,23 @@ function PortfolioPreview() {
       aria-labelledby="portfolio-preview-title"
     >
       <div className={styles.container}>
-
-        {/* =====================================================
+        {/* ======================================================
             HEADER
-        ===================================================== */}
+        ====================================================== */}
 
-        <div
+        <header
           ref={headerRef}
           className={styles.header}
         >
-          <div className={styles.label}>
-            <span className={styles.labelLine} />
-            <span>SELECTED WORK</span>
+          <div className={styles.headerTop}>
+            <div className={styles.label}>
+              <span className={styles.labelLine} />
+              <span>SELECTED WORK</span>
+            </div>
+
+            <span className={styles.headerCount}>
+              {String(caseStudies.length).padStart(2, '0')} CASE STUDIES
+            </span>
           </div>
 
           <div className={styles.headerGrid}>
@@ -254,8 +260,7 @@ function PortfolioPreview() {
               className={styles.title}
             >
               Work that turns
-              <br />
-              ideas into experiences.
+              <span>ideas into experiences.</span>
             </h2>
 
             <div className={styles.headerRight}>
@@ -280,143 +285,55 @@ function PortfolioPreview() {
               </Link>
             </div>
           </div>
-        </div>
+        </header>
 
-        {/* =====================================================
-            PROJECT EXPERIENCE
-        ===================================================== */}
+        {/* ======================================================
+            FEATURED PROJECT
+        ====================================================== */}
 
         <div
-          ref={experienceRef}
-          className={styles.projectExperience}
+          ref={projectRef}
+          className={styles.project}
         >
+          {/* ----------------------------------------------------
+              PROJECT HEADER
+          ---------------------------------------------------- */}
 
-          {/* ===================================================
-              PROJECT NAVIGATION
-          =================================================== */}
-
-          <div className={styles.projectNavigation}>
-            {caseStudies.map((project, index) => {
-              const isActive =
-                index === activeProject;
-
-              const projectNumber = String(
-                project.number ?? index + 1,
-              ).padStart(2, '0');
-
-              return (
-                <button
-                  key={project.slug}
-                  type="button"
-                  className={`${styles.projectButton} ${
-                    isActive
-                      ? styles.projectButtonActive
-                      : ''
-                  }`}
-                  onClick={() =>
-                    setActiveProject(index)
-                  }
-                  aria-pressed={isActive}
-                >
-                  <span className={styles.projectNumber}>
-                    {projectNumber}
-                  </span>
-
-                  <span className={styles.projectName}>
-                    {project.title}
-                  </span>
-
-                  <span
-                    className={styles.projectArrow}
-                    aria-hidden="true"
-                  >
-                    →
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* ===================================================
-              PROJECT VISUAL
-          =================================================== */}
-
-          <div
-            ref={visualRef}
-            className={styles.projectVisual}
-          >
-            <div
-              className={styles.visualGrid}
-              aria-hidden="true"
-            />
-
-            <div
-              className={styles.visualGlow}
-              aria-hidden="true"
-            />
-
-            <div
-              className={styles.visualScan}
-              aria-hidden="true"
-            />
-
-            <div
-              key={`large-${selectedProject?.slug}`}
-              className={`${styles.visualCircleLarge} ${styles.projectSwitch}`}
-              aria-hidden="true"
-            />
-
-            <div
-              key={`small-${selectedProject?.slug}`}
-              className={`${styles.visualCircleSmall} ${styles.projectSwitch}`}
-              aria-hidden="true"
-            />
-
-            <div
-              ref={visualCoreRef}
-              key={selectedProject?.slug}
-              className={`${styles.visualCore} ${styles.coreProjectChange}`}
-              aria-hidden="true"
-            >
-              <span>{selectedNumber}</span>
-            </div>
-
-            <div className={styles.visualMeta}>
-              <span>RIYADVI / CASE STUDY</span>
-
-              <span>
-                {String(activeProject + 1).padStart(
-                  2,
-                  '0',
-                )}
-                {' / '}
-                {String(caseStudies.length).padStart(
-                  2,
-                  '0',
-                )}
+          <div className={styles.projectHeader}>
+            <div className={styles.projectIdentity}>
+              <span className={styles.projectNumber}>
+                {selectedNumber}
               </span>
-            </div>
-          </div>
 
-          {/* ===================================================
-              PROJECT INFORMATION
-          =================================================== */}
-
-          <div
-            ref={projectContentRef}
-            className={styles.projectContent}
-          >
-            <div className={styles.contentTop}>
-              <span>{selectedNumber}</span>
-
-              <span>
+              <span className={styles.projectCategory}>
                 {selectedProject?.category ||
                   selectedProject?.industry ||
                   'CASE STUDY'}
               </span>
             </div>
 
-            <div className={styles.contentMain}>
+            <span className={styles.projectStatus}>
+              RIYADVI / FEATURED PROJECT
+            </span>
+          </div>
+
+          {/* ----------------------------------------------------
+              MAIN PROJECT AREA
+          ---------------------------------------------------- */}
+
+          <div className={styles.projectBody}>
+            {/* ================================================
+                INFORMATION
+            ================================================= */}
+
+            <div
+              ref={contentRef}
+              className={styles.projectInfo}
+            >
+              <span className={styles.projectLabel}>
+                FEATURED CASE STUDY
+              </span>
+
               <h3>
                 {selectedProject?.title}
               </h3>
@@ -424,8 +341,18 @@ function PortfolioPreview() {
               <p>
                 {selectedProject?.shortDescription ||
                   selectedProject?.description ||
-                  'Explore this Riyadvi case study and discover how technology, design and strategy come together to create meaningful digital experiences.'}
+                  'Explore this Riyadvi case study and discover how strategy, technology and design come together to create meaningful digital experiences.'}
               </p>
+
+              <div className={styles.projectMeta}>
+                <span>BUSINESS FOCUS</span>
+
+                <div className={styles.metaLine} />
+
+                <strong>
+                  Digital experience
+                </strong>
+              </div>
 
               {selectedProject?.slug && (
                 <Link
@@ -444,13 +371,121 @@ function PortfolioPreview() {
               )}
             </div>
 
-            {/* =================================================
-                PROJECT FOOTER
+            {/* ================================================
+                PROJECT VISUAL
             ================================================= */}
 
-            <div className={styles.projectFooter}>
-              <span className={styles.footerLabel}>
-                SELECTED PROJECT
+            <div
+              ref={visualRef}
+              className={styles.projectVisual}
+            >
+              <div
+                className={styles.visualGrid}
+                aria-hidden="true"
+              />
+
+              <div
+                className={styles.visualGlow}
+                aria-hidden="true"
+              />
+
+              <div
+                className={styles.visualFrame}
+                aria-hidden="true"
+              />
+
+              <div
+                className={styles.visualCircleLarge}
+                aria-hidden="true"
+              />
+
+              <div
+                className={styles.visualCircleSmall}
+                aria-hidden="true"
+              />
+
+              <div
+                ref={visualCoreRef}
+                key={selectedProject?.slug}
+                className={styles.visualCore}
+                aria-hidden="true"
+              >
+                <span>{selectedNumber}</span>
+              </div>
+
+              <div
+                className={styles.visualCornerTop}
+                aria-hidden="true"
+              >
+                <span>PROJECT</span>
+                <span>0{activeProject + 1}</span>
+              </div>
+
+              <div
+                className={styles.visualCornerBottom}
+                aria-hidden="true"
+              >
+                <span>RIYADVI</span>
+                <span>CASE STUDY</span>
+              </div>
+            </div>
+          </div>
+
+          {/* ----------------------------------------------------
+              PROJECT NAVIGATION
+          ---------------------------------------------------- */}
+
+          <div className={styles.projectNavigation}>
+            <div className={styles.navigationHeading}>
+              <span>EXPLORE WORK</span>
+              <span>SELECT A PROJECT</span>
+            </div>
+
+            <div className={styles.navigationItems}>
+              {caseStudies.map((project, index) => {
+                const isActive =
+                  index === activeProject;
+
+                const projectNumber = String(
+                  project.number ?? index + 1,
+                ).padStart(2, '0');
+
+                return (
+                  <button
+                    key={project.slug}
+                    type="button"
+                    className={`${styles.projectButton} ${
+                      isActive
+                        ? styles.projectButtonActive
+                        : ''
+                    }`}
+                    onClick={() =>
+                      setActiveProject(index)
+                    }
+                    aria-pressed={isActive}
+                  >
+                    <span className={styles.buttonNumber}>
+                      {projectNumber}
+                    </span>
+
+                    <span className={styles.buttonName}>
+                      {project.title}
+                    </span>
+
+                    <span
+                      className={styles.buttonArrow}
+                      aria-hidden="true"
+                    >
+                      ↗
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className={styles.progressRow}>
+              <span>
+                {String(activeProject + 1).padStart(2, '0')}
               </span>
 
               <div className={styles.progress}>
@@ -465,31 +500,38 @@ function PortfolioPreview() {
                 />
               </div>
 
-              <span className={styles.footerCount}>
-                {String(caseStudies.length).padStart(
-                  2,
-                  '0',
-                )}
+              <span>
+                {String(caseStudies.length).padStart(2, '0')}
               </span>
             </div>
           </div>
         </div>
 
-        {/* =====================================================
+        {/* ======================================================
             BOTTOM STATEMENT
-        ===================================================== */}
+        ====================================================== */}
 
         <div
           ref={bottomRef}
           className={styles.bottomStatement}
         >
-          <span>04</span>
+          <span className={styles.bottomNumber}>
+            04
+          </span>
 
           <p>
             Every project begins with a business
             challenge and ends with an experience
             designed to create meaningful value.
           </p>
+
+          <Link
+            to="/portfolio"
+            className={styles.bottomLink}
+          >
+            Explore portfolio
+            <span aria-hidden="true">↗</span>
+          </Link>
         </div>
       </div>
     </section>

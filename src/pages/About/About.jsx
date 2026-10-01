@@ -2,646 +2,1093 @@ import {
   lazy,
   Suspense,
   useEffect,
-  useRef,
   useState,
 } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import ThreeSceneLoader from '../../components/loaders/ThreeSceneLoader.jsx';
-
 import styles from './About.module.css';
 
-const AboutScene = lazy(() => import('../../three/scenes/AboutScene.jsx'));
+const AboutScene = lazy(
+  () => import('../../three/scenes/AboutScene.jsx')
+);
 
-const values = [
-  {
-    number: '01',
-    title: 'Business First',
-    description:
-      'We start by understanding the business challenge, the people involved and the outcome that matters.',
-  },
-  {
-    number: '02',
-    title: 'Purposeful Technology',
-    description:
-      'We choose technology because it creates value, not simply because it is new or popular.',
-  },
-  {
-    number: '03',
-    title: 'Human Experiences',
-    description:
-      'We design digital experiences around the people who use them, keeping interactions clear and meaningful.',
-  },
-  {
-    number: '04',
-    title: 'Built to Evolve',
-    description:
-      'We create solutions with scalability and future growth in mind so they can evolve alongside the business.',
-  },
-];
+/* =========================================================
+   RESPONSIVE / MOTION HOOK
+========================================================= */
 
-const milestones = [
-  {
-    year: '2021',
-    title: 'Company Foundation',
-    description:
-      'Riyadvi Software Technologies was founded with a vision focused on delivering technology solutions for businesses.',
-  },
-  {
-    year: '2022',
-    title: 'Market Expansion',
-    description:
-      'The company expanded its service capabilities, including areas such as application development and digital marketing.',
-  },
-  {
-    year: '2023',
-    title: 'International Markets',
-    description:
-      'Riyadvi expanded into international markets and began working with clients beyond India, including Australia.',
-  },
-  {
-    year: '2024',
-    title: 'Global Recognition',
-    description:
-      "Riyadvi received the 'Star of Excellence' Award from the National Integrity Cultural Academy.",
-    recognition: true,
-  },
-];
+function useMediaQuery(query) {
+  const getValue = () => {
+    if (typeof window === 'undefined') {
+      return false;
+    }
 
-const capabilities = [
-  {
-    number: '01',
-    title: 'Software Development',
-    description:
-      'Web platforms, business applications and scalable digital products.',
-  },
-  {
-    number: '02',
-    title: 'Digital Experiences',
-    description:
-      'User-focused interfaces and experiences designed around real needs.',
-  },
-  {
-    number: '03',
-    title: 'Immersive Technology',
-    description:
-      '3D, AR, VR and interactive experiences for engaging digital environments.',
-  },
-  {
-    number: '04',
-    title: 'AI & Intelligent Solutions',
-    description:
-      'AI-powered applications and intelligent workflows designed for practical use cases.',
-  },
-];
+    return window.matchMedia(query).matches;
+  };
 
-function About() {
-  const [activeValue, setActiveValue] = useState(0);
-
-  const [isMobile, setIsMobile] = useState(
-    () =>
-      typeof window !== 'undefined' &&
-      window.matchMedia(
-        '(max-width: 768px)',
-      ).matches,
-  );
-
-  const [reducedMotion, setReducedMotion] =
-    useState(
-      () =>
-        typeof window !== 'undefined' &&
-        window.matchMedia(
-          '(prefers-reduced-motion: reduce)',
-        ).matches,
-    );
-
-  const selectorRefs = useRef([]);
+  const [matches, setMatches] = useState(getValue);
 
   useEffect(() => {
-    const mobileQuery = window.matchMedia(
-      '(max-width: 768px)',
-    );
+    if (typeof window === 'undefined') {
+      return undefined;
+    }
 
-    const motionQuery = window.matchMedia(
-      '(prefers-reduced-motion: reduce)',
-    );
+    const mediaQuery = window.matchMedia(query);
 
-    const handleMobileChange = (event) => {
-      setIsMobile(event.matches);
+    const handleChange = () => {
+      setMatches(mediaQuery.matches);
     };
 
-    const handleMotionChange = (event) => {
-      setReducedMotion(event.matches);
-    };
+    handleChange();
 
-    setIsMobile(mobileQuery.matches);
-    setReducedMotion(motionQuery.matches);
-
-    mobileQuery.addEventListener(
+    mediaQuery.addEventListener(
       'change',
-      handleMobileChange,
-    );
-
-    motionQuery.addEventListener(
-      'change',
-      handleMotionChange,
+      handleChange
     );
 
     return () => {
-      mobileQuery.removeEventListener(
+      mediaQuery.removeEventListener(
         'change',
-        handleMobileChange,
-      );
-
-      motionQuery.removeEventListener(
-        'change',
-        handleMotionChange,
+        handleChange
       );
     };
-  }, []);
+  }, [query]);
 
-  const selectedValue = values[activeValue];
+  return matches;
+}
 
-  const handleValueKeyDown = (
-    event,
-    index,
-  ) => {
-    let nextIndex = index;
+/* =========================================================
+   COUNT UP
+========================================================= */
 
-    switch (event.key) {
-      case 'ArrowDown':
-      case 'ArrowRight':
-        nextIndex =
-          (index + 1) % values.length;
-        break;
+function useCountUp(
+  target,
+  duration = 1800,
+  enabled = true
+) {
+  const [value, setValue] = useState(0);
 
-      case 'ArrowUp':
-      case 'ArrowLeft':
-        nextIndex =
-          (index - 1 + values.length) %
-          values.length;
-        break;
-
-      case 'Home':
-        nextIndex = 0;
-        break;
-
-      case 'End':
-        nextIndex = values.length - 1;
-        break;
-
-      default:
-        return;
+  useEffect(() => {
+    if (!enabled) {
+      setValue(target);
+      return undefined;
     }
 
-    event.preventDefault();
+    let animationFrame;
 
-    setActiveValue(nextIndex);
+    const startTime = performance.now();
 
-    requestAnimationFrame(() => {
-      selectorRefs.current[
-        nextIndex
-      ]?.focus();
-    });
-  };
+    const animate = (currentTime) => {
+      const elapsed =
+        currentTime - startTime;
+
+      const progress = Math.min(
+        elapsed / duration,
+        1
+      );
+
+      const eased =
+        1 -
+        Math.pow(
+          1 - progress,
+          3
+        );
+
+      setValue(
+        Math.round(
+          target * eased
+        )
+      );
+
+      if (progress < 1) {
+        animationFrame =
+          requestAnimationFrame(
+            animate
+          );
+      }
+    };
+
+    animationFrame =
+      requestAnimationFrame(
+        animate
+      );
+
+    return () => {
+      cancelAnimationFrame(
+        animationFrame
+      );
+    };
+  }, [
+    target,
+    duration,
+    enabled,
+  ]);
+
+  return value;
+}
+
+/* =========================================================
+   STAT CARD
+========================================================= */
+
+function StatCard({
+  target,
+  suffix = '',
+  label,
+  delay = 0,
+}) {
+  const reducedMotion =
+    useMediaQuery(
+      '(prefers-reduced-motion: reduce)'
+    );
+
+  const [started, setStarted] =
+    useState(reducedMotion);
+
+  const value = useCountUp(
+    target,
+    1800 + delay,
+    started
+  );
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setStarted(true);
+    }, delay);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [delay]);
 
   return (
-    <div className={styles.page}>
+    <div className={styles.statItem}>
+      <div className={styles.statValue}>
+        {value}
+        {suffix}
+      </div>
+
+      <div className={styles.statLabel}>
+        {label}
+      </div>
+    </div>
+  );
+}
+
+/* =========================================================
+   SECTION LABEL
+========================================================= */
+
+function SectionLabel({
+  number,
+  label,
+}) {
+  return (
+    <div className={styles.sectionLabel}>
+      {number && (
+        <span
+          className={
+            styles.sectionNumber
+          }
+        >
+          {number}
+        </span>
+      )}
+
+      <span
+        className={
+          styles.sectionLabelText
+        }
+      >
+        {label}
+      </span>
+
+      <span
+        className={
+          styles.sectionLabelLine
+        }
+      />
+    </div>
+  );
+}
+
+/* =========================================================
+   ABOUT PAGE
+========================================================= */
+
+function About() {
+  const isMobile = useMediaQuery(
+    '(max-width: 768px)'
+  );
+
+  const reducedMotion =
+    useMediaQuery(
+      '(prefers-reduced-motion: reduce)'
+    );
+
+  /* =======================================================
+     JOURNEY DATA
+  ======================================================= */
+
+  const journey = [
+    {
+      year: '2021',
+      number: '01',
+      title: 'Company Foundation',
+      description:
+        'Riyadvi Software Technologies was founded with a vision focused on delivering technology solutions for businesses.',
+    },
+    {
+      year: '2022',
+      number: '02',
+      title: 'Market Expansion',
+      description:
+        'The company expanded its service capabilities, including application development and digital marketing.',
+    },
+    {
+      year: '2023',
+      number: '03',
+      title: 'International Markets',
+      description:
+        'Riyadvi expanded into international markets and began working with clients beyond India, including Australia.',
+    },
+    {
+      year: '2024',
+      number: '04',
+      title: 'Global Recognition',
+      description:
+        "Riyadvi received the 'Star of Excellence' Award from the National Integrity Cultural Academy.",
+    },
+  ];
+
+  /* =======================================================
+     PRINCIPLES
+  ======================================================= */
+
+  const principles = [
+    {
+      number: '01',
+      title: 'Business First',
+      description:
+        'We start by understanding the business challenge, the people involved and the outcome that matters.',
+    },
+    {
+      number: '02',
+      title: 'Purposeful Technology',
+      description:
+        'We use technology to solve real problems and create meaningful opportunities.',
+    },
+    {
+      number: '03',
+      title: 'Human Experiences',
+      description:
+        'We design user-focused solutions that are simple, intuitive and impactful.',
+    },
+    {
+      number: '04',
+      title: 'Built to Evolve',
+      description:
+        'We build scalable solutions that adapt to new opportunities and future needs.',
+    },
+  ];
+
+  /* =======================================================
+     CAPABILITIES
+  ======================================================= */
+
+  const capabilities = [
+    {
+      number: '01',
+      title: 'Software Development',
+      description:
+        'Web platforms, business applications and scalable digital products.',
+    },
+    {
+      number: '02',
+      title: 'Digital Experiences',
+      description:
+        'User-focused interfaces and experiences designed around real needs.',
+    },
+    {
+      number: '03',
+      title: 'Immersive Technology',
+      description:
+        '3D, AR, VR and interactive experiences for engaging digital environments.',
+    },
+    {
+      number: '04',
+      title: 'AI & Intelligent Solutions',
+      description:
+        'AI-powered applications and intelligent workflows designed for practical use cases.',
+    },
+  ];
+
+  return (
+    <main className={styles.page}>
+
       {/* =====================================================
-          HERO
+          01 — HERO
       ===================================================== */}
 
-      <section className={styles.hero}>
-        <div className={styles.heroContent}>
-          <p className={styles.eyebrow}>
-            ABOUT RIYADVI
-          </p>
+      <section
+        className={`${styles.hero} ${styles.fullScreenSection}`}
+      >
+        <div className={styles.heroGrid} />
 
-          <h1>
-            Technology with a
+        <div className={styles.heroContent}>
+
+          <SectionLabel
+            label="ABOUT RIYADVI"
+          />
+
+          <h1 className={styles.heroTitle}>
+            Technology
+            <br />
+            with a
             <br />
             <span>purpose.</span>
           </h1>
 
-          <p className={styles.heroDescription}>
+          <p
+            className={
+              styles.heroDescription
+            }
+          >
             Riyadvi Software Technologies helps
             businesses turn ideas, challenges and
             opportunities into meaningful digital
             experiences.
           </p>
+
+          {/* =================================================
+              CORRECT FINAL NUMBERS
+          ================================================= */}
+
+          <div className={styles.statsGrid}>
+
+            <StatCard
+              target={700}
+              suffix="+"
+              label={
+                <>
+                  Completed
+                  <br />
+                  Project
+                </>
+              }
+              delay={0}
+            />
+
+            <StatCard
+              target={300}
+              suffix="+"
+              label={
+                <>
+                  Project
+                  <br />
+                  Progress
+                </>
+              }
+              delay={120}
+            />
+
+            <StatCard
+              target={1000}
+              suffix="+"
+              label={
+                <>
+                  Number Of
+                  <br />
+                  Clients
+                </>
+              }
+              delay={240}
+            />
+
+            <StatCard
+              target={100}
+              suffix="%"
+              label={
+                <>
+                  Client
+                  <br />
+                  Satisfaction
+                </>
+              }
+              delay={360}
+            />
+
+          </div>
         </div>
 
-        {/* =================================================
-            3D HERO EXPERIENCE
-        ================================================= */}
+        <div className={styles.heroScene}>
 
-        <div className={styles.heroVisual}>
-          <div className={styles.scene}>
-            <Suspense fallback={<ThreeSceneLoader label="Loading interactive experience" />}><AboutScene isMobile={isMobile} reducedMotion={reducedMotion} /></Suspense>
+          <Suspense
+            fallback={
+              <div
+                className={
+                  styles.sceneLoading
+                }
+              >
+                <span />
+                <span />
+                <span />
+              </div>
+            }
+          >
+            <AboutScene
+              isMobile={isMobile}
+              reducedMotion={
+                reducedMotion
+              }
+            />
+          </Suspense>
+
+          <div
+            className={
+              styles.sceneMeta
+            }
+          >
+            <span>
+              REAL-TIME
+            </span>
+
+            <span>
+              3D EXPERIENCE
+            </span>
           </div>
 
-          <div className={styles.visualLabel}>
-            SOFTWARE
-            <br />
-            TECHNOLOGIES
+        </div>
+      </section>
+
+      {/* =====================================================
+          02 — OUR JOURNEY
+      ===================================================== */}
+
+      <section
+        className={`${styles.journey} ${styles.fullScreenSection}`}
+      >
+        <div
+          className={
+            styles.sectionContainer
+          }
+        >
+
+          <div
+            className={
+              styles.journeyHeader
+            }
+          >
+
+            <SectionLabel
+              number="02"
+              label="OUR JOURNEY"
+            />
+
+            <span
+              className={
+                styles.journeyMeta
+              }
+            >
+              A JOURNEY OF GROWTH,
+              INNOVATION AND IMPACT
+            </span>
+
+          </div>
+
+          <div
+            className={
+              styles.journeyTimeline
+            }
+          >
+
+            <div
+              className={
+                styles.timelineLine
+              }
+            />
+
+            {journey.map(
+              (item) => (
+                <article
+                  className={
+                    styles.journeyItem
+                  }
+                  key={item.year}
+                >
+
+                  <div
+                    className={
+                      styles.journeyTop
+                    }
+                  >
+
+                    <span
+                      className={
+                        styles.timelineDot
+                      }
+                    />
+
+                    <span
+                      className={
+                        styles.journeyYear
+                      }
+                    >
+                      {item.year}
+                    </span>
+
+                  </div>
+
+                  <div
+                    className={
+                      styles.journeyBody
+                    }
+                  >
+
+                    <span
+                      className={
+                        styles.journeyNumber
+                      }
+                    >
+                      {item.number}
+                    </span>
+
+                    <h2>
+                      {item.title}
+                    </h2>
+
+                    <p>
+                      {item.description}
+                    </p>
+
+                  </div>
+
+                </article>
+              )
+            )}
+
           </div>
         </div>
       </section>
 
       {/* =====================================================
-          STORY
+          03 — OUR VISION
       ===================================================== */}
 
-      <section className={styles.story}>
-        <div className={styles.sectionLabel}>
-          <span>01</span>
+      <section
+        className={`${styles.vision} ${styles.fullScreenSection}`}
+      >
 
-          <p>OUR STORY</p>
-        </div>
+        <div
+          className={
+            styles.splitSection
+          }
+        >
 
-        <div className={styles.storyContent}>
-          <h2>
-            We believe technology should solve
-            problems, not create them.
-          </h2>
+          <div
+            className={
+              styles.splitContent
+            }
+          >
 
-          <p>
-            Businesses today operate in an
-            increasingly digital environment. The
-            right technology can simplify operations,
-            create better customer experiences and
-            open new opportunities for growth.
-          </p>
+            <SectionLabel
+              label="OUR VISION"
+            />
 
-          <p>
-            Riyadvi brings together software
-            development, digital strategy, design and
-            emerging technologies to create solutions
-            around real business needs.
-          </p>
-        </div>
-      </section>
+            <h2
+              className={
+                styles.splitTitle
+              }
+            >
+              Build digital experiences
+              <br />
+              that create{' '}
+              <span>
+                lasting value.
+              </span>
+            </h2>
 
-      {/* =====================================================
-          COMPANY JOURNEY
-      ===================================================== */}
-
-      <section className={styles.timelineSection}>
-        <div className={styles.timelineHeader}>
-          <div className={styles.sectionLabel}>
-            <span>02</span>
-
-            <p>OUR JOURNEY</p>
-          </div>
-
-          <div className={styles.timelineIntro}>
-            <p className={styles.eyebrow}>
-              SINCE 2021
+            <p
+              className={
+                styles.splitDescription
+              }
+            >
+              To be a global technology
+              partner known for innovation,
+              quality and meaningful impact.
             </p>
 
-            <h2>
-              From a technology vision
+          </div>
+
+          <div
+            className={
+              styles.waveVisual
+            }
+          >
+
+            {/* FIXED JSX CLASS NAMES */}
+
+            <div
+              className={`${styles.wave} ${styles.waveOne}`}
+            />
+
+            <div
+              className={`${styles.wave} ${styles.waveTwo}`}
+            />
+
+            <div
+              className={`${styles.wave} ${styles.waveThree}`}
+            />
+
+            <div
+              className={`${styles.wave} ${styles.waveFour}`}
+            />
+
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* =====================================================
+          04 — OUR MISSION
+      ===================================================== */}
+
+      <section
+        className={`${styles.mission} ${styles.fullScreenSection}`}
+      >
+
+        <div
+          className={
+            styles.splitSection
+          }
+        >
+
+          <div
+            className={
+              styles.splitContent
+            }
+          >
+
+            <SectionLabel
+              label="OUR MISSION"
+            />
+
+            <h2
+              className={
+                styles.splitTitle
+              }
+            >
+              Help businesses use
               <br />
-              to a growing digital partner.
+              technology to
+              <br />
+              transform, scale and grow.
+            </h2>
+
+            <p
+              className={
+                styles.splitDescription
+              }
+            >
+              We create practical,
+              innovative and people-focused
+              technology solutions that solve
+              real business problems.
+            </p>
+
+          </div>
+
+          <div
+            className={
+              styles.missionVisual
+            }
+          >
+
+            {/* FIXED JSX CLASS NAMES */}
+
+            <div
+              className={`${styles.missionRing} ${styles.ringOne}`}
+            />
+
+            <div
+              className={`${styles.missionRing} ${styles.ringTwo}`}
+            />
+
+            <div
+              className={`${styles.missionRing} ${styles.ringThree}`}
+            />
+
+            <div
+              className={
+                styles.missionGlow
+              }
+            />
+
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* =====================================================
+          05 — WHAT GUIDES US
+      ===================================================== */}
+
+      <section
+        className={`${styles.principles} ${styles.fullScreenSection}`}
+      >
+
+        <div
+          className={
+            styles.principlesLayout
+          }
+        >
+
+          {/* LEFT */}
+
+          <div
+            className={
+              styles.principlesIntro
+            }
+          >
+
+            <SectionLabel
+              number="03"
+              label="WHAT GUIDES US"
+            />
+
+            <h2
+              className={
+                styles.principlesTitle
+              }
+            >
+              Principles behind
+              <br />
+              <span>
+                every solution.
+              </span>
             </h2>
 
             <p>
-              Riyadvi's journey has evolved through
-              new capabilities, wider markets and
-              continued focus on creating meaningful
-              technology solutions for businesses.
+              Our work is built on strong
+              values that shape how we think,
+              design and deliver technology
+              solutions.
             </p>
+
           </div>
-        </div>
 
-        <div className={styles.timeline}>
-          {milestones.map(
-            (milestone, index) => (
-              <article
-                key={milestone.year}
-                className={styles.timelineItem}
-              >
-                <div className={styles.timelineYear}>
-                  {milestone.year}
-                </div>
+          {/* CENTER */}
 
-                <div
-                  className={styles.timelineTrack}
-                  aria-hidden="true"
-                >
-                  <span
-                    className={
-                      styles.timelineMarker
-                    }
-                  />
-                </div>
+          <div
+            className={
+              styles.principlesVisual
+            }
+          >
 
-                <div
-                  className={styles.timelineContent}
-                >
-                  <p
-                    className={
-                      styles.timelineIndex
-                    }
-                  >
-                    {String(index + 1).padStart(
-                      2,
-                      '0',
-                    )}
-                  </p>
-
-                  <h3>
-                    {milestone.title}
-                  </h3>
-
-                  <p>
-                    {milestone.description}
-                  </p>
-
-                  {milestone.recognition && (
-                    <span
-                      className={
-                        styles.recognitionBadge
-                      }
-                    >
-                      GLOBAL RECOGNITION
-                    </span>
-                  )}
-                </div>
-              </article>
-            ),
-          )}
-        </div>
-      </section>
-
-      {/* =====================================================
-          VISION / MISSION
-      ===================================================== */}
-
-      <section className={styles.direction}>
-        <div className={styles.directionCard}>
-          <p className={styles.eyebrow}>
-            OUR VISION
-          </p>
-
-          <h2>
-            Build digital experiences that create
-            lasting value.
-          </h2>
-        </div>
-
-        <div className={styles.directionCard}>
-          <p className={styles.eyebrow}>
-            OUR MISSION
-          </p>
-
-          <h2>
-            Help businesses use technology to
-            transform, scale and grow.
-          </h2>
-        </div>
-      </section>
-
-      {/* =====================================================
-          INTERACTIVE VALUES
-      ===================================================== */}
-
-      <section className={styles.values}>
-        <div className={styles.sectionIntro}>
-          <p className={styles.eyebrow}>
-            WHAT GUIDES US
-          </p>
-
-          <h2>
-            Principles behind
-            <br />
-            every solution.
-          </h2>
-        </div>
-
-        <div className={styles.valuesExperience}>
-          {/* -------------------------------------------------
-              VALUES VISUAL
-          ------------------------------------------------- */}
-
-          <div className={styles.valuesVisual}>
             <div
-              className={styles.valuesOrb}
-              aria-hidden="true"
+              className={
+                styles.principlesGrid
+              }
+            />
+
+            <div
+              className={
+                styles.principleCore
+              }
             >
+
+              {/* FIXED JSX CLASS NAMES */}
+
+              <div
+                className={`${styles.coreRing} ${styles.coreRingOne}`}
+              />
+
+              <div
+                className={`${styles.coreRing} ${styles.coreRingTwo}`}
+              />
+
+              <div
+                className={`${styles.coreRing} ${styles.coreRingThree}`}
+              />
+
               <div
                 className={
-                  styles.valuesOrbInner
+                  styles.coreCenter
                 }
               >
                 <span>
-                  {selectedValue.number}
+                  01
                 </span>
               </div>
+
+              <div
+                className={`${styles.coreOrbitalDot} ${styles.dotOne}`}
+              />
+
+              <div
+                className={`${styles.coreOrbitalDot} ${styles.dotTwo}`}
+              />
+
+              <div
+                className={`${styles.coreOrbitalDot} ${styles.dotThree}`}
+              />
+
             </div>
 
-            <div className={styles.valuesMeta}>
-              <span>RIYADVI</span>
-              <span>PRINCIPLES</span>
-            </div>
-          </div>
-
-          {/* -------------------------------------------------
-              VALUES CONTENT
-          ------------------------------------------------- */}
-
-          <div className={styles.valuesContent}>
-            <div className={styles.valuesHeader}>
-              <span>
-                {selectedValue.number}
-              </span>
-
-              <span>
-                {String(activeValue + 1).padStart(
-                  2,
-                  '0',
-                )}
-                {' / '}
-                {String(values.length).padStart(
-                  2,
-                  '0',
-                )}
-              </span>
-            </div>
-
-            <div className={styles.valuesCopy}>
-              <p className={styles.smallLabel}>
-                PRINCIPLE{' '}
-                {selectedValue.number}
-              </p>
-
-              <h3 key={selectedValue.number}>
-                {selectedValue.title}
-              </h3>
-
-              <p
-                key={`${selectedValue.number}-description`}
-              >
-                {selectedValue.description}
-              </p>
-            </div>
-
-            <div
-              className={styles.valueSelector}
-              role="tablist"
-              aria-label="Riyadvi principles"
+            <span
+              className={
+                styles.principlesBrand
+              }
             >
-              {values.map(
-                (value, index) => {
-                  const isActive =
-                    index === activeValue;
+              RIYADVI
+            </span>
 
-                  return (
-                    <button
-                      key={value.number}
-                      ref={(element) => {
-                        selectorRefs.current[
-                          index
-                        ] = element;
-                      }}
-                      type="button"
-                      role="tab"
-                      aria-selected={isActive}
-                      tabIndex={
-                        isActive ? 0 : -1
-                      }
-                      className={`${styles.valueButton} ${
-                        isActive
-                          ? styles.valueButtonActive
-                          : ''
-                      }`}
-                      onClick={() =>
-                        setActiveValue(index)
-                      }
-                      onKeyDown={(event) =>
-                        handleValueKeyDown(
-                          event,
-                          index,
-                        )
-                      }
-                    >
-                      <span>
-                        {value.number}
-                      </span>
+            <span
+              className={
+                styles.principlesText
+              }
+            >
+              PRINCIPLES
+            </span>
 
-                      <strong>
-                        {value.title}
-                      </strong>
-
-                      <span
-                        aria-hidden="true"
-                      >
-                        →
-                      </span>
-                    </button>
-                  );
-                },
-              )}
-            </div>
           </div>
+
+          {/* RIGHT */}
+
+          <div
+            className={
+              styles.principlesList
+            }
+          >
+
+            {principles.map(
+              (item) => (
+                <article
+                  className={
+                    styles.principleItem
+                  }
+                  key={item.number}
+                >
+
+                  <div
+                    className={
+                      styles.principleItemNumber
+                    }
+                  >
+                    {item.number}
+                  </div>
+
+                  <div
+                    className={
+                      styles.principleItemMain
+                    }
+                  >
+
+                    <h3>
+                      {item.title}
+                    </h3>
+
+                    <p>
+                      {item.description}
+                    </p>
+
+                  </div>
+
+                  <span
+                    className={
+                      styles.principleArrow
+                    }
+                  >
+                    →
+                  </span>
+
+                </article>
+              )
+            )}
+
+          </div>
+
         </div>
+
       </section>
 
       {/* =====================================================
-          CAPABILITIES
+          06 — WHAT WE DO
       ===================================================== */}
 
-      <section className={styles.capabilities}>
-        <div className={styles.sectionLabel}>
-          <span>03</span>
+      <section
+        className={`${styles.capabilities} ${styles.fullScreenSection}`}
+      >
 
-          <p>WHAT WE DO</p>
-        </div>
+        <div
+          className={
+            styles.capabilitiesLayout
+          }
+        >
 
-        <div className={styles.capabilityContent}>
-          <div className={styles.capabilityIntro}>
-            <p className={styles.eyebrow}>
-              OUR CAPABILITIES
-            </p>
+          <div
+            className={
+              styles.capabilitiesSide
+            }
+          >
 
-            <h2>
+            <SectionLabel
+              number="04"
+              label="WHAT WE DO"
+            />
+
+          </div>
+
+          <div
+            className={
+              styles.capabilitiesMain
+            }
+          >
+
+            <SectionLabel
+              label="OUR CAPABILITIES"
+            />
+
+            <h2
+              className={
+                styles.capabilitiesTitle
+              }
+            >
               Technology built around
               <br />
               business needs.
             </h2>
-          </div>
 
-          <div className={styles.capabilityList}>
-            {capabilities.map(
-              (capability) => (
-                <article
-                  key={capability.number}
-                  className={
-                    styles.capabilityItem
-                  }
-                >
-                  <span>
-                    {capability.number}
-                  </span>
+            <div
+              className={
+                styles.capabilityList
+              }
+            >
 
-                  <div>
-                    <h3>
-                      {capability.title}
-                    </h3>
-
-                    <p>
-                      {capability.description}
-                    </p>
-                  </div>
-
-                  <span
-                    aria-hidden="true"
+              {capabilities.map(
+                (item) => (
+                  <article
+                    className={
+                      styles.capabilityItem
+                    }
+                    key={item.number}
                   >
-                    ↗
-                  </span>
-                </article>
-              ),
-            )}
+
+                    <span
+                      className={
+                        styles.capabilityNumber
+                      }
+                    >
+                      {item.number}
+                    </span>
+
+                    <div>
+
+                      <h3>
+                        {item.title}
+                      </h3>
+
+                      <p>
+                        {item.description}
+                      </p>
+
+                    </div>
+
+                    <span
+                      className={
+                        styles.capabilityArrow
+                      }
+                    >
+                      ↗
+                    </span>
+
+                  </article>
+                )
+              )}
+
+            </div>
+
           </div>
+
         </div>
+
       </section>
 
       {/* =====================================================
-          CTA
+          07 — LET'S BUILD SOMETHING
       ===================================================== */}
 
-      <section className={styles.cta}>
-        <p className={styles.eyebrow}>
-          LET'S BUILD SOMETHING
-        </p>
+      <section
+        className={`${styles.cta} ${styles.fullScreenSection}`}
+      >
 
-        <h2>
-          Have an idea?
-          <br />
-          <span>Let's talk.</span>
-        </h2>
+        <div
+          className={
+            styles.ctaGlow
+          }
+        />
 
-        <p>
-          Tell us about your business challenge,
-          digital idea or next technology initiative.
-          We'll start by understanding what you need.
-        </p>
-
-        <Link
-          to="/contact"
-          className={styles.ctaButton}
+        <div
+          className={
+            styles.ctaContent
+          }
         >
-          <span>
-            Book a Free Consultation
-          </span>
 
-          <span aria-hidden="true">
-            ↗
-          </span>
-        </Link>
+          <SectionLabel
+            label="LET'S BUILD SOMETHING"
+          />
+
+          <h2
+            className={
+              styles.ctaTitle
+            }
+          >
+            Have an idea?
+            <br />
+            <span>
+              Let's talk.
+            </span>
+          </h2>
+
+          <p
+            className={
+              styles.ctaDescription
+            }
+          >
+            Tell us about your business
+            challenge, digital idea or next
+            technology initiative. We'll start
+            by understanding what you need.
+          </p>
+
+          <Link
+            to="/contact"
+            className={
+              styles.ctaButton
+            }
+          >
+
+            <span>
+              Book a Free Consultation
+            </span>
+
+            <span
+              className={
+                styles.ctaArrow
+              }
+            >
+              →
+            </span>
+
+          </Link>
+
+        </div>
+
       </section>
-    </div>
+
+    </main>
   );
 }
 

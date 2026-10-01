@@ -1,365 +1,956 @@
-/* =========================================================
-   CONTACT PAGE
-   Riyadvi Software Technologies
-========================================================= */
-
 .page {
-  min-height: 100vh;
+  --gold: #d4af37;
+  --gold-light: #f4d56a;
+  --gold-dark: #8d711c;
+  --black: #000000;
+  --surface: #080808;
+  --surface-soft: #0d0d0d;
+  --border: rgba(212, 175, 55, 0.22);
+  --muted: #8e8e8e;
+  --text-soft: #a7a7a7;
 
+  min-height: 100vh;
   background: #000;
   color: #fff;
+  overflow: hidden;
 }
+
 
 /* =========================================================
    HERO
 ========================================================= */
 
 .hero {
-  padding: 5rem var(--page-padding) 6rem;
-
-  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  position: relative;
+  min-height: calc(100svh - 82px);
+  padding: 34px 48px 28px;
+  background:
+    radial-gradient(
+      circle at 78% 46%,
+      rgba(212, 175, 55, 0.08),
+      transparent 27%
+    ),
+    radial-gradient(
+      circle at 16% 35%,
+      rgba(212, 175, 55, 0.045),
+      transparent 24%
+    ),
+    #000;
+  overflow: hidden;
 }
 
-.heroInner {
-  width: min(1100px, 100%);
+
+/* subtle grid */
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size: 58px 58px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      black 0%,
+      rgba(0, 0, 0, 0.7) 65%,
+      transparent 100%
+    );
+}
+
+
+/* =========================================================
+   HERO GRID
+========================================================= */
+
+.heroGrid {
+  position: relative;
+  z-index: 1;
+
+  width: min(100%, 1400px);
+  min-height: calc(100svh - 140px);
 
   margin: 0 auto;
+
+  display: grid;
+  grid-template-columns:
+    minmax(0, 0.96fr)
+    minmax(500px, 1.04fr);
+
+  align-items: center;
+  gap: 30px;
 }
 
-.eyebrow,
-.sectionLabel {
-  margin: 0 0 1.5rem;
 
-  color: #d4af37;
+/* =========================================================
+   HERO CONTENT
+========================================================= */
 
-  font-size: 0.72rem;
-  font-weight: 600;
-  line-height: 1.4;
+.heroContent {
+  position: relative;
+  z-index: 3;
 
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  max-width: 690px;
+
+  padding-top: 4px;
 }
 
-.title {
-  max-width: 900px;
 
+/* =========================================================
+   EYEBROW
+========================================================= */
+
+.heroEyebrow {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  margin-bottom: 27px;
+
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  line-height: 1;
+}
+
+.eyebrowLine {
+  width: 52px;
+  height: 1px;
+  background: var(--gold);
+  flex: 0 0 auto;
+}
+
+
+/* =========================================================
+   MAIN HEADING
+========================================================= */
+
+.heroTitle {
   margin: 0;
 
-  font-size: clamp(3rem, 7vw, 7rem);
+  max-width: 680px;
+
+  font-size: clamp(
+    54px,
+    5.45vw,
+    82px
+  );
+
+  font-weight: 500;
+
+  line-height: 0.94;
+
+  letter-spacing: -0.055em;
+
+  color: #f5f5f5;
+}
+
+.heroTitle span {
+  display: block;
+}
+
+.heroTitleAccent {
+  color: var(--gold);
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.heroDescription {
+  max-width: 590px;
+
+  margin: 31px 0 0;
+
+  color: #a8b5c0;
+
+  font-size: 18px;
+
+  line-height: 1.65;
+
+  letter-spacing: -0.01em;
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  max-width: 720px;
+
+  margin-top: 45px;
+}
+
+.stat {
+  min-width: 0;
+
+  padding:
+    0 18px;
+
+  border-left:
+    1px solid
+    rgba(212, 175, 55, 0.42);
+}
+
+.stat:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.stat strong {
+  display: block;
+
+  color: var(--gold);
+
+  font-size: clamp(
+    30px,
+    2.6vw,
+    42px
+  );
+
+  font-weight: 500;
+
+  line-height: 1;
+
+  letter-spacing: -0.04em;
+}
+
+.stat span {
+  display: block;
+
+  margin-top: 10px;
+
+  color: #8c8c8c;
+
+  font-size: 9px;
+
+  line-height: 1.5;
+
   font-weight: 600;
-  line-height: 0.98;
-  letter-spacing: -0.045em;
+
+  letter-spacing: 0.16em;
 }
 
-.description {
-  max-width: 650px;
 
-  margin: 2.25rem 0 0;
+/* =========================================================
+   HERO FOOTER
+========================================================= */
 
-  color: rgba(255, 255, 255, 0.62);
+.heroFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-  font-size: clamp(1rem, 1.5vw, 1.25rem);
-  line-height: 1.7;
+  max-width: 720px;
+
+  margin-top: 34px;
+
+  padding-top: 16px;
+
+  border-top:
+    1px solid
+    rgba(212, 175, 55, 0.22);
+
+  color: #5f6870;
+
+  font-size: 8px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.17em;
 }
+
+
+/* =========================================================
+   3D VISUAL
+========================================================= */
+
+.heroVisual {
+  position: relative;
+
+  width: 100%;
+  height: min(
+    76vh,
+    650px
+  );
+
+  min-height: 500px;
+}
+
+.visualFrame {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(212, 175, 55, 0.26);
+
+  background:
+    radial-gradient(
+      circle at 50% 52%,
+      rgba(212, 175, 55, 0.075),
+      transparent 35%
+    ),
+    rgba(5, 5, 5, 0.34);
+
+  box-shadow:
+    inset 0 0 90px
+    rgba(212, 175, 55, 0.025);
+}
+
+
+/* =========================================================
+   3D FRAME CORNERS
+========================================================= */
+
+.frameCorner {
+  position: absolute;
+
+  width: 27px;
+  height: 27px;
+
+  z-index: 5;
+
+  pointer-events: none;
+}
+
+.frameTopLeft {
+  top: 20px;
+  left: 20px;
+
+  border-top:
+    1px solid var(--gold);
+
+  border-left:
+    1px solid var(--gold);
+}
+
+.frameTopRight {
+  top: 20px;
+  right: 20px;
+
+  border-top:
+    1px solid var(--gold);
+
+  border-right:
+    1px solid var(--gold);
+}
+
+.frameBottomLeft {
+  bottom: 20px;
+  left: 20px;
+
+  border-bottom:
+    1px solid var(--gold);
+
+  border-left:
+    1px solid var(--gold);
+}
+
+.frameBottomRight {
+  bottom: 20px;
+  right: 20px;
+
+  border-bottom:
+    1px solid var(--gold);
+
+  border-right:
+    1px solid var(--gold);
+}
+
+
+/* =========================================================
+   VISUAL HEADER
+========================================================= */
+
+.visualHeader {
+  position: absolute;
+
+  top: 18px;
+  left: 20px;
+  right: 20px;
+
+  z-index: 6;
+
+  display: flex;
+  justify-content: space-between;
+
+  color: #60666a;
+
+  font-size: 8px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.18em;
+}
+
+
+/* =========================================================
+   SCENE
+========================================================= */
+
+.heroVisual canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+
+/* =========================================================
+   VISUAL LABELS
+========================================================= */
+
+.visualLabel {
+  position: absolute;
+
+  z-index: 6;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: var(--gold);
+
+  font-size: 8px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.16em;
+
+  pointer-events: none;
+}
+
+.visualLabel span {
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: var(--gold);
+
+  box-shadow:
+    0 0 10px
+    rgba(212, 175, 55, 0.8);
+}
+
+.labelIdeas {
+  top: 19%;
+  left: 14%;
+}
+
+.labelTechnology {
+  top: 19%;
+  right: 13%;
+}
+
+.labelSolutions {
+  bottom: 20%;
+  left: 13%;
+}
+
+.labelGrowth {
+  bottom: 20%;
+  right: 13%;
+}
+
+
+/* =========================================================
+   VISUAL FOOTER
+========================================================= */
+
+.visualFooter {
+  position: absolute;
+
+  bottom: 17px;
+  left: 20px;
+  right: 20px;
+
+  z-index: 6;
+
+  display: flex;
+  justify-content: space-between;
+
+  color: #565b5f;
+
+  font-size: 7px;
+
+  letter-spacing: 0.16em;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.sceneLoading {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  color: var(--gold);
+
+  font-size: 9px;
+
+  letter-spacing: 0.16em;
+}
+
+.sceneLoading span {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: var(--gold);
+
+  animation:
+    scenePulse
+    1.2s ease-in-out infinite;
+}
+
+@keyframes scenePulse {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.7);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 
 /* =========================================================
    CONTACT SECTION
 ========================================================= */
 
 .contactSection {
-  padding: 7rem var(--page-padding) 9rem;
-}
+  position: relative;
 
-.contactGrid {
-  width: min(1200px, 100%);
+  max-width: 1400px;
 
   margin: 0 auto;
 
+  padding:
+    130px 48px
+    150px;
+}
+
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.sectionHeader {
   display: grid;
 
   grid-template-columns:
-    minmax(0, 0.85fr)
-    minmax(420px, 1.15fr);
+    minmax(0, 1fr)
+    minmax(320px, 0.7fr);
 
-  gap: clamp(4rem, 9vw, 8.75rem);
+  gap: 90px;
 
-  align-items: start;
+  align-items: end;
+
+  padding-bottom: 60px;
+
+  border-bottom:
+    1px solid
+    rgba(255, 255, 255, 0.1);
 }
+
+.sectionLabel {
+  margin: 0 0 22px;
+
+  color: var(--gold);
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.22em;
+}
+
+.sectionHeader h2 {
+  margin: 0;
+
+  color: #f5f5f5;
+
+  font-size: clamp(
+    48px,
+    5vw,
+    76px
+  );
+
+  font-weight: 500;
+
+  line-height: 0.95;
+
+  letter-spacing: -0.055em;
+}
+
+.sectionHeader h2 span {
+  color: var(--gold);
+}
+
+.sectionIntro {
+  margin: 0;
+
+  color: #89939b;
+
+  font-size: 17px;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   CONTACT GRID
+========================================================= */
+
+.contactGrid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 0.82fr)
+    minmax(520px, 1.18fr);
+
+  gap: 90px;
+
+  padding-top: 75px;
+}
+
 
 /* =========================================================
    INFORMATION
 ========================================================= */
 
 .info {
-  padding-top: 1.25rem;
+  min-width: 0;
 }
-
-.infoTitle {
-  margin: 0;
-
-  font-size: clamp(2rem, 4vw, 4rem);
-  font-weight: 500;
-  line-height: 1.05;
-  letter-spacing: -0.035em;
-}
-
-.infoText {
-  max-width: 500px;
-
-  margin: 1.75rem 0 0;
-
-  color: rgba(255, 255, 255, 0.58);
-
-  font-size: 1rem;
-  line-height: 1.8;
-}
-
-/* =========================================================
-   CONTACT DETAILS
-========================================================= */
 
 .contactDetails {
-  display: flex;
-  flex-direction: column;
+  display: grid;
 
-  gap: 1.5rem;
-
-  margin-top: 3rem;
-  padding: 1.75rem 0;
-
-  border-top: 1px solid rgba(212, 175, 55, 0.25);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  gap: 34px;
 }
 
 .contactDetail {
-  display: flex;
-  flex-direction: column;
+  padding-bottom: 28px;
 
-  gap: 0.45rem;
+  border-bottom:
+    1px solid
+    rgba(255, 255, 255, 0.09);
 }
 
 .contactDetailLabel {
-  margin: 0;
+  margin: 0 0 12px;
 
-  color: #d4af37;
+  color: var(--gold);
 
-  font-size: 0.68rem;
-  font-weight: 600;
-  line-height: 1.4;
+  font-size: 9px;
 
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  font-weight: 700;
+
+  letter-spacing: 0.18em;
 }
 
-.contactDetailText {
-  max-width: 520px;
-
-  margin: 0;
-
-  color: rgba(255, 255, 255, 0.72);
-
-  font-size: 0.92rem;
-  font-style: normal;
-  line-height: 1.7;
-}
-
+.contactDetailText,
 .contactDetailLink {
-  width: fit-content;
+  color: #a5b1ba;
 
-  color: rgba(255, 255, 255, 0.72);
+  font-size: 15px;
 
-  font-size: 0.92rem;
-  line-height: 1.7;
+  line-height: 1.75;
 
   text-decoration: none;
-
-  transition:
-    color 0.25s ease,
-    opacity 0.25s ease;
 }
 
 .contactDetailLink:hover {
-  color: #d4af37;
+  color: var(--gold);
 }
 
+
 /* =========================================================
-   PROCESS / INFO ITEMS
+   PROCESS ITEMS
 ========================================================= */
 
 .infoItems {
-  margin-top: 4.375rem;
-
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  margin-top: 50px;
 }
 
 .infoItem {
   display: grid;
 
-  grid-template-columns: 50px minmax(0, 1fr);
+  grid-template-columns: 55px 1fr;
 
-  gap: 1.5rem;
+  gap: 20px;
 
-  padding: 1.75rem 0;
+  padding:
+    25px 0;
 
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-
-  transition:
-    padding-left 250ms ease,
-    background-color 250ms ease;
-}
-
-.infoItem:hover {
-  padding-left: 0.5rem;
-
-  background: rgba(255, 255, 255, 0.015);
+  border-bottom:
+    1px solid
+    rgba(255, 255, 255, 0.09);
 }
 
 .infoNumber {
-  color: #d4af37;
+  color: var(--gold);
 
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 10px;
 
-  letter-spacing: 0.08em;
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
 }
 
 .infoItem h3 {
-  margin: 0;
+  margin: 0 0 8px;
 
-  font-size: 1rem;
-  font-weight: 600;
+  color: #fff;
+
+  font-size: 18px;
+
+  font-weight: 500;
 }
 
 .infoItem p {
-  margin: 0.5rem 0 0;
+  margin: 0;
 
-  color: rgba(255, 255, 255, 0.5);
+  color: #737e87;
 
-  font-size: 0.9rem;
+  font-size: 14px;
+
   line-height: 1.6;
 }
 
+
 /* =========================================================
-   FORM WRAPPER
+   FORM
 ========================================================= */
 
 .formWrapper {
-  padding: clamp(1.75rem, 4vw, 3rem);
+  position: relative;
 
-  border: 1px solid rgba(212, 175, 55, 0.2);
+  padding: 52px 48px;
+
+  border:
+    1px solid
+    rgba(212, 175, 55, 0.25);
 
   background:
     linear-gradient(
       145deg,
-      rgba(255, 255, 255, 0.055),
-      rgba(255, 255, 255, 0.015)
+      rgba(255, 255, 255, 0.025),
+      rgba(255, 255, 255, 0.008)
     );
 
-  backdrop-filter: blur(18px);
+  overflow: hidden;
+}
+
+.formWrapper::before {
+  content: '';
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at 80% 10%,
+      rgba(212, 175, 55, 0.07),
+      transparent 28%
+    );
+
+  pointer-events: none;
+}
+
+.formCornerTopLeft,
+.formCornerTopRight,
+.formCornerBottomLeft,
+.formCornerBottomRight {
+  position: absolute;
+
+  width: 18px;
+  height: 18px;
+
+  border-color: var(--gold);
+
+  border-style: solid;
+
+  opacity: 0.8;
+}
+
+.formCornerTopLeft {
+  top: 14px;
+  left: 14px;
+
+  border-width: 1px 0 0 1px;
+}
+
+.formCornerTopRight {
+  top: 14px;
+  right: 14px;
+
+  border-width: 1px 1px 0 0;
+}
+
+.formCornerBottomLeft {
+  bottom: 14px;
+  left: 14px;
+
+  border-width: 0 0 1px 1px;
+}
+
+.formCornerBottomRight {
+  bottom: 14px;
+  right: 14px;
+
+  border-width: 0 1px 1px 0;
+}
+
+.formHeader {
+  position: relative;
+  z-index: 1;
+
+  margin-bottom: 40px;
+}
+
+.formHeader .sectionLabel {
+  margin-bottom: 17px;
 }
 
 .formHeader h2 {
   margin: 0;
 
-  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  color: #f4f4f4;
+
+  font-size: clamp(
+    34px,
+    3.5vw,
+    52px
+  );
+
   font-weight: 500;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
+
+  line-height: 1;
+
+  letter-spacing: -0.045em;
 }
 
 .formHeader > p:last-child {
-  max-width: 520px;
+  max-width: 570px;
 
-  margin: 1rem 0 0;
+  margin: 18px 0 0;
 
-  color: rgba(255, 255, 255, 0.52);
+  color: #777f86;
 
-  line-height: 1.7;
+  font-size: 14px;
+
+  line-height: 1.6;
 }
+
 
 /* =========================================================
    FORM
 ========================================================= */
 
 .form {
+  position: relative;
+  z-index: 1;
+
   display: flex;
+
   flex-direction: column;
 
-  gap: 1.5rem;
-
-  margin-top: 2.625rem;
-}
-
-.row {
-  display: grid;
-
-  grid-template-columns: 1fr 1fr;
-
-  gap: 1.25rem;
+  gap: 25px;
 }
 
 .field {
   display: flex;
+
   flex-direction: column;
 
-  gap: 0.55rem;
+  gap: 9px;
 }
 
 .field label {
-  color: rgba(255, 255, 255, 0.78);
+  color: #b5b5b5;
 
-  font-size: 0.82rem;
-  font-weight: 500;
+  font-size: 12px;
+
+  font-weight: 600;
 }
 
 .field label span {
-  color: #d4af37;
-}
+  color: var(--gold);
 
-/* =========================================================
-   INPUTS
-========================================================= */
+  margin-left: 3px;
+}
 
 .field input,
 .field select,
 .field textarea {
   width: 100%;
 
-  box-sizing: border-box;
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.14);
 
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: #101010;
+
+  color: #f4f4f4;
+
+  padding:
+    16px;
+
   outline: none;
-  border-radius: 0;
 
-  background: rgba(255, 255, 255, 0.035);
+  font-family: inherit;
 
-  color: #fff;
-
-  font: inherit;
-  line-height: 1.5;
-
-  padding: 0.9rem 1rem;
+  font-size: 14px;
 
   transition:
     border-color 0.25s ease,
-    background-color 0.25s ease,
-    box-shadow 0.25s ease;
+    box-shadow 0.25s ease,
+    background 0.25s ease;
 }
 
-.field input::placeholder,
-.field textarea::placeholder {
-  color: rgba(255, 255, 255, 0.3);
-}
-
+.field input,
 .field select {
-  appearance: none;
-
-  cursor: pointer;
-}
-
-.field select option {
-  background: #111;
-  color: #fff;
+  min-height: 53px;
 }
 
 .field textarea {
@@ -368,307 +959,511 @@
   resize: vertical;
 }
 
-.field input:hover,
-.field select:hover,
-.field textarea:hover {
-  border-color: rgba(255, 255, 255, 0.25);
+.field input::placeholder,
+.field textarea::placeholder {
+  color: #555;
 }
 
 .field input:focus,
 .field select:focus,
 .field textarea:focus {
-  border-color: rgba(212, 175, 55, 0.75);
+  border-color:
+    rgba(212, 175, 55, 0.72);
 
-  background: rgba(212, 175, 55, 0.035);
+  background: #131313;
+
+  box-shadow:
+    0 0 0 1px
+    rgba(212, 175, 55, 0.12);
 }
 
-.field input:focus-visible,
-.field select:focus-visible,
-.field textarea:focus-visible {
-  outline: 2px solid rgba(212, 175, 55, 0.35);
-
-  outline-offset: 2px;
+.field select {
+  cursor: pointer;
 }
 
-.field input[aria-invalid='true'],
-.field select[aria-invalid='true'],
-.field textarea[aria-invalid='true'] {
-  border-color: rgba(232, 160, 160, 0.75);
+.field select option {
+  background: #111;
+  color: #fff;
 }
 
-/* =========================================================
-   VALIDATION
-========================================================= */
+.row {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 18px;
+}
 
 .fieldError {
   margin: 0;
 
-  color: #e8a0a0;
+  color: #e89c9c;
 
-  font-size: 0.78rem;
-  line-height: 1.4;
+  font-size: 11px;
 }
 
+
 /* =========================================================
-   SUBMIT BUTTON
+   SUBMIT
 ========================================================= */
 
 .submitButton {
-  display: inline-flex;
+  width: 100%;
+
+  min-height: 58px;
+
+  display: flex;
+
   align-items: center;
+
   justify-content: space-between;
 
-  width: 100%;
-  min-height: 52px;
+  padding:
+    0 20px;
 
-  margin-top: 0.625rem;
-  padding: 1rem 1.25rem;
+  border: 0;
 
-  border: 1px solid #d4af37;
+  background: var(--gold);
 
-  background: #d4af37;
-  color: #000;
+  color: #050505;
 
-  font: inherit;
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-family: inherit;
+
+  font-size: 14px;
+
+  font-weight: 700;
 
   cursor: pointer;
 
   transition:
-    background-color 0.25s ease,
-    color 0.25s ease,
     transform 0.25s ease,
-    opacity 0.25s ease;
+    background 0.25s ease;
 }
 
-.submitButton:hover:not(:disabled) {
-  background: transparent;
-  color: #d4af37;
+.submitButton:hover {
+  background: var(--gold-light);
 
-  transform: translateY(-2px);
-}
-
-.submitButton:focus-visible {
-  outline: 2px solid #fff;
-
-  outline-offset: 4px;
+  transform:
+    translateY(-2px);
 }
 
 .submitButton:disabled {
-  opacity: 0.55;
+  opacity: 0.6;
 
-  cursor: not-allowed;
+  cursor: wait;
 
   transform: none;
 }
 
+
 /* =========================================================
-   SUCCESS MESSAGE
+   STATUS
 ========================================================= */
 
-.successMessage {
+.successMessage,
+.errorMessage {
+  position: relative;
+
+  z-index: 2;
+
   display: flex;
+
   flex-direction: column;
 
-  gap: 0.375rem;
+  gap: 6px;
 
-  margin-top: 1.875rem;
-  padding: 1rem 1.125rem;
+  padding: 16px;
 
-  border-left: 2px solid #d4af37;
+  margin-bottom: 25px;
 
-  background: rgba(212, 175, 55, 0.06);
-}
+  font-size: 13px;
 
-.successMessage strong {
-  color: #d4af37;
-
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-.successMessage span {
-  color: rgba(255, 255, 255, 0.65);
-
-  font-size: 0.85rem;
   line-height: 1.5;
 }
 
-/* =========================================================
-   ERROR MESSAGE
-========================================================= */
+.successMessage {
+  border:
+    1px solid
+    rgba(92, 180, 122, 0.3);
+
+  background:
+    rgba(92, 180, 122, 0.06);
+
+  color: #b9e5c8;
+}
 
 .errorMessage {
-  margin-top: 1.875rem;
-  padding: 1rem 1.125rem;
+  border:
+    1px solid
+    rgba(220, 100, 100, 0.3);
 
-  border-left: 2px solid #e8a0a0;
+  background:
+    rgba(220, 100, 100, 0.06);
 
-  background: rgba(232, 160, 160, 0.06);
-
-  color: #e8a0a0;
-
-  font-size: 0.85rem;
-  line-height: 1.5;
+  color: #efb5b5;
 }
+
 
 /* =========================================================
    TABLET
 ========================================================= */
 
-@media (max-width: 900px) {
+@media (max-width: 1180px) {
+
   .hero {
-    padding-top: 4.5rem;
+    padding:
+      28px 34px 24px;
+  }
+
+  .heroGrid {
+    grid-template-columns:
+      minmax(0, 0.95fr)
+      minmax(430px, 1.05fr);
+
+    gap: 15px;
+  }
+
+  .heroTitle {
+    font-size: clamp(
+      50px,
+      5.7vw,
+      70px
+    );
+  }
+
+  .heroDescription {
+    font-size: 16px;
+  }
+
+  .heroVisual {
+    height: 580px;
+    min-height: 0;
+  }
+
+  .contactGrid {
+    gap: 50px;
+  }
+
+}
+
+
+/* =========================================================
+   TABLET / SMALL LAPTOP
+========================================================= */
+
+@media (max-width: 960px) {
+
+  .hero {
+    min-height: auto;
+
+    padding:
+      48px 28px 50px;
+  }
+
+  .heroGrid {
+    min-height: auto;
+
+    grid-template-columns: 1fr;
+
+    gap: 40px;
+  }
+
+  .heroContent {
+    max-width: 800px;
+  }
+
+  .heroVisual {
+    height: 520px;
+    max-width: 760px;
+  }
+
+  .contactSection {
+    padding:
+      100px 28px;
+  }
+
+  .sectionHeader {
+    grid-template-columns: 1fr;
+
+    gap: 30px;
   }
 
   .contactGrid {
     grid-template-columns: 1fr;
-
-    gap: 4.5rem;
   }
 
-  .info {
-    padding-top: 0;
-  }
-
-  .infoText {
-    max-width: 700px;
-  }
-
-  .contactDetails {
-    max-width: 700px;
-  }
 }
+
 
 /* =========================================================
    MOBILE
 ========================================================= */
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
+
   .hero {
-    padding: 4rem 1.25rem 4.5rem;
+    padding:
+      30px 20px 38px;
   }
 
-  .title {
-    font-size: clamp(2.8rem, 13vw, 4.5rem);
+  .heroGrid {
+    gap: 30px;
   }
 
-  .description {
-    margin-top: 1.75rem;
-
-    font-size: 1rem;
+  .heroContent {
+    padding-top: 4px;
   }
+
+  .heroEyebrow {
+    gap: 11px;
+
+    margin-bottom: 22px;
+
+    font-size: 9px;
+
+    letter-spacing: 0.19em;
+  }
+
+  .eyebrowLine {
+    width: 34px;
+  }
+
+  .heroTitle {
+    font-size: clamp(
+      48px,
+      14vw,
+      66px
+    );
+
+    line-height: 0.92;
+
+    letter-spacing: -0.06em;
+  }
+
+  .heroDescription {
+    margin-top: 23px;
+
+    max-width: 520px;
+
+    font-size: 15px;
+
+    line-height: 1.55;
+  }
+
+  .stats {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 24px 0;
+
+    margin-top: 32px;
+  }
+
+  .stat {
+    padding:
+      0 14px;
+
+    border-left:
+      1px solid
+      rgba(212, 175, 55, 0.4);
+  }
+
+  .stat:nth-child(3) {
+    padding-left: 0;
+
+    border-left: 0;
+  }
+
+  .stat strong {
+    font-size: 30px;
+  }
+
+  .stat span {
+    margin-top: 7px;
+
+    font-size: 8px;
+  }
+
+  .heroFooter {
+    display: none;
+  }
+
+  .heroVisual {
+    height: 390px;
+
+    min-height: 390px;
+
+    max-width: none;
+  }
+
+  .visualHeader {
+    font-size: 7px;
+  }
+
+  .visualLabel {
+    font-size: 6px;
+  }
+
+  .labelIdeas {
+    top: 23%;
+    left: 10%;
+  }
+
+  .labelTechnology {
+    top: 23%;
+    right: 10%;
+  }
+
+  .labelSolutions {
+    bottom: 21%;
+    left: 9%;
+  }
+
+  .labelGrowth {
+    bottom: 21%;
+    right: 9%;
+  }
+
+  .frameCorner {
+    width: 20px;
+    height: 20px;
+  }
+
+  .frameTopLeft,
+  .frameTopRight {
+    top: 13px;
+  }
+
+  .frameBottomLeft,
+  .frameBottomRight {
+    bottom: 13px;
+  }
+
+  .frameTopLeft,
+  .frameBottomLeft {
+    left: 13px;
+  }
+
+  .frameTopRight,
+  .frameBottomRight {
+    right: 13px;
+  }
+
+
+  /* contact section */
 
   .contactSection {
-    padding: 4.5rem 1.25rem 5.5rem;
+    padding:
+      80px 20px
+      100px;
+  }
+
+  .sectionHeader {
+    padding-bottom: 40px;
+  }
+
+  .sectionHeader h2 {
+    font-size: 48px;
+  }
+
+  .sectionIntro {
+    font-size: 15px;
   }
 
   .contactGrid {
-    gap: 3.75rem;
-  }
+    padding-top: 45px;
 
-  .infoTitle {
-    font-size: clamp(2rem, 10vw, 3rem);
-  }
-
-  .contactDetails {
-    gap: 1.35rem;
-
-    margin-top: 2.5rem;
-    padding: 1.5rem 0;
-  }
-
-  .contactDetailText,
-  .contactDetailLink {
-    font-size: 0.88rem;
-  }
-
-  .infoItems {
-    margin-top: 3.25rem;
-  }
-
-  .infoItem {
-    grid-template-columns: 40px minmax(0, 1fr);
-
-    gap: 0.875rem;
-
-    padding: 1.5rem 0;
+    gap: 55px;
   }
 
   .formWrapper {
-    padding: 1.5rem 1.25rem;
-  }
-
-  .form {
-    gap: 1.25rem;
-
-    margin-top: 2.25rem;
+    padding:
+      38px 22px;
   }
 
   .row {
     grid-template-columns: 1fr;
-
-    gap: 1.25rem;
   }
 
-  .field input,
-  .field select,
-  .field textarea {
-    min-height: 50px;
-
-    padding: 0.85rem 0.9rem;
-  }
-
-  .field textarea {
-    min-height: 140px;
-  }
-
-  .submitButton {
-    min-height: 52px;
-  }
 }
+
 
 /* =========================================================
    SMALL MOBILE
 ========================================================= */
 
-@media (max-width: 400px) {
-  .hero,
-  .contactSection {
-    padding-left: 1rem;
-    padding-right: 1rem;
+@media (max-width: 480px) {
+
+  .hero {
+    padding:
+      25px 16px 30px;
   }
 
-  .formWrapper {
-    padding: 1.25rem 1rem;
+  .heroTitle {
+    font-size: 45px;
   }
 
-  .contactDetails {
-    gap: 1.2rem;
+  .heroDescription {
+    font-size: 14px;
+  }
+
+  .stats {
+    gap: 22px 0;
+  }
+
+  .stat strong {
+    font-size: 27px;
+  }
+
+  .stat span {
+    font-size: 7px;
+
+    letter-spacing: 0.12em;
+  }
+
+  .heroVisual {
+    height: 330px;
+    min-height: 330px;
+  }
+
+  .visualLabel {
+    display: none;
+  }
+
+  .visualFooter {
+    display: none;
+  }
+
+  .sectionHeader h2 {
+    font-size: 43px;
+  }
+
+  .formHeader h2 {
+    font-size: 35px;
   }
 
   .contactDetailText,
   .contactDetailLink {
-    font-size: 0.84rem;
+    font-size: 14px;
   }
 
-  .infoItem {
-    grid-template-columns: 35px minmax(0, 1fr);
-  }
 }
+
 
 /* =========================================================
    REDUCED MOTION
 ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
-  .contactDetailLink,
-  .infoItem,
-  .field input,
-  .field select,
-  .field textarea,
-  .submitButton {
-    transition: none;
+
+  .page *,
+  .page *::before,
+  .page *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
+
 }

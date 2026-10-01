@@ -1,11 +1,22 @@
-import { useState } from 'react';
+import {
+  lazy,
+  Suspense,
+  useState,
+} from 'react';
+
 import { useForm } from 'react-hook-form';
+
 import { z } from 'zod';
+
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import submitLead from '../../services/leadService.js';
 
 import styles from './Contact.module.css';
+
+const ContactScene = lazy(
+  () => import('../../three/scenes/ContactScene.jsx')
+);
 
 const contactSchema = z.object({
   name: z
@@ -54,9 +65,13 @@ function Contact() {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitting },
+    formState: {
+      errors,
+      isSubmitting,
+    },
   } = useForm({
     resolver: zodResolver(contactSchema),
+
     defaultValues: {
       name: '',
       email: '',
@@ -77,75 +92,231 @@ function Contact() {
       });
 
       setSubmitStatus('success');
+
       reset();
     } catch (error) {
-      console.error('Lead submission failed:', error);
+      console.error(
+        'Lead submission failed:',
+        error
+      );
 
       setSubmitStatus('error');
     }
   };
 
   return (
-    <div className={styles.page}>
+    <main className={styles.page}>
+
       {/* =====================================================
           HERO
       ===================================================== */}
 
       <section className={styles.hero}>
-        <div className={styles.heroInner}>
-          <p className={styles.eyebrow}>
-            LET&apos;S BUILD SOMETHING
-          </p>
+        <div className={styles.heroGrid}>
 
-          <h1 className={styles.title}>
-            Turn your next idea
-            <br />
-            into something real.
-          </h1>
+          {/* =================================================
+              LEFT HERO CONTENT
+          ================================================= */}
 
-          <p className={styles.description}>
-            Tell us what you are building, what you want to
-            improve, or where your business needs to go next.
-          </p>
+          <div className={styles.heroContent}>
+
+            <div className={styles.heroEyebrow}>
+              <span className={styles.eyebrowLine} />
+
+              <span>
+                LET&apos;S BUILD SOMETHING
+              </span>
+            </div>
+
+            <h1 className={styles.heroTitle}>
+              <span>Turn your next idea</span>
+
+              <span className={styles.heroTitleAccent}>
+                into something real.
+              </span>
+            </h1>
+
+            <p className={styles.heroDescription}>
+              Tell us what you are building, what you want
+              to improve, or where your business needs to go
+              next.
+            </p>
+
+            {/* =================================================
+                STATISTICS
+            ================================================= */}
+
+            <div className={styles.stats}>
+
+              <div className={styles.stat}>
+                <strong>700+</strong>
+
+                <span>
+                  COMPLETED
+                  <br />
+                  PROJECTS
+                </span>
+              </div>
+
+              <div className={styles.stat}>
+                <strong>300+</strong>
+
+                <span>
+                  PROJECT
+                  <br />
+                  PROGRESS
+                </span>
+              </div>
+
+              <div className={styles.stat}>
+                <strong>1,000+</strong>
+
+                <span>
+                  NUMBER OF
+                  <br />
+                  CLIENTS
+                </span>
+              </div>
+
+              <div className={styles.stat}>
+                <strong>100%</strong>
+
+                <span>
+                  CLIENT
+                  <br />
+                  SATISFACTION
+                </span>
+              </div>
+
+            </div>
+
+            {/* =================================================
+                HERO FOOTER
+            ================================================= */}
+
+            <div className={styles.heroFooter}>
+
+              <span>
+                RIYADVI SOFTWARE TECHNOLOGIES
+              </span>
+
+              <span>
+                START A CONVERSATION ↗
+              </span>
+
+            </div>
+
+          </div>
+
+          {/* =================================================
+              3D VISUAL
+          ================================================= */}
+
+          <div className={styles.heroVisual}>
+
+            <div className={styles.visualFrame}>
+
+              <div className={`${styles.frameCorner} ${styles.frameTopLeft}`} />
+              <div className={`${styles.frameCorner} ${styles.frameTopRight}`} />
+              <div className={`${styles.frameCorner} ${styles.frameBottomLeft}`} />
+              <div className={`${styles.frameCorner} ${styles.frameBottomRight}`} />
+
+              <div className={styles.visualHeader}>
+                <span>RIYADVI</span>
+
+                <span>
+                  01 / CONTACT
+                </span>
+              </div>
+
+              <Suspense
+                fallback={
+                  <div className={styles.sceneLoading}>
+                    <span />
+                    LOADING SYSTEM
+                  </div>
+                }
+              >
+                <ContactScene />
+              </Suspense>
+
+              <div className={`${styles.visualLabel} ${styles.labelIdeas}`}>
+                <span />
+                IDEAS
+              </div>
+
+              <div className={`${styles.visualLabel} ${styles.labelTechnology}`}>
+                TECHNOLOGY
+                <span />
+              </div>
+
+              <div className={`${styles.visualLabel} ${styles.labelSolutions}`}>
+                <span />
+                SOLUTIONS
+              </div>
+
+              <div className={`${styles.visualLabel} ${styles.labelGrowth}`}>
+                GROWTH
+                <span />
+              </div>
+
+              <div className={styles.visualFooter}>
+                <span>CONNECTED SYSTEM</span>
+                <span>REAL-TIME 3D</span>
+              </div>
+
+            </div>
+
+          </div>
+
         </div>
       </section>
 
+
       {/* =====================================================
-          CONTACT SECTION
+          CONTACT FORM SECTION
       ===================================================== */}
 
       <section
         className={styles.contactSection}
         aria-labelledby="contact-project-title"
       >
+
+        <div className={styles.sectionHeader}>
+
+          <div>
+            <p className={styles.sectionLabel}>
+              START A CONVERSATION
+            </p>
+
+            <h2>
+              Let&apos;s talk about
+              <br />
+              <span>your project.</span>
+            </h2>
+          </div>
+
+          <p className={styles.sectionIntro}>
+            Whether you need a new digital product, a better
+            web experience or a technology strategy, tell us
+            what you have in mind.
+          </p>
+
+        </div>
+
+
         <div className={styles.contactGrid}>
+
           {/* =================================================
               INFORMATION
           ================================================= */}
 
           <div className={styles.info}>
-            <p className={styles.sectionLabel}>
-              START A CONVERSATION
-            </p>
-
-            <h2 className={styles.infoTitle}>
-              Let&apos;s talk about
-              <br />
-              your project.
-            </h2>
-
-            <p className={styles.infoText}>
-              Whether you need a new digital product, a better
-              web experience or a technology strategy, tell us
-              what you have in mind.
-            </p>
-
-            {/* =================================================
-                CONTACT DETAILS
-            ================================================= */}
 
             <div className={styles.contactDetails}>
+
               <div className={styles.contactDetail}>
+
                 <p className={styles.contactDetailLabel}>
                   ADDRESS
                 </p>
@@ -159,9 +330,12 @@ function Contact() {
                   <br />
                   Chennai, Tamil Nadu 600004
                 </address>
+
               </div>
 
+
               <div className={styles.contactDetail}>
+
                 <p className={styles.contactDetailLabel}>
                   MOBILE
                 </p>
@@ -172,9 +346,12 @@ function Contact() {
                 >
                   +91 8072487427
                 </a>
+
               </div>
 
+
               <div className={styles.contactDetail}>
+
                 <p className={styles.contactDetailLabel}>
                   EMAIL
                 </p>
@@ -185,15 +362,16 @@ function Contact() {
                 >
                   info@riyadvisoftwaretechnologies.com
                 </a>
+
               </div>
+
             </div>
 
-            {/* =================================================
-                PROCESS / INFO ITEMS
-            ================================================= */}
 
             <div className={styles.infoItems}>
+
               <div className={styles.infoItem}>
+
                 <span
                   className={styles.infoNumber}
                   aria-hidden="true"
@@ -209,9 +387,12 @@ function Contact() {
                     requirements with our team.
                   </p>
                 </div>
+
               </div>
 
+
               <div className={styles.infoItem}>
+
                 <span
                   className={styles.infoNumber}
                   aria-hidden="true"
@@ -227,9 +408,12 @@ function Contact() {
                     approach for your business.
                   </p>
                 </div>
+
               </div>
 
+
               <div className={styles.infoItem}>
+
                 <span
                   className={styles.infoNumber}
                   aria-hidden="true"
@@ -245,16 +429,28 @@ function Contact() {
                     digital solution.
                   </p>
                 </div>
+
               </div>
+
             </div>
+
           </div>
+
 
           {/* =================================================
               FORM
           ================================================= */}
 
           <div className={styles.formWrapper}>
+
+            <div className={styles.formCornerTopLeft} />
+            <div className={styles.formCornerTopRight} />
+            <div className={styles.formCornerBottomLeft} />
+            <div className={styles.formCornerBottomRight} />
+
+
             <div className={styles.formHeader}>
+
               <p className={styles.sectionLabel}>
                 PROJECT ENQUIRY
               </p>
@@ -267,9 +463,9 @@ function Contact() {
                 Fill in the details below and our team can
                 understand how to help.
               </p>
+
             </div>
 
-            {/* SUCCESS */}
 
             {submitStatus === 'success' && (
               <div
@@ -277,7 +473,9 @@ function Contact() {
                 role="status"
                 aria-live="polite"
               >
-                <strong>Enquiry received.</strong>
+                <strong>
+                  Enquiry received.
+                </strong>
 
                 <span>
                   Thank you. Your project details have been
@@ -286,7 +484,6 @@ function Contact() {
               </div>
             )}
 
-            {/* ERROR */}
 
             {submitStatus === 'error' && (
               <div
@@ -299,16 +496,22 @@ function Contact() {
               </div>
             )}
 
+
             <form
               className={styles.form}
               onSubmit={handleSubmit(onSubmit)}
               noValidate
             >
+
               {/* NAME */}
 
               <div className={styles.field}>
+
                 <label htmlFor="contact-name">
-                  Name <span aria-hidden="true">*</span>
+                  Name
+                  <span aria-hidden="true">
+                    *
+                  </span>
                 </label>
 
                 <input
@@ -334,13 +537,19 @@ function Contact() {
                     {errors.name.message}
                   </p>
                 )}
+
               </div>
+
 
               {/* EMAIL */}
 
               <div className={styles.field}>
+
                 <label htmlFor="contact-email">
-                  Email <span aria-hidden="true">*</span>
+                  Email
+                  <span aria-hidden="true">
+                    *
+                  </span>
                 </label>
 
                 <input
@@ -367,12 +576,16 @@ function Contact() {
                     {errors.email.message}
                   </p>
                 )}
+
               </div>
+
 
               {/* PHONE + COMPANY */}
 
               <div className={styles.row}>
+
                 <div className={styles.field}>
+
                   <label htmlFor="contact-phone">
                     Phone
                   </label>
@@ -401,9 +614,12 @@ function Contact() {
                       {errors.phone.message}
                     </p>
                   )}
+
                 </div>
 
+
                 <div className={styles.field}>
+
                   <label htmlFor="contact-company">
                     Company
                   </label>
@@ -431,12 +647,16 @@ function Contact() {
                       {errors.company.message}
                     </p>
                   )}
+
                 </div>
+
               </div>
+
 
               {/* SERVICE */}
 
               <div className={styles.field}>
+
                 <label htmlFor="contact-service">
                   What do you need?
                 </label>
@@ -446,7 +666,11 @@ function Contact() {
                   defaultValue=""
                   {...register('service')}
                 >
-                  <option value="" disabled>
+
+                  <option
+                    value=""
+                    disabled
+                  >
                     Select a service
                   </option>
 
@@ -473,12 +697,16 @@ function Contact() {
                   <option value="UI / UX Design">
                     UI / UX Design
                   </option>
+
                 </select>
+
               </div>
+
 
               {/* MESSAGE */}
 
               <div className={styles.field}>
+
                 <label htmlFor="contact-message">
                   Project details
                 </label>
@@ -505,7 +733,9 @@ function Contact() {
                     {errors.message.message}
                   </p>
                 )}
+
               </div>
+
 
               {/* SUBMIT */}
 
@@ -515,6 +745,7 @@ function Contact() {
                 disabled={isSubmitting}
                 aria-busy={isSubmitting}
               >
+
                 <span>
                   {isSubmitting
                     ? 'Sending...'
@@ -526,12 +757,18 @@ function Contact() {
                     ↗
                   </span>
                 )}
+
               </button>
+
             </form>
+
           </div>
+
         </div>
+
       </section>
-    </div>
+
+    </main>
   );
 }
 
